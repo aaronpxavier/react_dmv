@@ -1,5 +1,12 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Setup
+
+1. nvm install 12.18.3 - (if 12.18.3 is not already installed)
+2. nvm use
+3. npm install 
+4. npm start 
+
 ## Available Scripts
 
 In the project directory, you can run:
