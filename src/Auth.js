@@ -1,6 +1,6 @@
 import * as Msal from 'msal';
 
-function createMSAL() {
+function _createMSAL() {
     let organizationURI = 'https://mdynamics0077.crm.dynamics.com';
     let tenant = "2df8f3a3-344d-4681-ac70-155db3cbf455"; 
     let clientId = '63f764bc-8595-4c54-a4a1-6353db3ec141';
@@ -22,15 +22,15 @@ function createMSAL() {
     return new Msal.UserAgentApplication(msalConfig);
 }
 
-function getToken() {
-    createMSAL.loginPopup()
+export default function getToken() {
+    _createMSAL().loginPopup()
         .then(response => {
-            const idToken  = response; 
-           console.log(idToken);
+            const {idToken}  = response; 
+            return idToken.rawIdToken;
         });   
 }
 
-export default getToken;
+
 
 /**
  * 
