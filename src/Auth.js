@@ -27,6 +27,9 @@ export default function getToken() {
         .then(response => {
             const {idToken}  = response; 
             return idToken.rawIdToken;
+        })
+        .catch(err => {
+            console.error(err);
         });   
 }
 
