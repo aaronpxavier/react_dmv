@@ -1,11 +1,17 @@
-import React from 'react'
+import React from "react";
 
 function Applications(props) {
-    return (
-        <div>
-            Applications
-        </div>
-    )
+  return (
+    <div>
+      <h1>Applications</h1>
+      <ul>
+        <li>App1</li>
+        <li>App2</li>
+        <li>App3</li>
+        <li>App4</li>
+      </ul>
+    </div>
+  );
 }
 
-export default Applications
+export default Applications;
