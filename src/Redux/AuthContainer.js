@@ -12,21 +12,16 @@ import * as authActions from "../Auth";
 const AuthContainer = (props) => {
   useEffect(() => {
     const { actions } = props;
-    //actions.getToken4();
+    actions.getToken2();
   }, []);
 
   return <div>{"Test" /* <BookRender {...props} /> */}</div>;
 };
 
-// console.log("Free spirit");
-// console.log(authActions.getToken2);
-// console.log(authActions.getToken3);
-// console.log(authActions.getToken4);
-
 function mapStateToProps(state) {
-  console.log("can u see this?");
-  console.log(state);
-  console.log(state.authReducer);
+  //   console.log("can u see this?");
+  //   console.log(state);
+  //   console.log(state.authReducer);
   console.log(state.authReducer.authData);
 
   return {

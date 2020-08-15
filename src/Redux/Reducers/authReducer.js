@@ -11,7 +11,7 @@ export default function authReducer(state = {}, action) {
     case GET_TOKEN_SUCCESFUL:
       return {
         ...state,
-        authData: { token: action.rawIdToken, requestSucessful: true },
+        authData: { tokens: action, requestSucessful: true },
       };
     case GET_TOKEN_PENDING:
       return { ...state, authData: { requestPending: true } };

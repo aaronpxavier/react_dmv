@@ -52,7 +52,7 @@ export const getToken2 = () => {
         console.log("Success");
       })
       .catch((error) => {
-        console.log("Error");
+        console.log("Error!");
         console.log(error);
         dispatch(_getTokenFailed(error));
       });
@@ -89,11 +89,18 @@ export function getToken4() {
 }
 
 export const _getTokenSuccess = (res) => {
+  //   console.log("This is res2");
+  //   console.log(res);
+  //   console.log("idToken " + res.data);
+  //   console.log(res.idToken.rawIdToken);
+  //   console.log("rawIdToken " + res.IdToken);
+  //   console.log(res.uniqueId);
   return {
     type: GET_TOKEN_SUCCESFUL,
     data: res.data,
-    tokenID: res.rawIdToken,
-    accessToken: res.accessToken,
+    tokenID: res.idToken.rawIdToken,
+    //tokenID and acessToken are the same
+    //accessToken: res.idToken.rawIdToken,
     loggedIn: true,
   };
 };
