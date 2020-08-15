@@ -1,18 +1,19 @@
-import React from 'react'
-import routes from './routes'
-import { withRouter } from 'react-router-dom'
-import Nav from './Components/Nav/Nav'
+import React, { Component } from "react";
+import routes from "./routes";
+import { withRouter } from "react-router-dom";
+import Nav from "./Components/Nav/Nav";
+import configureStore from "./Redux/Store/configureStore";
 
+//const store = configureStore();
 
-
-function App(props) {
-    return (
-        <div>
-            Dmv React Basic
-            <Nav />
-            {routes}
-        </div>
-    )
+export class App extends Component {
+  render = () => (
+    <div>
+      Dmv React Basic
+      <Nav />
+      {routes}
+    </div>
+  );
 }
 
-export default withRouter(App)
+export default withRouter(App);
