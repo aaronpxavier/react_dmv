@@ -22,12 +22,6 @@ const store = configureStore();
 authActions.getToken2();
 
 //getToken();
-//authActions.getToken3();
-//var tok = authActions.getToken2;
-//var temp = mapStateToProps;
-//console.log("Tokenss");
-//console.log(temp);
-//console.log(authActions._getTokenSuccess);
 
 ReactDom.render(
   <Provider store={store}>
