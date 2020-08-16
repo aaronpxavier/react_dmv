@@ -6,7 +6,6 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { getTokenRedirect } from "./Utilities/MsalAuth/msalAuth";
 import configureStore from "./Redux/Store/configureStore";
-import { USER_TOKEN_KEY } from './Constants/sessionKeys'
 const store = configureStore();
 
   getTokenRedirect(() => {
