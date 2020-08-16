@@ -12,8 +12,8 @@ export class App extends Component {
       props.history.push('/auth');
     }
   }
-  render = () => {
 
+  render = () => {
     return (
       <div>
         Dmv React Basic
