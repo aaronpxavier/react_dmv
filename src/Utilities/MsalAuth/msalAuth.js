@@ -1,11 +1,5 @@
 import * as Msal from "msal";
 
-import {
-  GET_TOKEN_SUCCESFUL,
-  GET_TOKEN_FAILURE,
-  GET_TOKEN_PENDING,
-} from "./Constants/actionTypes";
-
 function _createMSAL() {
   let organizationURI = "https://mdynamics0077.crm.dynamics.com";
   let tenant = "2df8f3a3-344d-4681-ac70-155db3cbf455";
@@ -39,46 +33,3 @@ export default function getToken() {
       console.error(err);
     });
 }
-
-export const getToken2 = () => {
-  return async (dispatch) => {
-    dispatch(_getTokenStarted());
-    console.log("Starting");
-    _createMSAL()
-      .loginPopup()
-      .then((res) => {
-        //const { idToken } = res;
-        dispatch(_getTokenSuccess(res));
-        console.log("Success");
-      })
-      .catch((error) => {
-        console.log("Error!");
-        console.log(error);
-        dispatch(_getTokenFailed(error));
-      });
-  };
-};
-
-export const _getTokenSuccess = (res) => {
-  return {
-    type: GET_TOKEN_SUCCESFUL,
-    data: res.data,
-    tokenID: res.idToken.rawIdToken,
-    //tokenID and acessToken are the same
-    //accessToken: res.idToken.rawIdToken,
-    loggedIn: true,
-  };
-};
-
-const _getTokenFailed = (error) => {
-  return {
-    type: GET_TOKEN_FAILURE,
-    error,
-  };
-};
-
-const _getTokenStarted = () => {
-  return {
-    type: GET_TOKEN_PENDING,
-  };
-};

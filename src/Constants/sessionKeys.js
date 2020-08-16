@@ -1,0 +1,1 @@
+export const DYN_TOKEN_KEY =  "dynamic365.token"

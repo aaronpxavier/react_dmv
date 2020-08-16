@@ -2,21 +2,29 @@ import {
   GET_TOKEN_SUCCESFUL,
   GET_TOKEN_PENDING,
   GET_TOKEN_FAILURE,
+  TOKEN_AUTH_FAILED,
 } from "../../Constants/actionTypes";
-
-//D:/Code/SmoothStack/DmvRedux/react_dmv/src/Constants/actionTypes
 
 export default function authReducer(state = {}, action) {
   switch (action.type) {
     case GET_TOKEN_SUCCESFUL:
       return {
         ...state,
-        authData: { tokens: action, requestSucessful: true },
+        authData: { 
+          requestSucessful: true, 
+          userLoggedIn: true,
+          dynamicsToken: action.data
+        },
       };
     case GET_TOKEN_PENDING:
-      return { ...state, authData: { requestPending: true } };
+      return { 
+        ...state, 
+        authData: { userLoggedIn: false, requestPending: true} 
+      };
     case GET_TOKEN_FAILURE:
-      return { ...state, authData: { requestFailed: true } };
+      return { ...state, authData: { userLoggedIn: false, requestFailed: true } };
+    case TOKEN_AUTH_FAILED:
+      return {...state, authData: {tokenAuthFailed: true}}
     default:
       return state;
   }
