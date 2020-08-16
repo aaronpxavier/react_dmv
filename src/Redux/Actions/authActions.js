@@ -1,6 +1,6 @@
 import { GET_TOKEN_SUCCESFUL, GET_TOKEN_FAILURE, GET_TOKEN_PENDING, TOKEN_AUTH_FAILED } from "../../Constants/actionTypes";
 import { API_URL } from "../../Constants/config";
-import { Dyn365Token, DYN_TOKEN_KEY } from '../../Constants/sessionKeys'
+import { USER_TOKEN_KEY, DYN_TOKEN_KEY } from '../../Constants/sessionKeys'
 import Axios from "axios";
 
 export const get365Token = () => {
@@ -8,7 +8,7 @@ export const get365Token = () => {
     dispatch(_getTokenStarted());
     return Axios.get(API_URL, {
       headers: {
-        Authorization: 'Bearer ' + sessionStorage.getItem("msal.idtoken")
+        Authorization: 'Bearer ' + sessionStorage.getItem(USER_TOKEN_KEY)
       }
     })
     .then(res => {
