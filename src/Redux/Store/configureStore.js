@@ -11,7 +11,6 @@ function configureStore(initialState) {
     initialState,
     applyMiddleware(...middlewares)
   );
-
   return store;
 }
 

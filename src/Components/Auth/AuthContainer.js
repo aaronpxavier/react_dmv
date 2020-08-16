@@ -3,31 +3,24 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { bindActionCreators, applyMiddleware } from "redux";
-//import thunk from "redux-thunk";
-
-import * as authActions from "../Auth";
-//import BookRender from "./BookRender";
+import { bindActionCreators } from "redux";
+import * as authActions from "../../Redux/Actions/authActions";
+import AuthRender  from './AuthRender'
 
 const AuthContainer = (props) => {
   useEffect(() => {
     const { actions } = props;
-    actions.getToken2();
+    actions.get365Token();
   }, []);
-
-  return <div>{"Test" /* <BookRender {...props} /> */}</div>;
+  
+  
+  return(<div><AuthRender {...props}></AuthRender></div>)
 };
 
 function mapStateToProps(state) {
-  //   console.log("can u see this?");
-  //   console.log(state);
-  //   console.log(state.authReducer);
-  console.log(state.authReducer.authData);
 
   return {
     authData: state.authReducer.authData,
-
-    //accessToken: state.authReducer.accessToken,
   };
 }
 

@@ -7,7 +7,7 @@ import Customers from "./Components/Customers/Customers";
 import History from "./Components/History/History";
 import NewApplication from "./Components/NewApplication/NewApplication";
 import Vehicles from "./Components/Vehicles/Vehicles";
-import AuthContainer from "./Redux/AuthContainer";
+import AuthContainer from "./Components/Auth/AuthContainer";
 
 export default (
   <Switch>
