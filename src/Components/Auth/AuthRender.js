@@ -5,9 +5,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 const AuthRender = (props) => {
-    
-        
-        console.log(props);
+
         if (!props.authData || props.authData.requestPending)
           return (
             <div>

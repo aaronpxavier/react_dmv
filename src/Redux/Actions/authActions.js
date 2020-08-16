@@ -4,7 +4,6 @@ import { Dyn365Token, DYN_TOKEN_KEY } from '../../Constants/sessionKeys'
 import Axios from "axios";
 
 export const get365Token = () => {
-  console.log('inside get token call');
   return dispatch => {
     dispatch(_getTokenStarted());
     return Axios.get(API_URL, {
@@ -22,7 +21,6 @@ export const get365Token = () => {
       
     })
     .catch( (error) => {
-      console.log(error);
       dispatch(_getTokenFailed(error))
     })
   }

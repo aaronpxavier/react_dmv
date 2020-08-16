@@ -11,7 +11,6 @@ const AuthContainer = (props) => {
   useEffect(() => {
     const { actions } = props;
     actions.get365Token();
-    console.log('Auth Container Called')
   }, []);
   
   
@@ -19,10 +18,6 @@ const AuthContainer = (props) => {
 };
 
 function mapStateToProps(state) {
-  //   console.log("can u see this?");
-  //   console.log(state);
-  //   console.log(state.authReducer);
-  console.log(state.authReducer.authData);
 
   return {
     authData: state.authReducer.authData,
