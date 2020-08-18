@@ -1,59 +1,67 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getApplications } from "../../Redux/Actions/applicationActions";
-import { USER_TOKEN_KEY, DYN_TOKEN_KEY } from "../../Constants/sessionKeys";
+import * as actionCreators from "../../Redux/Actions/applicationActions";
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
 
-class Applications extends Component {
-  componentDidMount() {
-    console.log("Props 22222222222" + this.props.getApplications());
-    console.log(
-      "Applications XXXXXXX" + this.props.value[0].teamtwo_applicationname
-    );
-    let config = {
-      headers: {
-        Authorization: "Bearer " + sessionStorage.getItem(DYN_TOKEN_KEY),
-      },
-    };
-
-    fetch(
-      "https://mdynamic0077.crm.dynamics.com/api/data/v9.1/teamtwo_applications?$select=teamtwo_application_number,teamtwo_applicationdescription,teamtwo_applicationname,teamtwo_approvedstatus,_teamtwo_contacttoapplicationid_value",
-      config
-    )
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        // Work with JSON data here
-        console.log(
-          "Getting data...>>>>" + data.value[0].teamtwo_applicationname
-        );
-      });
+class Applications extends React.Component {
+  async componentDidMount() {
+    this.props.getApplications();
   }
 
   render() {
-    // const applicationItems = this.props.applications.map((application) => (
-    //   <div key={application.id}></div>
-    // ));
-    return <div>Howdy</div>;
+    if (this.props.applicationReducer.applications.value == undefined) {
+      console.log("undefined bro");
+      console.log(this.props.applicationReducer.applications.value);
+    } else {
+      console.log("defined bro");
+      console.log(this.props);
+      return (
+        <div>
+          {/* Customers
+          {this.props.contactReducer.contacts.value.map((customer, index) => (
+            <div>
+              <Card style={{ minWidth: "275px" }} variant="outlined">
+                <CardContent>
+                  <Typography
+                    style={{ fontSize: "14" }}
+                    color="textSecondary"
+                    gutterBottom
+                  >
+                    Customer Name
+                  </Typography>
+                  <Typography variant="h5" component="h2">
+                    {customer.fullname}
+                  </Typography>
+                  <Typography
+                    style={{ marginBottom: "12px" }}
+                    color="textSecondary"
+                  >
+                    Customer Email
+                  </Typography>
+                  <Typography variant="body2" component="p">
+                    {customer.emailaddress1}
+                  </Typography>
+                </CardContent>
+                <CardActions>
+                  <Button size="small">Learn More</Button>
+                </CardActions>
+              </Card>
+            </div>
+          ))} */}
+        </div>
+      );
+    }
+
+    return <div>Applications Loading Applications</div>;
   }
 }
 
-/*Keep this code here in case we need to switch back to functional component*/
-// function Applications(props) {
-//   return (
-//     <div>
-//       <h1>Applications</h1>
-//       <ul>
-//         <li>App1</li>
-//         <li>App2</li>
-//         <li>App3</li>
-//         <li>App4</li>
-//       </ul>
-//     </div>
-//   );
-// }
-const mapStateToProps = (state) => ({
-  applications: state.applications.applications,
-});
-export default connect(mapStateToProps, { getApplications })(Applications);
-//export default Applications;
+const mapStateToProps = (state) => {
+  return state;
+};
+
+export default connect(mapStateToProps, actionCreators)(Applications);
