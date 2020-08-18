@@ -11,8 +11,6 @@ import Typography from '@material-ui/core/Typography';
 
 class Customers extends React.Component {
 
-
-
     async componentDidMount() {
 
         this.props.getContacts();
@@ -68,9 +66,6 @@ class Customers extends React.Component {
 const mapStateToProps = (state) => {
     return state
 }
-
-
-
 
 
 export default connect(mapStateToProps, actionCreators)(Customers)
