@@ -1,17 +1,18 @@
-import Axios from 'Axios';
+import Axios from "axios";
 import { API_URL } from '../Constants/config';
 import { DYN_TOKEN_KEY, USER_TOKEN_KEY } from '../Constants/sessionKeys';
 
 export function updateDYNToken() {
-    new Promise ((res, rej) => {
+    return new Promise (res => {
         Axios.get(API_URL, {
             headers: {
               Authorization: 'Bearer ' + sessionStorage.getItem(USER_TOKEN_KEY)
             }
           })
           .then(data => {
-            sessionStorage.setItem(DYN_TOKEN_KEY, res.data.Dyn365Token)
-            res(data);
+            const TOKEN = data.data.Dyn365Token;
+            sessionStorage.setItem(DYN_TOKEN_KEY, TOKEN);
+            res(TOKEN);
           });
     })
 }

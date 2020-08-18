@@ -1,15 +1,14 @@
 import { GET_TOKEN_SUCCESFUL, GET_TOKEN_FAILURE, GET_TOKEN_PENDING, TOKEN_AUTH_FAILED } from "../../Constants/actionTypes";
 import { updateDYNToken } from '../../Utilities/apiServer';
 
-import Axios from "axios";
 
 export const get365Token = () => {
   return dispatch => {
     dispatch(_getTokenStarted());
     return updateDYNToken()
-    .then(res => {
-      if (res.data.Dyn365Token) {
-        dispatch(_getTokenSuccess(res));
+    .then(data => {
+      if (data) {
+        dispatch(_getTokenSuccess(data));
       } else {
         dispatch(_tokenAuthFailed());
       }
@@ -21,11 +20,11 @@ export const get365Token = () => {
   }
 }
 
-const _getTokenSuccess = (res) => {
-  console.log(res.data);
+const _getTokenSuccess = (dat) => {
+  console.log(dat);
   return {
       type: GET_TOKEN_SUCCESFUL,
-      data:  res.data
+      data:  dat
   };
 }
 
