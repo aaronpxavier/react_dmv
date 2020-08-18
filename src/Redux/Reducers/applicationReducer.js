@@ -4,16 +4,17 @@ import {
 } from "../../Constants/actionTypes";
 
 const initialState = {
-  applications: [],
-  application: {},
+  items: [],
+  item: {},
 };
 
 export default function (state = initialState, action) {
+  console.log("Reduction");
   switch (action.type) {
     case GET_APPLICATIONS:
       return {
         ...state,
-        applications: action.payload,
+        items: action.payload,
       };
     default:
       return state;
