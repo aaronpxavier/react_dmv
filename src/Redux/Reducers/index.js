@@ -2,12 +2,14 @@
 
 import { combineReducers } from "redux";
 import authReducer from "./authReducer";
-import contactReducer from './contactReducer'
+import applicationReducer from "./applicationReducer";
+import contactReducer from "./contactReducer";
 
 const allReducers = combineReducers({
   //reducers go here as key value pairs
   authReducer,
-  contactReducer
+  applicationReducer,
+  contactReducer,
 });
 
 export default allReducers;
