@@ -92,20 +92,14 @@ class Customers extends React.Component {
             )
         }
 
-        return (
-            <div>
-                Customers
-                Loading Customers
-            </div>
-        )
-    }
+        
+
+    return <div>Customers Loading Customers</div>;
+  }
 }
-
-
 
 const mapStateToProps = (state) => {
-    return state
-}
-
+  return state;
+};
 
 export default connect(mapStateToProps, actionCreators)(Customers)

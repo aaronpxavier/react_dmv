@@ -9,7 +9,8 @@ const allReducers = combineReducers({
   //reducers go here as key value pairs
   authReducer,
   contactReducer,
-  vehicleReducer
+  vehicleReducer,
+  applicationReducer
 });
 
 export default allReducers;

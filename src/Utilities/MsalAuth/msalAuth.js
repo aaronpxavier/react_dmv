@@ -37,16 +37,16 @@ export function getTokenPopup() {
 
 export function getTokenRedirect(callback) {
   let msal = _createMSAL();
-  let authCallback = callback ? callback : (error, response) => {
-    console.log(response);
-    
-  }
+  let authCallback = callback
+    ? callback
+    : (error, response) => {
+        console.log(response);
+      };
 
   if (!sessionStorage.getItem(USER_TOKEN_KEY)) {
     msal.handleRedirectCallback(authCallback);
-    msal.loginRedirect()
+    msal.loginRedirect();
   } else {
     authCallback();
   }
-  
 }
