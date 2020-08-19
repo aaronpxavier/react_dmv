@@ -1,0 +1,131 @@
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+}
+#navbar {
+  overflow: hidden;
+  background-color: #333;
+  list-style-type: none;
+  /* align-content: right; */
+  position: fixed;
+  top: 0;
+  width: 100%;
+  opacity: 90%;
+  /* border: 0; */
+  border-radius: 7px;
+}
+
+#navbar ul {
+  /* align-items: center; */
+  /* float: left; */
+  background-color: pink;
+  /* left: 100px; */
+  /* align-items: center; */
+}
+
+#navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: left;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+#navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add an active class to highlight the current page */
+#navbar a.active {
+  background-color: #4caf50;
+  color: white;
+}
+#navContainer {
+  /* align-items: center; */
+  /* float: left; */
+  background-color: pink;
+  /* align-items: center; */
+}
+#navbar Link {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+#pageContainer {
+  /* position: absolute; */
+  /*min-height: 100%; */
+  background-color: green;
+  opacity: 90%;
+  /* margin-top: 80vh; */
+  /* min-height: 100%; */
+  /* max-height: 10vh; */
+  /* position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem; */
+}
+
+#contentWrap {
+  /* padding-bottom: 2.5rem;
+  height: 100%; */
+  background-color: yellow;
+  /* opacity: 30%;
+  height: 100vh; */
+  /* min-height: 100vh; */
+  position: relative;
+}
+
+#footer {
+  /* overflow: hidden; */
+  /* background-color: #333; */
+  /* list-style-type: none; */
+  /* align-content: right; */
+  /* position: fixed; */
+  /* bottom: 0;
+  width: 100%;
+  opacity: 100%;
+  height: 2.5rem;
+  margin-top: -100%+ 2.5rem; */
+  /* position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 3.5rem;  */
+  /* margin-top: 90vh; */
+  /* height: 2.5rem; */
+  /* height: 2.5rem;
+  background-color: red;
+  opacity: 60%;
+  bottom: 0; */
+  opacity: 100%;
+}
+
+#footer p {
+  bottom: 0;
+  /* display: block; */
+  color: #f2f2f2;
+  text-align: center;
+  /* padding: 14px 16px; */
+  text-decoration: none;
+  font-size: 20px;
+}
+
+#footContainer {
+  position: relative;
+  bottom: 0;
+  margin-bottom: 0;
+  width: 100%;
+  /* margin-top: 50vh; */
+  height: 2.5rem;
+  background-color: #333;
+  opacity: 100%;
+  border: 0;
+}
