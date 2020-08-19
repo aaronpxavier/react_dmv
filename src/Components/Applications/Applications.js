@@ -21,37 +21,39 @@ class Applications extends React.Component {
       console.log(this.props);
       return (
         <div>
-          {/* Customers
-          {this.props.contactReducer.contacts.value.map((customer, index) => (
-            <div>
-              <Card style={{ minWidth: "275px" }} variant="outlined">
-                <CardContent>
-                  <Typography
-                    style={{ fontSize: "14" }}
-                    color="textSecondary"
-                    gutterBottom
-                  >
-                    Customer Name
-                  </Typography>
-                  <Typography variant="h5" component="h2">
-                    {customer.fullname}
-                  </Typography>
-                  <Typography
-                    style={{ marginBottom: "12px" }}
-                    color="textSecondary"
-                  >
-                    Customer Email
-                  </Typography>
-                  <Typography variant="body2" component="p">
-                    {customer.emailaddress1}
-                  </Typography>
-                </CardContent>
-                <CardActions>
-                  <Button size="small">Learn More</Button>
-                </CardActions>
-              </Card>
-            </div>
-          ))} */}
+          <h1>Applications</h1>
+          {this.props.applicationReducer.applications.value.map(
+            (application, index) => (
+              <div>
+                <Card style={{ minWidth: "275px" }} variant="outlined">
+                  <CardContent>
+                    <Typography
+                      style={{ fontSize: "14" }}
+                      color="textSecondary"
+                      gutterBottom
+                    >
+                      Application Number
+                    </Typography>
+                    <Typography variant="h5" component="h2">
+                      {application.teamtwo_application_number}
+                    </Typography>
+                    <Typography
+                      style={{ marginBottom: "12px" }}
+                      color="textSecondary"
+                    >
+                      Application Type
+                    </Typography>
+                    <Typography variant="body2" component="p">
+                      {application.teamtwo_applicationname}
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button size="small">Learn More</Button>
+                  </CardActions>
+                </Card>
+              </div>
+            )
+          )}
         </div>
       );
     }
