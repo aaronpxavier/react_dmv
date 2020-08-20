@@ -8,7 +8,11 @@ const AuthRender = (props) => {
 
         if (!props.authData || props.authData.requestPending)
           return (
-            <div>
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+          }}>
               <CircularProgress color="secondary" />
             </div>
           );
