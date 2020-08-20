@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import routes from "./routes";
 import { withRouter } from "react-router-dom";
-import Nav from "./Components/Nav/Nav";
 import NavBar from "./Components/Nav/NavBar";
 import Footer from "./Components/Nav/Footer";
 import configureStore from "./Redux/Store/configureStore";
@@ -43,7 +42,6 @@ export class App extends Component {
       Dmv React Basic
       <div style={spacerTop} />
       <NavBar />
-      <Nav />
       {routes}
       <div style={spacer} />
       <div style={footerStyle}>
