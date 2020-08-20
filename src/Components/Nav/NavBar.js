@@ -34,6 +34,8 @@ import {
   Tabs,
 } from "@material-ui/core";
 
+//sessionStorage.setItem("lastTab", 0);
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -67,26 +69,50 @@ const styles = (theme) => ({
 });
 
 export default class NavBar extends React.Component {
+  // tabData = sessionStorage.getItem("lastTab");
+
   state = {
     activeTabIndex: 0,
   };
+  componentWillMount() {
+    // console.log("CDM");
+    var lTab = sessionStorage.getItem("lastTab");
 
+    //console.log(lTab);
+    if (isNaN(sessionStorage.getItem("lastTab"))) {
+      // console.log("was weird NaN");
+      sessionStorage.setItem("lastTab", 0);
+    } else {
+      this.setState({ activeTabIndex: parseInt(lTab) });
+      // console.log("The state is " + this.state.activeTabIndex);
+    }
+  }
   handleChange = (event, value) => {
     this.setState({ activeTabIndex: value });
   };
   render() {
+    // console.log("The state is " + this.state.activeTabIndex);
+    let tabData = sessionStorage.getItem("lastTab");
+    // console.log("tab Data");
+    // console.log(tabData);
+
     const { classes } = this.props;
     const { activeTabIndex } = this.state;
+    sessionStorage.setItem("lastTab", activeTabIndex);
+    // console.log("Active tab");
+    // console.log(activeTabIndex);
+
     return (
       <div>
         <AppBar id="AppBar" position="static" top="0">
           <Toolbar>
-            <Typography variant="title" color="inherit" component="h2">
+            <Typography variant="inherit" color="inherit" component="h2">
               DMV APP
             </Typography>
             <Tabs id="Tabs" value={activeTabIndex} onChange={this.handleChange}>
               <Tab
                 id="Tab"
+                value={0}
                 label={
                   <>
                     <Home fontSize="inherit" /> Activities
@@ -98,6 +124,7 @@ export default class NavBar extends React.Component {
 
               <Tab
                 id="Tab"
+                value={1}
                 label={
                   <>
                     <LibraryBooks fontSize="inherit" /> Applications
@@ -108,6 +135,7 @@ export default class NavBar extends React.Component {
               />
               <Tab
                 id="Tab"
+                value={2}
                 label={
                   <>
                     <Dns fontSize="inherit" /> Cardmodal
@@ -118,6 +146,7 @@ export default class NavBar extends React.Component {
               />
               <Tab
                 id="Tab"
+                value={3}
                 label={
                   <>
                     <Contacts fontSize="inherit" /> Customers
@@ -128,6 +157,7 @@ export default class NavBar extends React.Component {
               />
               <Tab
                 id="Tab"
+                value={4}
                 label={
                   <>
                     <Receipt fontSize="inherit" /> History
@@ -138,6 +168,7 @@ export default class NavBar extends React.Component {
               />
               <Tab
                 id="Tab"
+                value={5}
                 label={
                   <>
                     <PostAdd fontSize="inherit" /> New Application
@@ -148,6 +179,7 @@ export default class NavBar extends React.Component {
               />
               <Tab
                 id="Tab"
+                value={6}
                 label={
                   <>
                     <DirectionsCar fontSize="inherit" /> Vehicles
