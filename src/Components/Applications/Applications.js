@@ -15,53 +15,92 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 
+function createData(applicationNumber, applicationType) {
+  return { applicationNumber, applicationType };
+}
+
+const StyledTableCell = withStyles((theme) => ({
+  head: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+  },
+  body: {
+    fontSize: 14,
+  },
+}))(TableCell);
+
+const StyledTableRow = withStyles((theme) => ({
+  root: {
+    "&:nth-of-type(odd)": {
+      backgroundColor: theme.palette.action.hover,
+    },
+  },
+}))(TableRow);
+
 class Applications extends React.Component {
   async componentDidMount() {
     this.props.getApplications();
   }
 
+  createRows = () => {
+    let rows = [];
+    for (
+      let i = 0;
+      i < this.props.applicationReducer.applications.value.length;
+      i++
+    ) {
+      rows.push(
+        createData(
+          this.props.applicationReducer.applications.value[i]
+            .teamtwo_application_number,
+          this.props.applicationReducer.applications.value[i]
+            .teamtwo_applicationname
+        )
+      );
+    }
+    return rows;
+  };
+
   render() {
-    if (this.props.applicationReducer.applications.value == undefined) {
-      console.log("undefined bro");
-      console.log(this.props.applicationReducer.applications.value);
-    } else {
-      console.log("defined bro");
-      console.log(this.props);
+    // do for loop through the application.values like Avery did in Vehicles.js to assign the number to an
+    //application type
+    //let rows = this.createRows();
+    //if (this.props.applicationReducer.length)
+    if (!(this.props.applicationReducer.applications.value == undefined)) {
+      let rows = this.createRows();
       return (
         <div>
           <h1>Applications</h1>
-          {this.props.applicationReducer.applications.value.map(
-            (application, index) => (
-              <div>
-                <Card style={{ minWidth: "275px" }} variant="outlined">
-                  <CardContent>
-                    <Typography
-                      style={{ fontSize: "14" }}
-                      color="textSecondary"
-                      gutterBottom
-                    >
-                      Application Number
-                    </Typography>
-                    <Typography variant="h5" component="h2">
-                      {application.teamtwo_application_number}
-                    </Typography>
-                    <Typography
-                      style={{ marginBottom: "12px" }}
-                      color="textSecondary"
-                    >
-                      Application Type
-                    </Typography>
-                    <Typography variant="body2" component="p">
-                      {application.teamtwo_applicationname}
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button size="small">Learn More</Button>
-                  </CardActions>
-                </Card>
-              </div>
-            )
-          )}
+          <TableContainer component={Paper}>
+            <Table style={{ minWidth: "650px" }} aria-label="simple table">
+              <TableHead>
+                <StyledTableRow>
+                  <StyledTableCell>Application #</StyledTableCell>
+                  <StyledTableCell align="left">
+                    Application Type
+                  </StyledTableCell>
+                  {/* <StyledTableCell align="left">Year</StyledTableCell>
+                  <StyledTableCell align="left">Vin</StyledTableCell>
+                  <StyledTableCell align="left">Owner</StyledTableCell> */}
+                </StyledTableRow>
+              </TableHead>
+              <TableBody>
+                {rows.map((row) => (
+                  <StyledTableRow key={row.name}>
+                    <StyledTableCell component="th" scope="row">
+                      {row.applicationNumber}
+                    </StyledTableCell>
+                    <StyledTableCell align="left">
+                      {row.applicationType}
+                    </StyledTableCell>
+                    {/* <StyledTableCell align="left">{row.year}</StyledTableCell>
+                    <StyledTableCell align="left">{row.vin}</StyledTableCell>
+                    <StyledTableCell align="left">{row.owner}</StyledTableCell> */}
+                  </StyledTableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
         </div>
       );
     }
