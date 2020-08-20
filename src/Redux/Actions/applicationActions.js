@@ -6,13 +6,10 @@ import {
 import { USER_TOKEN_KEY, DYN_TOKEN_KEY } from "../../Constants/sessionKeys";
 import axios from "axios";
 
-console.log(DYN_TOKEN_KEY);
 //store headers for fetch
 const requestOptions = {
   Authorization: "Bearer " + sessionStorage.getItem(DYN_TOKEN_KEY),
 };
-
-console.log(requestOptions);
 
 // export const getApplications = () => (dispatch) => {
 //   fetch(
