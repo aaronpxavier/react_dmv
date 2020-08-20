@@ -101,14 +101,19 @@
 #footContainer {
   position: relative;
   bottom: 0;
-  margin-bottom: 0;
+  /* margin-bottom: -10px; */
+  /* margin-left: -8px; */
+  /* margin-right: -8px; */
   width: 100%;
-  /* margin-top: 50vh; */
   height: 2.5rem;
   /* background-color: #333; */
   background-color: #006570;
   opacity: 100%;
   border: 0;
+  margin: 0;
+}
+body {
+  margin: 0;
 }
 
 #AppBar {
@@ -120,10 +125,11 @@
   position: fixed;
   top: 0;
   width: 100%;
-  /* opacity: 90%; */
+  opacity: 100%;
   /* border: 0; */
-  border-radius: 7px;
-  margin-left: 0;
+  /* border-radius: 7px; */
+  /* margin-left: -8px; */
+  /* margin-top: -1px; */
 }
 
 #navLinks {
@@ -200,9 +206,4 @@
   background-color: rgba(221, 221, 221, 0.719);
   /* background-color: #ddd; */
   color: rgb(1, 43, 1);
-}
-
-.mdc-top-app-bar {
-  background-color: #ddd;
-  color: black;
 }
