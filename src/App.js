@@ -4,7 +4,6 @@ import { withRouter } from "react-router-dom";
 import Nav from "./Components/Nav/Nav";
 import NavBar from "./Components/Nav/NavBar";
 import Footer from "./Components/Nav/Footer";
-//import myFunction from "./Components/Nav/TopNav";
 import configureStore from "./Redux/Store/configureStore";
 
 //const store = configureStore();
