@@ -3,7 +3,6 @@ import routes from "./routes";
 import { withRouter } from "react-router-dom";
 import NavBar from "./Components/Nav/NavBar";
 import Footer from "./Components/Nav/Footer";
-import configureStore from "./Redux/Store/configureStore";
 import "./App.css";
 
 export class App extends Component {
