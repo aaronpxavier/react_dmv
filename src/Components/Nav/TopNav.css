@@ -1,0 +1,209 @@
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+}
+#navbar {
+  overflow: hidden;
+  background-color: #333;
+  list-style-type: none;
+  /* align-content: right; */
+  position: fixed;
+  top: 0;
+  width: 100%;
+  opacity: 90%;
+  /* border: 0; */
+  border-radius: 7px;
+}
+
+#navbar ul {
+  /* align-items: center; */
+  /* float: left; */
+  background-color: pink;
+  /* left: 100px; */
+  /* align-items: center; */
+}
+
+#navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: left;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+#navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add an active class to highlight the current page */
+#navbar a.active {
+  background-color: #4caf50;
+  color: white;
+}
+#navContainer {
+  /* align-items: center; */
+  /* float: left; */
+  background-color: pink;
+  /* align-items: center; */
+}
+#navbar Link {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+#pageContainer {
+  /* position: absolute; */
+  /*min-height: 100%; */
+  background-color: green;
+  opacity: 90%;
+  /* margin-top: 80vh; */
+  /* min-height: 100%; */
+  /* max-height: 10vh; */
+  /* position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem; */
+}
+
+#contentWrap {
+  /* padding-bottom: 2.5rem;
+  height: 100%; */
+  background-color: yellow;
+  /* opacity: 30%;
+  height: 100vh; */
+  /* min-height: 100vh; */
+  position: relative;
+}
+
+#footer {
+  opacity: 100%;
+}
+
+#footer p {
+  bottom: 0;
+  /* display: block; */
+  color: #f2f2f2;
+  text-align: center;
+  /* padding: 14px 16px; */
+  text-decoration: none;
+  font-size: 20px;
+}
+
+#footContainer {
+  position: relative;
+  bottom: 0;
+  /* margin-bottom: -10px; */
+  /* margin-left: -8px; */
+  /* margin-right: -8px; */
+  width: 100%;
+  height: 2.5rem;
+  /* background-color: #333; */
+  background-color: #006570;
+  opacity: 100%;
+  border: 0;
+  margin: 0;
+}
+body {
+  margin: 0;
+}
+
+#AppBar {
+  /* overflow: hidden; */
+  /* background-color: #333; */
+  background-color: #006570;
+  list-style-type: none;
+  /* align-content: right; */
+  position: fixed;
+  top: 0;
+  width: 100%;
+  opacity: 100%;
+  /* border: 0; */
+  /* border-radius: 7px; */
+  /* margin-left: -8px; */
+  /* margin-top: -1px; */
+}
+
+#navLinks {
+  /* background-color: red; */
+  opacity: 100%;
+}
+#navLinks #Link {
+  /* background-color: red; */
+  text-decoration: none;
+  color: #f2f2f2;
+  margin-left: 20px;
+  font-size: 25px;
+}
+#navLinks #Link:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add an active class to highlight the current page */
+#navLinks #Link:active {
+  background-color: #4caf50;
+  color: white;
+}
+
+#navLinks #Button {
+  /* background-color: red; */
+  text-decoration: none;
+  color: blue;
+  margin-left: 10px;
+  font-size: 20px;
+  background-color: red;
+}
+/* #navLinks #Button:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+#navLinks #Button:active {
+  background-color: #4caf50;
+  color: white;
+} */
+
+#HomeLink {
+  text-decoration: none;
+  color: #f2f2f2;
+  margin-left: 10px;
+  font-size: 30px;
+}
+
+/* #Link {
+  background-color: red; 
+   text-decoration: none;
+  color: #f2f2f2;
+  margin-left: 5px;
+  font-size: 20px;
+} */
+#Tabs {
+  margin-left: 10px;
+}
+#Tabs #Tab {
+  font-size: 20px;
+  color: white;
+}
+#Tabs #TabA {
+  font-size: 20px;
+  color: green;
+}
+#Tab:hover {
+  background-color: rgba(221, 221, 221, 0.719);
+  color: black;
+  /* opacity: 10%; */
+}
+#Tab:active {
+  background-color: rgba(221, 221, 221, 0.719);
+  /* background-color: #ddd; */
+  color: rgb(1, 43, 1);
+}
