@@ -1,19 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import * as actionCreators from "../../Redux/Actions/applicationActions";
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
-import { withStyles, makeStyles } from "@material-ui/core/styles";
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper} from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
 
 function createData(applicationNumber, applicationType) {
   return { applicationNumber, applicationType };
@@ -62,10 +51,6 @@ class Applications extends React.Component {
   };
 
   render() {
-    // do for loop through the application.values like Avery did in Vehicles.js to assign the number to an
-    //application type
-    //let rows = this.createRows();
-    //if (this.props.applicationReducer.length)
     if (!(this.props.applicationReducer.applications.value == undefined)) {
       let rows = this.createRows();
       return (
@@ -79,9 +64,7 @@ class Applications extends React.Component {
                   <StyledTableCell align="left">
                     Application Type
                   </StyledTableCell>
-                  {/* <StyledTableCell align="left">Year</StyledTableCell>
-                  <StyledTableCell align="left">Vin</StyledTableCell>
-                  <StyledTableCell align="left">Owner</StyledTableCell> */}
+                  <StyledTableCell>Submit Date</StyledTableCell>
                 </StyledTableRow>
               </TableHead>
               <TableBody>
@@ -93,9 +76,7 @@ class Applications extends React.Component {
                     <StyledTableCell align="left">
                       {row.applicationType}
                     </StyledTableCell>
-                    {/* <StyledTableCell align="left">{row.year}</StyledTableCell>
-                    <StyledTableCell align="left">{row.vin}</StyledTableCell>
-                    <StyledTableCell align="left">{row.owner}</StyledTableCell> */}
+                    <StyledTableCell>Submit Date</StyledTableCell>
                   </StyledTableRow>
                 ))}
               </TableBody>
