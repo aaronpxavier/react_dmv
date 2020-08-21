@@ -1,0 +1,21 @@
+.modalCard {
+    display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: flex-start;
+    align-content: stretch;
+    border: 2px solid grey;
+    width: 70vw;
+    margin-top: 80px;
+    padding: 10px;
+}
+
+.modalContainer {
+    display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+    align-content: stretch;
+}
