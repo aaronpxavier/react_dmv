@@ -1,29 +1,18 @@
 import React, { Component } from "react";
 import routes from "./routes";
 import { withRouter } from "react-router-dom";
-import Nav from "./Components/Nav/Nav";
-import {DYN_TOKEN_KEY} from "./Constants/sessionKeys"
+import NavBar from "./Components/Nav/NavBar";
+import Footer from "./Components/Nav/Footer";
+import "./App.css";
 
 export class App extends Component {
-
-  constructor(props) {
-    super(props);
-    if (!sessionStorage.getItem(DYN_TOKEN_KEY)) {
-      props.history.push('/auth');
-    }
-  }
-
-  render = () => {
-    return (
-      <div>
-        Dmv React Basic
-        <Nav />
-        {routes}
-      </div>
-    )
-    
-  } 
-
+  render = () => (
+    <div>
+      <NavBar />
+      <div id="dd">{routes}</div>
+      <Footer />
+    </div>
+  );
 }
 
 export default withRouter(App);
