@@ -8,6 +8,7 @@ import History from "./Components/History/History";
 import NewApplication from "./Components/NewApplication/NewApplication";
 import Vehicles from "./Components/Vehicles/Vehicles";
 import AuthContainer from "./Components/Auth/AuthContainer";
+import Appointments from "./Components/Appointments/Appointments";
 
 export default (
   <Switch>
@@ -18,6 +19,7 @@ export default (
     <Route exact path="/history" component={History} />
     <Route exact path="/newapplication" component={NewApplication} />
     <Route exact path="/vehicles" component={Vehicles} />
+    <Route exact path="/appointments" component={Appointments} />
     <Route exact path="/auth" component={AuthContainer} />
   </Switch>
 );
