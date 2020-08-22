@@ -1,18 +1,29 @@
-let defaultState = {
-  applications: [],
-};
+import { GET_APPLICATIONS_SUCCESS, GET_APPLICATIONS_PENDING } from "../../Constants/actionTypes"
 
-const mainReducer = (state = defaultState, action) => {
-  if (action.type === "GET_APPLICATIONS") {
-    return {
+export default function applicationReducer(state = {}, action) {
+  console.log(action.data)
+  switch (action.type) {
+    
+    case GET_APPLICATIONS_SUCCESS:
+      return {
+        ...state,
+        applicationsData: {
+          appArray: action.data.value,
+          requestSuccessful: true,
+        },
+      };
+    case GET_APPLICATIONS_PENDING:
+      return {
       ...state,
-      applications: action.applications,
-    };
-  } else {
-    return {
-      ...state,
-    };
+      applicationsData: {
+        requestPending: true,
+      },
+      }
+    default:
+      return {...state, applicationsData: {
+        requestPending: true,
+      },};
   }
-};
+}
 
-export default mainReducer;
+
