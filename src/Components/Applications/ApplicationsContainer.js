@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import Spinner from "../Spinner/spinner";
 import ApplicationRender from './ApplicationRender' ;
 import * as applicationActions from "../../Redux/Actions/applicationActions";
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, TableBody, TableContainer, TableHead, Paper, TableCell, TableRow } from "@material-ui/core";
+import { Table, TableBody, TableContainer, TableHead, Paper, TableCell, TableRow, Container, Box } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import Spinner  from '../Spinner/spinner';
 
@@ -21,15 +21,6 @@ root: {
 },
 }))(TableRow);
 
-export default function ApplicationContainer({applicationData}) {
-    console.log(applicationData);
-    if (applicationData.requestPending) {
-        return (<Spinner></Spinner>)
-    } else if (applicationData.requestSuccessful) {
-        return createTable(applicationData.appArray)
-    }
-    return (<div></div>)
-}
 
 const createRows = (rowsData) => {
     let rows = [];
@@ -43,7 +34,7 @@ const createRows = (rowsData) => {
                 {row.teamtwo_applicationname}
             </StyledTableCell>
             <StyledTableCell>{(new Date(row.teamtwo_submitdate)).toDateString()}</StyledTableCell>
-            <StyledTableCell>{row.teamtwo_}</StyledTableCell>
+            <StyledTableCell>{row.teamtwo_approvedstatus ? 'Yes': 'No'}</StyledTableCell>
         </StyledTableRow>)
     })
     return  rows;
@@ -51,11 +42,15 @@ const createRows = (rowsData) => {
 
 const createTable = (applicationArry) => {
     console.log(applicationArry)
+    
     return (
         <div>
-            <h1>Applications</h1>
+            
+            <Container style={{ paddingTop: "10px", padding: '10px'}}>
+            <Box>
+            <h1 >Applications</h1>
             <TableContainer component={Paper}>
-                <Table style={{ minWidth: "650px" }} aria-label="simple table">
+                <Table style={{ minWidth: "650px" }} size='small' aria-label="simple table">
                 <TableHead>
                     <StyledTableRow>
                     <StyledTableCell>Application #</StyledTableCell>
@@ -71,6 +66,18 @@ const createTable = (applicationArry) => {
                 </TableBody>
                 </Table>
             </TableContainer>
+            </Box>
+            </Container>
             </div>
     );
+}
+
+export default function ApplicationContainer({applicationData}) {
+    console.log(applicationData);
+    if (applicationData.requestPending) {
+        return (<Spinner></Spinner>)
+    } else if (applicationData.requestSuccessful) {
+        return createTable(applicationData.appArray)
+    }
+    return (<div></div>)
 }
