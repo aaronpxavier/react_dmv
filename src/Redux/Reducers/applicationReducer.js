@@ -1,7 +1,6 @@
 import { GET_APPLICATIONS_SUCCESS, GET_APPLICATIONS_PENDING } from "../../Constants/actionTypes"
 
 export default function applicationReducer(state = {}, action) {
-  console.log(action.data)
   switch (action.type) {
     
     case GET_APPLICATIONS_SUCCESS:

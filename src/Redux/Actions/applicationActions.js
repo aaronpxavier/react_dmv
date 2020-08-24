@@ -6,7 +6,6 @@ export function getApplications() {
     dispatch(_applicationPending())
     return dynGetCall("https://mdynamic0077.crm.dynamics.com/api/data/v9.1/teamtwo_applications?$select=_createdby_value,createdon,teamtwo_application_number,teamtwo_applicationdescription,teamtwo_applicationid,teamtwo_applicationname,teamtwo_approvedstatus,_teamtwo_contacttoapplicationid_value,teamtwo_identificationpoints,teamtwo_name,teamtwo_proofofaddress,teamtwo_submitdate,teamtwo_visionscore")
       .then((response) => {
-        console.log(response);
         dispatch(_getApplicationSuccess(response.data));
       });
   };

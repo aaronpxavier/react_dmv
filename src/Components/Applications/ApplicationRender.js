@@ -42,7 +42,6 @@ const tableIcons = {
   };
 
 const createTable = (applicationArry) => {
-    console.log(applicationArry)
     let columns = [
         { title: 'Application #', field: 'num' },
         { title: 'Application Type', field: 'type' },
@@ -109,7 +108,6 @@ const createTable = (applicationArry) => {
 }
 
 export default function ApplicationContainer({applicationData}) {
-    console.log(applicationData);
     if (applicationData.requestPending) {
         return (<Spinner></Spinner>)
     } else if (applicationData.requestSuccessful) {
