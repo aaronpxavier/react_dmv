@@ -8,16 +8,16 @@ import { getTokenRedirect } from "./Utilities/MsalAuth/msalAuth";
 import configureStore from "./Redux/Store/configureStore";
 const store = configureStore();
 
-  getTokenRedirect(() => {
-    ReactDom.render(
-      <Provider store={store}>
-        <HashRouter>
-          <App />
-        </HashRouter>
-      </Provider>,
-      document.getElementById("root")
-    );
-  });
+getTokenRedirect(() => {
+  ReactDom.render(
+    <Provider store={store}>
+      <HashRouter>
+        <App />
+      </HashRouter>
+    </Provider>,
+    document.getElementById("root")
+  );
+});
 
 
 
