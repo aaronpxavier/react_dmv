@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import Activites from "./Components/Activites/Activities";
-import Applications from "./Components/Applications/Applications";
+import Applications from "./Components/Applications/ApplicationsContainer";
 import CardModal from "./Components/CardModal/CardModal";
 import Customers from "./Components/Customers/Customers";
 import History from "./Components/History/History";
