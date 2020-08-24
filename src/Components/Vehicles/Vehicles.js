@@ -10,27 +10,27 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 
-function createData (make, model, year, vin, owner) {
+function createData(make, model, year, vin, owner) {
     return { make, model, year, vin, owner };
 }
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
-      backgroundColor: theme.palette.common.black,
-      color: theme.palette.common.white,
+        backgroundColor: theme.palette.common.black,
+        color: theme.palette.common.white,
     },
     body: {
-      fontSize: 14,
+        fontSize: 14,
     },
-  }))(TableCell);
-  
-  const StyledTableRow = withStyles((theme) => ({
+}))(TableCell);
+
+const StyledTableRow = withStyles((theme) => ({
     root: {
-      '&:nth-of-type(odd)': {
-        backgroundColor: theme.palette.action.hover,
-      },
+        '&:nth-of-type(odd)': {
+            backgroundColor: theme.palette.action.hover,
+        },
     },
-  }))(TableRow);
+}))(TableRow);
 
 
 class Vehicles extends React.Component {
@@ -41,17 +41,17 @@ class Vehicles extends React.Component {
 
     createRows = () => {
         let rows = []
-    for(let i = 0; i < this.props.vehicleReducer.vehicles.value.length; i++){
-        
+        for (let i = 0; i < this.props.vehicleReducer.vehicles.value.length; i++) {
+
             rows.push(createData(this.props.vehicleReducer.vehicles.value[i].teamtwo_make,
                 this.props.vehicleReducer.vehicles.value[i].teamtwo_model,
                 this.props.vehicleReducer.vehicles.value[i].teamtwo_year,
                 this.props.vehicleReducer.vehicles.value[i].teamtwo_vin,
                 this.props.vehicleReducer.vehicles.value[i].teamtwo_make))
-        
-        
-    }
-    return rows
+
+
+        }
+        return rows
     }
 
     render() {
@@ -60,12 +60,10 @@ class Vehicles extends React.Component {
         } else {
             console.log('defined bro')
             console.log(this.props)
-            
+
             let rows = this.createRows()
             return (
                 <div>
-                    Vehicles
-                    
                     <TableContainer component={Paper}>
                         <Table style={{ minWidth: '650px' }} aria-label="simple table">
                             <TableHead>
