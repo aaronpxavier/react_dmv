@@ -188,6 +188,17 @@ export default class NavBar extends React.Component {
                 to="/vehicles"
                 component={Link}
               />
+              <Tab
+                id="Tab"
+                value={7}
+                label={
+                  <>
+                    <Schedule fontSize="inherit" /> Appointments
+                  </>
+                }
+                to="/appointments"
+                component={Link}
+              />
             </Tabs>
           </Toolbar>
         </AppBar>
