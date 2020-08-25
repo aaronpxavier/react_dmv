@@ -1,5 +1,5 @@
 import { dynGetCall } from "../../Utilities/dyanamicsAPI";
-import { GET_APPLICATIONS_PENDING, GET_APPLICATIONS_SUCCESS} from "../../Constants/actionTypes";
+import { GET_APPLICATIONS_PENDING, GET_APPLICATIONS_SUCCESS, DELETE_POPUP_CHANGE, DELETE_APPLICATION_SUCCESS} from "../../Constants/actionTypes";
 
 export function getApplications() {
   return (dispatch) => {
@@ -10,6 +10,30 @@ export function getApplications() {
       });
   };
 }
+
+export function deleteApplications(guid) {
+  return (dispatch) => {
+
+    dispatch(_applicationPending())
+  }
+}
+
+export function openDeletePopup(rowData) {
+  return (dispatch) => dispatch(_openDeletePopupDispatch(true), rowData);
+}
+
+export function closeDeletePopup() {
+  return (dispatch) => dispatch(_openDeletePopupDispatch(false));
+}
+
+export function _openDeletePopupDispatch(open, rowData) {
+  return {
+    type: DELETE_POPUP_CHANGE,
+    open: open,
+    rowData: rowData
+  };
+}
+
 
 export function _getApplicationSuccess(dat) {
   return {

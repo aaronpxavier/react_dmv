@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import { Container, Box, Fab } from "@material-ui/core";
+import { Button,Container, Fab, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@material-ui/core";
 import AddBox from '@material-ui/icons/AddBox';
 import ArrowDownward from '@material-ui/icons/ArrowDownward';
 import Check from '@material-ui/icons/Check';
@@ -41,13 +41,42 @@ const tableIcons = {
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
   };
 
-const createTable = (applicationArry) => {
-    let columns = [
+function deleteDialog(actions) {
+    return(
+        <Dialog
+        open={true}
+        onClose={actions.closeDeletePopup}
+        aria-labelledby="delete application"
+        aria-describedby="selecting delete deletes application permenently"
+      >
+        <DialogTitle id="alert-dialog-title">{"Use Google's location service?"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Are you sure you would like to delete application? Clicking delete will permanently delete record.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={actions.closeDeletePopup} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={actions.deleteApplications} color="primary" autoFocus>
+            Delete
+          </Button>
+        </DialogActions>
+      </Dialog>
+    )
+}
+
+const createTableColumns = () => {
+    return [
         { title: 'Application #', field: 'num' },
         { title: 'Application Type', field: 'type' },
         { title: 'Submit Date', field: 'date' },
         { title: 'Application Approved Status', field: 'status' },
     ]
+}
+const createTable = (applicationArry, reduxActions) => {
+    let columns = createTableColumns();
     let data = applicationArry.map(item => {
         return {
             num: item.teamtwo_application_number,
@@ -63,6 +92,7 @@ const createTable = (applicationArry) => {
             tooltip: 'Delete Application',
             onClick:(event, rowData) => {
                 console.log('delete table click');
+                reduxActions.openDeletePopup(rowData);
             }
         },
         {
@@ -107,11 +137,17 @@ const createTable = (applicationArry) => {
     );
 }
 
-export default function ApplicationContainer({applicationData}) {
+export default function ApplicationContainer(props) {
+    console.log(props);
+    let { applicationData } = props;
+    let { actions } = props;
+    console.log(actions);
     if (applicationData.requestPending) {
         return (<Spinner></Spinner>)
-    } else if (applicationData.requestSuccessful) {
-        return createTable(applicationData.appArray)
+    } else if(applicationData.openDeletePopup) {
+        return deleteDialog(actions);
+    }else if (applicationData.requestSuccessful) {
+        return createTable(applicationData.appArray, actions)
     }
     return (<div></div>)
 }

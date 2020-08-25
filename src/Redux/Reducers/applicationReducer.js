@@ -1,4 +1,4 @@
-import { GET_APPLICATIONS_SUCCESS, GET_APPLICATIONS_PENDING } from "../../Constants/actionTypes"
+import { GET_APPLICATIONS_SUCCESS, GET_APPLICATIONS_PENDING, DELETE_POPUP_CHANGE } from "../../Constants/actionTypes"
 
 export default function applicationReducer(state = {}, action) {
   switch (action.type) {
@@ -13,10 +13,18 @@ export default function applicationReducer(state = {}, action) {
       };
     case GET_APPLICATIONS_PENDING:
       return {
-      ...state,
-      applicationsData: {
-        requestPending: true,
-      },
+        ...state,
+        applicationsData: {
+          requestPending: true,
+        },
+      }
+    case DELETE_POPUP_CHANGE:
+      return {
+        applicationsData: {
+          ...state.applicationsData,
+          openDeletePopup: action.open,
+          rowData: action.rowData
+        },
       }
     default:
       return {...state, applicationsData: {
