@@ -8,7 +8,7 @@ import History from "./Components/History/History";
 import NewApplication from "./Components/NewApplication/NewApplication";
 import Vehicles from "./Components/Vehicles/Vehicles";
 import AuthContainer from "./Components/Auth/AuthContainer";
-import Appointments from "./Components/Appointments/Appointments";
+import Appointments from "./Components/Appointments/AppointmentsContainer";
 
 export default (
   <Switch>
