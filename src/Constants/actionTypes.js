@@ -9,12 +9,15 @@ export const GET_APPLICATIONS_PENDING = "GET_APPLICATION_PENDING";
 export const POST_APPLICATION = "POST_APPLICATION";
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 //Theme Actions
 export const GET_THEME_SUCCESFUL = "GET_THEME_SUCCESFUL";
 export const GET_THEME_PENDING = "GET_THEME_PENDING";
 export const GET_THEME_FAILURE = "GET_THEME_FAILURE";
 export const TOGGLE_DARKTHEME = "TOGGLE_DARKTHEME";
 =======
+=======
+>>>>>>> dbadd409fee09460cabbeba8dae96bf0e7d975db
 // Customer Actions
 export const GET_CONTACTS_SUCCESS = "GET_CONTACTS_SUCCESS";
 export const GET_CONTACTS_PENDING = "GET_CONTACTS_PENDING";
