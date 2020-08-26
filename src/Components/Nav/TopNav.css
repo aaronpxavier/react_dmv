@@ -187,10 +187,10 @@ body {
   font-size: 20px;
 } */
 #Tabs {
-  margin-left: 10px;
+  margin-left: 8px;
 }
 #Tabs #Tab {
-  font-size: 20px;
+  font-size: 19px;
   color: white;
 }
 #Tabs #TabA {
@@ -206,4 +206,37 @@ body {
   background-color: rgba(221, 221, 221, 0.719);
   /* background-color: #ddd; */
   color: rgb(1, 43, 1);
+}
+
+#AppBar #IB {
+  /* margin-left: 30px; */
+  color: white;
+  /* width: 0px; */
+  margin-right: -50px;
+}
+#SubAppBar #DMSwitch {
+  /* margin-left: 30px; */
+  /* color: green; */
+  width: 4vw;
+  /* background-color: yellow; */
+  /* right: 0;
+  margin-left: 90vw; */
+}
+#SubAppBar #bBar {
+  margin-left: 15px;
+  margin-top: 5px;
+}
+
+#SubAppBar {
+  background-color: #006570;
+
+  list-style-type: none;
+  position: fixed;
+  top: 4rem;
+  /* width: 4%; */
+  width: 10%;
+  opacity: 100%;
+  animation: growDown 300ms ease-in-out forwards;
+
+  /* align-content: center; */
 }

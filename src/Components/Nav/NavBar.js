@@ -1,6 +1,6 @@
 import React from "react";
-import { useTheme } from "@material-ui/core/styles";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
+// import { useTheme } from "@material-ui/core/styles";
+// import useMediaQuery from "@material-ui/core/useMediaQuery";
 import PropTypes from "prop-types";
 import { Link, withRouter } from "react-router-dom";
 import routes from "../../routes";
@@ -20,6 +20,11 @@ import {
   Receipt,
   Dns,
   BrandingWatermark,
+  ArrowDropDown,
+  ArrowDropDownCircleOutlined,
+  Brightness5,
+  Brightness2,
+  WbSunny,
 } from "@material-ui/icons";
 
 import {
@@ -32,7 +37,14 @@ import {
   Typography,
   Tab,
   Tabs,
+  Switch,
+  FormControlLabel,
+  FormGroup,
+  Hidden,
+  Grow,
 } from "@material-ui/core";
+
+import DarkThemeToggle from "./DarkThemeToggle";
 
 //sessionStorage.setItem("lastTab", 0);
 
@@ -73,6 +85,8 @@ export default class NavBar extends React.Component {
 
   state = {
     activeTabIndex: 0,
+    ShowSubBar: false,
+    NightTheme: false,
   };
   componentWillMount() {
     // console.log("CDM");
@@ -89,6 +103,13 @@ export default class NavBar extends React.Component {
   }
   handleChange = (event, value) => {
     this.setState({ activeTabIndex: value });
+  };
+
+  changeTheme = (event, value) => {
+    this.setState({ NightTheme: !this.state.NightTheme });
+    //console.log("Theme change");
+    // NightMode = this.state.NightTheme;
+    localStorage.setItem("NightMode", !this.state.NightTheme);
   };
   render() {
     // console.log("The state is " + this.state.activeTabIndex);
@@ -200,11 +221,37 @@ export default class NavBar extends React.Component {
                 component={Link}
               />
             </Tabs>
+            <IconButton
+              id="IB"
+              onClick={() => {
+                this.setState({ ShowSubBar: !this.state.ShowSubBar });
+              }}
+            >
+              <ArrowDropDownCircleOutlined />
+            </IconButton>
           </Toolbar>
         </AppBar>
+        <Grow in={this.state.ShowSubBar}>
+          <AppBar
+            id="SubAppBar"
+            // style={{ display: this.state.ShowSubBar ? "block" : "none" }}
+          >
+            <FormGroup id="bBar">
+              {/* <label>{this.state.NightTheme ? "Night " : "Day "}Theme</label> */}
+              {/* {this.state.NightTheme ? <Brightness2 /> : <WbSunny />}
+            <FormControlLabel
+              id="DMSwitch"
+              control={<Switch onChange={this.changeTheme} />}
+            ></FormControlLabel> */}
+              <DarkThemeToggle />
+            </FormGroup>
+          </AppBar>
+        </Grow>
       </div>
     );
   }
 }
 
 //export default withRouter(Nav);
+// var NightMode = true;
+// NavBar.export = NightMode;
