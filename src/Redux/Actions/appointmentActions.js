@@ -4,7 +4,7 @@ import { GET_APPOINTMENTS_PENDING, GET_APPOINTMENTS_SUCCESS, POST_APPOINTMENT} f
 export function getAppointments() {
   return (dispatch) => {
     dispatch(_appointmentPending())
-    return dynGetCall("https://mdynamic0077.crm.dynamics.com/api/data/v9.1/teamtwo_applications?$select=_createdby_value,createdon,teamtwo_application_number,teamtwo_applicationdescription,teamtwo_applicationid,teamtwo_applicationname,teamtwo_approvedstatus,_teamtwo_contacttoapplicationid_value,teamtwo_identificationpoints,teamtwo_name,teamtwo_proofofaddress,teamtwo_submitdate,teamtwo_visionscore")
+    return dynGetCall("https://mdynamic0077.crm.dynamics.com/api/data/v9.1/appointments?$select=scheduledend,scheduledstart,subject,teamtwo_appointmentnumber,_teamtwo_contactappointmentlookupid_value")
       .then((response) => {
         dispatch(_getAppointmentSuccess(response.data));
         //console.log(response.data)
