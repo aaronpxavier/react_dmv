@@ -1,9 +1,8 @@
-import { GET_APPLICATIONS_SUCCESS, GET_APPLICATIONS_PENDING, DELETE_POPUP_CHANGE, DELETE_APPLICATION_PENDING, DELETE_APPLICATION_SUCCESS } from "../../Constants/actionTypes"
+import { DELETE_POPUP_CHANGE, APPLICATION_REQUEST_PENDING, APPLICATION_REQUEST_SUCCESS } from "../../Constants/actionTypes"
 
 export default function applicationReducer(state = {}, action) {
   switch (action.type) {
-
-    case GET_APPLICATIONS_SUCCESS:
+    case APPLICATION_REQUEST_SUCCESS:
       return {
         ...state,
         applicationsData: {
@@ -11,7 +10,7 @@ export default function applicationReducer(state = {}, action) {
           requestSuccessful: true,
         },
       };
-    case GET_APPLICATIONS_PENDING:
+    case APPLICATION_REQUEST_PENDING:
       return {
         ...state,
         applicationsData: {
@@ -27,15 +26,6 @@ export default function applicationReducer(state = {}, action) {
           rowData: action.rowData
         },
       }
-    case DELETE_APPLICATION_SUCCESS:
-      return {
-        ...state,
-        applicationsData: {
-          requestSuccessful: true,
-          appArray: action.data.value
-        },
-      }//DMV-00059-D9T4R
-    case DELETE_APPLICATION_PENDING:
     default:
       return {
         ...state, 
