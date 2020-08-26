@@ -71,6 +71,7 @@ const createTable = (applicationArry) => {
             onClick:(event, rowData) => {
                 console.log('edit table click');
             }
+            
         }
     ]
     return (
@@ -78,6 +79,7 @@ const createTable = (applicationArry) => {
             <div style={{paddingTop: '50px'}}>
                 <Fab style={{margin: '10px'}}size='small' color="primary" aria-label="add">
                     <AddIcon />
+               
                 </Fab>
 
                 <MaterialTable
