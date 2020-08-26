@@ -44,10 +44,10 @@ const tableIcons = {
  
 const createTable = (applicationArry) => {
     let columns = [
-        { title: 'Application #', field: 'num' },
-        { title: 'Application Type', field: 'type' },
-        { title: 'Submit Date', field: 'date' },
-        { title: 'Application Approved Status', field: 'status' },
+        { title: 'Appointment #', field: 'num' },
+        { title: 'Start Date', field: 'type' },
+        { title: 'End Date', field: 'date' },
+        { title: 'Contact Id', field: 'status' },
     ]
     let data = applicationArry.map(item => {
         return {
