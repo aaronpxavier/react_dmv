@@ -1,4 +1,5 @@
 import { dynGetCall } from '../../Utilities/dyanamicsAPI'
+import { GET_VEHICLES_SUCCESS, GET_VEHICLES_PENDING } from '../../Constants/actionTypes'
 
 export function getVehicles() {
     return (dispatch) => {
@@ -9,9 +10,31 @@ export function getVehicles() {
     }
 }
 
-export function getRequestVehicles(vehicles) {
+export function getRequestVehicles(data) {
     return {
-        type: 'GET_VEHICLES',
-        vehicles: vehicles
+        type: GET_VEHICLES_SUCCESS,
+        data: data
+    }
+}
+
+export function getRequestVehiclesPending() {
+    return {
+        type: GET_VEHICLES_PENDING
+    }
+}
+
+export function openVehicleModal(rowData) {
+    return (dispatch) => dispatch(openVehicleModalDispatch(true, rowData))
+}
+
+export function closeVehicleModal() {
+    return (dispatch) => dispatch(openVehicleModalDispatch(false))
+}
+
+export function openVehicleModalDispatch(open, rowData) {
+    return {
+        type: "VEHICLE_MODAL_CHANGE",
+        open: open,
+        rowData: rowData
     }
 }
