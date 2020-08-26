@@ -19,7 +19,7 @@ import ViewColumn from '@material-ui/icons/ViewColumn';
 import Spinner  from '../Spinner/spinner';
 import MaterialTable from 'material-table';
 import AddIcon from '@material-ui/icons/Add';
-
+import ApplicationDeleteDialog from './ApplicationDeleteDialog';
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -41,31 +41,10 @@ const tableIcons = {
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
   };
 
-function deleteDialog(actions) {
-    return(
-        <Dialog
-        open={true}
-        onClose={actions.closeDeletePopup}
-        aria-labelledby="delete application"
-        aria-describedby="selecting delete deletes application permenently"
-      >
-        <DialogTitle id="alert-dialog-title">{"Use Google's location service?"}</DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            Are you sure you would like to delete application? Clicking delete will permanently delete record.
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={actions.closeDeletePopup} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={actions.deleteApplications} color="primary" autoFocus>
-            Delete
-          </Button>
-        </DialogActions>
-      </Dialog>
-    )
-}
+  function print() {
+      console.log('hello print')
+  }
+
 
 const createTableColumns = () => {
     return [
@@ -75,16 +54,21 @@ const createTableColumns = () => {
         { title: 'Application Approved Status', field: 'status' },
     ]
 }
-const createTable = (applicationArry, reduxActions) => {
-    let columns = createTableColumns();
-    let data = applicationArry.map(item => {
+
+const createTableData = (array) => {
+    return array.map(item => {
         return {
             num: item.teamtwo_application_number,
             type: item.teamtwo_applicationname,
             date: new Date(item.teamtwo_submitdate).toDateString(),
-            status: item.teamtwo_approvedstatus ? 'Approved': 'Not Approved'
+            status: item.teamtwo_approvedstatus ? 'Approved': 'Not Approved',
+            id: item.teamtwo_applicationid
         }
     })
+}
+const createTable = (applicationArry, reduxActions) => {
+    let columns = createTableColumns();
+    let data = createTableData(applicationArry);
 
     let actions=[
         {
@@ -106,7 +90,7 @@ const createTable = (applicationArry, reduxActions) => {
     return (
         <Container>
             <div style={{paddingTop: '50px'}}>
-                <Fab style={{margin: '10px'}}size='small' color="primary" aria-label="add">
+                <Fab onClick={print} style={{margin: '10px'}}size='small' color="primary" aria-label="add">
                     <AddIcon />
                 </Fab>
 
@@ -138,14 +122,12 @@ const createTable = (applicationArry, reduxActions) => {
 }
 
 export default function ApplicationContainer(props) {
-    console.log(props);
     let { applicationData } = props;
     let { actions } = props;
-    console.log(actions);
     if (applicationData.requestPending) {
         return (<Spinner></Spinner>)
     } else if(applicationData.openDeletePopup) {
-        return deleteDialog(actions);
+        return (<ApplicationDeleteDialog {...props}/>);
     }else if (applicationData.requestSuccessful) {
         return createTable(applicationData.appArray, actions)
     }
