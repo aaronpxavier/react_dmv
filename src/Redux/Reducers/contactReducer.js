@@ -1,18 +1,36 @@
-let defaultState = {
-    contacts: []
-}
+import { GET_CONTACTS_SUCCESS, GET_CONTACTS_PENDING } from '../../Constants/actionTypes'
 
-const mainReducer = (state = defaultState, action) => {
-    if (action.type === "GET_CONTACTS") {
-        return {
-            ...state,
-            contacts: action.contacts
-        }
-    } else {
-        return {
-            ...state
-        }
+export default function contactReducer(state = {}, action) {
+    switch (action.type) {
+        case GET_CONTACTS_SUCCESS:
+            return {
+                ...state,
+                contactsData: {
+                    contactArray: action.data.value,
+                    requestSuccessful: true,
+                },
+            };
+        case GET_CONTACTS_PENDING:
+            return {
+                ...state,
+                contactsData: {
+                    requestPending: true,
+                },
+            };
+        case "CUSTOMER_MODAL_CHANGE":
+            return {
+                contactsData: {
+                    ...state.contactsData,
+                    openCustomerPopup: action.open,
+                    rowData: action.rowData
+                }
+            }
+        default:
+            return {
+                ...state,
+                contactsData: {
+                    requestPending: true,
+                },
+            };
     }
 }
-
-export default mainReducer

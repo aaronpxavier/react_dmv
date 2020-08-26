@@ -156,17 +156,6 @@ export default class NavBar extends React.Component {
               />
               <Tab
                 id="Tab"
-                value={2}
-                label={
-                  <>
-                    <Dns fontSize="inherit" /> Cardmodal
-                  </>
-                }
-                to="/cardmodal"
-                component={Link}
-              />
-              <Tab
-                id="Tab"
                 value={3}
                 label={
                   <>

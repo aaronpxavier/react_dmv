@@ -1,9 +1,4 @@
-import React, { useState, forwardRef, Component } from 'react'
-import Spinner from '../Spinner/spinner'
-import Modal from 'react-modal'
-import './Customer.css'
-
-
+import React, { forwardRef } from 'react';
 import { Container, Box, Fab } from "@material-ui/core";
 import AddBox from '@material-ui/icons/AddBox';
 import ArrowDownward from '@material-ui/icons/ArrowDownward';
@@ -21,9 +16,9 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
+import Spinner  from '../Spinner/spinner';
 import MaterialTable from 'material-table';
 import AddIcon from '@material-ui/icons/Add';
-import { findAllByTestId } from '@testing-library/react';
 
 
 const tableIcons = {
@@ -44,79 +39,49 @@ const tableIcons = {
     SortArrow: forwardRef((props, ref) => <ArrowDownward {...props} ref={ref} />),
     ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
-};
+  };
 
-function modal(actions, rowData) {
-
-    return (
-        <Modal isOpen={true}>
-            <div className="modalContainer">
-                <div className="modalCard">
-                    <h2>{rowData.num}</h2>
-                    <p>  Email:     {rowData.type}</p>
-                    <p> Contact Number:     {rowData.number}</p>
-                    <p>Age:      {rowData.age}</p>
-
-                    <button onClick={() => actions.closeCustomerModal()}>Close modal</button>
-                </div>
-            </div>
-
-        </Modal >
-    )
-}
-
-const createTable = (contactArray, reduxActions) => {
-
-
-
+const createTable = (applicationArry) => {
     let columns = [
-        { title: 'Customer Name', field: 'num' },
-        { title: 'Customer Email', field: 'type' },
+        { title: 'Application #', field: 'num' },
+        { title: 'Application Type', field: 'type' },
+        { title: 'Submit Date', field: 'date' },
+        { title: 'Application Approved Status', field: 'status' },
     ]
-    let data = contactArray.map(item => {
+    let data = applicationArry.map(item => {
         return {
-            num: item.fullname,
-            type: item.emailaddress1,
-            age: item.teamtwo_age,
-            number: item.teamtwo_contactnumber
-
+            num: item.teamtwo_application_number,
+            type: item.teamtwo_applicationname,
+            date: new Date(item.teamtwo_submitdate).toDateString(),
+            status: item.teamtwo_approvedstatus ? 'Approved': 'Not Approved'
         }
     })
 
-    let actions = [
+    let actions=[
         {
             icon: () => <Delete color="secondary"></Delete>,
             tooltip: 'Delete Application',
-            onClick: (event, rowData) => {
+            onClick:(event, rowData) => {
                 console.log('delete table click');
             }
         },
         {
             icon: () => <Edit color="primary"></Edit>,
             tooltip: 'Edit Application',
-            onClick: (event, rowData) => {
+            onClick:(event, rowData) => {
                 console.log('edit table click');
-            }
-        },
-        {
-            icon: () => '...',
-            tooltip: 'See more',
-            onClick: (event, rowData) => {
-                console.log(rowData)
-                console.log('opening module on click functionality goes here I think')
-                reduxActions.openCustomerModal(rowData)
             }
         }
     ]
     return (
         <Container>
-            <div style={{ paddingTop: '50px' }}>
-                <Fab style={{ margin: '10px' }} size='small' color="primary" aria-label="add">
+            <div style={{paddingTop: '50px'}}>
+                <Fab style={{margin: '10px'}}size='small' color="primary" aria-label="add">
                     <AddIcon />
                 </Fab>
 
                 <MaterialTable
-                    title='Customers'
+                    title='Applications Table'
                     columns={columns}
                     data={data}
                     icons={tableIcons}
@@ -142,38 +107,11 @@ const createTable = (contactArray, reduxActions) => {
     );
 }
 
-
-
-
-export default function customerContainer(props) {
-
-    if (props.contactData.requestPending) {
-        return (
-            <Spinner></Spinner>
-        )
-    } else if (props.contactData.openCustomerPopup) {
-        return modal(props.actions, props.contactData.rowData)
-    }
-    else if (props.contactData.requestSuccessful) {
-        return (
-            createTable(props.contactData.contactArray, props.actions)
-        )
+export default function ApplicationContainer({applicationData}) {
+    if (applicationData.requestPending) {
+        return (<Spinner></Spinner>)
+    } else if (applicationData.requestSuccessful) {
+        return createTable(applicationData.appArray)
     }
     return (<div></div>)
 }
-
-
-    // <Modal isOpen = {this.state.modalIsOpen} onRequestClose = {() => this.setState({ modalIsOpen: false })}>
-    //     <div className="modalContainer">
-    //         <div className="modalCard">
-    //             <h2>{this.state.fullnamesave}</h2>
-    //             <p>  Email:     {this.state.emailsave}</p>
-    //             <p> Contact Number:    {this.state.contactnumbersave}</p>
-    //             <p>Age:      {this.state.contactagesave}</p>
-    //             {console.log(this.state.contactnumbersave)}
-    //             <button onClick={() => this.setState({ modalIsOpen: false })}>Close modal</button>
-    //         </div>
-    //     </div>
-
-    //                 </Modal >
-

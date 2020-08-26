@@ -1,16 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import { getTokenPopup } from '../../Utilities/MsalAuth/msalAuth';
-
+import Spinner from '../Spinner/spinner';
 const AuthRender = (props) => {
 
         if (!props.authData || props.authData.requestPending)
           return (
-            <div>
-              <CircularProgress color="secondary" />
-            </div>
+            <Spinner></Spinner>
           );
         else if(props.authData.requestSucessful) {
           props.history.push('/');
