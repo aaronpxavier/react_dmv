@@ -26,16 +26,6 @@ export function dynGetCall(url) {
     .then( header => Axios.get(encodeURI(url), header))
     .then(response => res(response))});
 }
-<<<<<<< HEAD
-
-export function dynDeleteCall(url) {
-    return new Promise (res => {
-        getCallHeader()
-    .then( header => Axios.delete(encodeURI(url), header))
-    .then(response => res(response))});
-}
-=======
->>>>>>> b2fb2df9a0571de74589f4984a4c5dbf5ba8c71d
 
 export function dynDeleteCall(url) {
     return new Promise (res => {
