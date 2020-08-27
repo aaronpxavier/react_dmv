@@ -1,4 +1,5 @@
 import React, { forwardRef } from 'react';
+import Modal from 'react-modal'
 import { Container, Box, Fab } from "@material-ui/core";
 import AddBox from '@material-ui/icons/AddBox';
 import ArrowDownward from '@material-ui/icons/ArrowDownward';
@@ -40,7 +41,28 @@ const tableIcons = {
     ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
   };
+  function modal(actions) {
 
+    return (
+        <Modal isOpen={true}>
+            <div className="modalContainer">
+                <div className="modalCard">
+                    <h2>Create an Appointment</h2>
+              <form>
+                 <input required type="text" placeholder="Enter Post Title" /><br /><br />
+                 <input type="date" id="start" name="appointment-start"  value="2018-07-22"
+       min="2018-01-01" max="2018-12-31" /> 
+                 <textarea required rows="5" cols="28" placeholder="Appointment Description" /><br /><br />
+                 <button>Post</button>
+               </form>
+
+                    <button onClick={() => actions.closeCustomerModal()}>Close modal</button>
+                </div>
+            </div>
+
+        </Modal >
+    )
+}
  
 const createTable = (applicationArry) => {
     let columns = [

@@ -12,6 +12,18 @@ export function getAppointments() {
   };
 }
 
+export function postAppointments(data){
+  return (dispatch) => {
+    dispatch(_appointmentPending())
+    return dynGetCall("https://mdynamic0077.crm.dynamics.com/api/data/v9.1/appointments?$select=scheduledend,scheduledstart,subject,teamtwo_appointmentnumber,_teamtwo_contactappointmentlookupid_value")
+      .then((response) => {
+        dispatch(_getAppointmentSuccess(response.data));
+        //console.log(response.data)
+      });
+  };
+
+}
+
 export function _getAppointmentSuccess(dat) {
   return {
     type: GET_APPOINTMENTS_SUCCESS,
