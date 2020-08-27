@@ -41,30 +41,9 @@ const tableIcons = {
     ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
   };
-  function modal(actions) {
-
-    return (
-        <Modal isOpen={true}>
-            <div className="modalContainer">
-                <div className="modalCard">
-                    <h2>Create an Appointment</h2>
-              <form>
-                 <input required type="text" placeholder="Enter Post Title" /><br /><br />
-                 <input type="date" id="start" name="appointment-start"  value="2018-07-22"
-       min="2018-01-01" max="2018-12-31" /> 
-                 <textarea required rows="5" cols="28" placeholder="Appointment Description" /><br /><br />
-                 <button>Post</button>
-               </form>
-
-                    <button onClick={() => actions.closeCustomerModal()}>Close modal</button>
-                </div>
-            </div>
-
-        </Modal >
-    )
-}
  
-const createTable = (applicationArry) => {
+ 
+const createTable = (applicationArry,reduxActions) => {
     let columns = [
         { title: 'Appointment #', field: 'num' },
         {title: 'Description',field:'text'},
@@ -103,7 +82,7 @@ const createTable = (applicationArry) => {
     return (
         <Container>
             <div style={{paddingTop: '50px'}}>
-                <Fab onClick={print}/*{actions.nameofactionidefinedinprops}*/style={{margin: '10px'}}size='small' color="primary" aria-label="add">
+                <Fab onClick={()=> reduxActions.openAppointmentModal()}/*{actions.nameofactionidefinedinprops}*/style={{margin: '10px'}}size='small' color="primary" aria-label="add">
                     <AddIcon />  
                 </Fab>
 
@@ -137,14 +116,48 @@ function print(){
   console.log("hello from add");
 }
 
+function modal(actions) {
+
+  return (
+      <Modal isOpen={true}>
+          <div className="modalContainer">
+              <div className="modalCard">
+                  <h2>Create an Appointment</h2>
+            <form>
+               <input required type="text" placeholder="Enter Post Title" /><br /><br />
+               <input type="date" id="start" name="appointment-start"  value="2018-07-22"
+     min="2018-01-01" max="2018-12-31" /> 
+               <textarea required rows="5" cols="28" placeholder="Appointment Description" /><br /><br />
+               <button>Post</button>
+               
+             </form>
+
+                  <button onClick={() => actions.closeAppointmentModal()}>Close modal</button>
+              </div>
+          </div>
+
+      </Modal >
+  )
+}
+
 export default function ApplicationContainer(props) {
     console.log("Appointment Render Props", props)
     let {appointmentData} = props;
     let {actions} = props;
     if (appointmentData.requestPending) {
-        return (<Spinner></Spinner>)
-    } else if (appointmentData.requestSuccessful) {
-        return createTable(appointmentData.appArray)
+        return (<Spinner></Spinner>)       
+    
+    }     
+    else if(appointmentData.openAppointmentPopup){
+      console.log(appointmentData)
+      return modal(actions);
     }
+    else if (appointmentData.requestSuccessful) {
+      return createTable(appointmentData.appArray,actions)
+  }
+ 
+
+    
+   
     return (<div></div>)
 }

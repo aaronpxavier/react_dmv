@@ -18,6 +18,14 @@ export default function appointmentReducer(state = {}, action) {
         requestPending: true,
       },
       }
+      case "APPOINTMENT_MODAL_CHANGE":
+            return {
+                appointmentsData: {
+                    ...state.appointmentsData,
+                    openAppointmentPopup: action.open,
+                    
+                }
+            }
     default:
       return {...state, appointmentsData: {
         requestPending: true,
