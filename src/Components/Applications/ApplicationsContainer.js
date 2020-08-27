@@ -13,7 +13,6 @@ const Applications = (props) => {
   return <ApplicationRender {...props}></ApplicationRender>
 }
 
-
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(applicationActions, dispatch),

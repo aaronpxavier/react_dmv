@@ -1,10 +1,29 @@
-import React from 'react';
-import Spinner  from '../Spinner/spinner';
-import ApplicationDeleteDialog from './ApplicationDeleteDialog';
-import ApplicationTable from './ApplicationTable';
+import React, { forwardRef } from 'react';
+import AddBox from '@material-ui/icons/AddBox';
+import ArrowDownward from '@material-ui/icons/ArrowDownward';
+import Check from '@material-ui/icons/Check';
+import ChevronLeft from '@material-ui/icons/ChevronLeft';
+import ChevronRight from '@material-ui/icons/ChevronRight';
+import Clear from '@material-ui/icons/Clear';
+import DeleteOutline from '@material-ui/icons/DeleteOutline';
+import Delete from '@material-ui/icons/Delete'
+import Edit from '@material-ui/icons/Edit';
+import FilterList from '@material-ui/icons/FilterList';
+import FirstPage from '@material-ui/icons/FirstPage';
+import LastPage from '@material-ui/icons/LastPage';
+import Remove from '@material-ui/icons/Remove';
+import SaveAlt from '@material-ui/icons/SaveAlt';
+import Search from '@material-ui/icons/Search';
+import ViewColumn from '@material-ui/icons/ViewColumn';
+import { Container, Fab } from "@material-ui/core";
+import MaterialTable from 'material-table';
+import AddIcon from '@material-ui/icons/Add';
 
 
-<<<<<<< HEAD
+function print() {
+    console.log('hello print')
+}
+
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
     Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
@@ -25,28 +44,39 @@ const tableIcons = {
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
   };
 
-const createTable = (applicationArry) => {
-    let columns = [
+  const createTableColumns = () => {
+    return [
         { title: 'Application #', field: 'num' },
         { title: 'Application Type', field: 'type' },
-        { title: 'Submit Date', field: 'date' },
+        { title: 'Submit Date', field: 'date', defaultSort: 'desc', type: 'date' },
         { title: 'Application Approved Status', field: 'status' },
     ]
-    let data = applicationArry.map(item => {
+}
+
+const createTableData = (array) => {
+    return array.map(item => {
         return {
             num: item.teamtwo_application_number,
             type: item.teamtwo_applicationname,
-            date: new Date(item.teamtwo_submitdate).toDateString(),
-            status: item.teamtwo_approvedstatus ? 'Approved': 'Not Approved'
+            date: new Date(item.teamtwo_submitdate),
+            status: item.teamtwo_approvedstatus ? 'Approved': 'Not Approved',
+            id: item.teamtwo_applicationid
         }
     })
+}
 
-    let actions=[
+export default function ApplicationTable(props) {
+    let {actions} = props;
+    let columns = createTableColumns();
+    let data = createTableData(props.applicationData.appArray);
+
+    let tableActions=[
         {
             icon: () => <Delete color="secondary"></Delete>,
             tooltip: 'Delete Application',
             onClick:(event, rowData) => {
                 console.log('delete table click');
+                actions.openDeletePopup(rowData);
             }
         },
         {
@@ -55,15 +85,13 @@ const createTable = (applicationArry) => {
             onClick:(event, rowData) => {
                 console.log('edit table click');
             }
-            
         }
     ]
     return (
         <Container>
             <div style={{paddingTop: '50px'}}>
-                <Fab style={{margin: '10px'}}size='small' color="primary" aria-label="add">
+                <Fab onClick={print} style={{margin: '10px'}}size='small' color="primary" aria-label="add">
                     <AddIcon />
-               
                 </Fab>
 
                 <MaterialTable
@@ -78,6 +106,7 @@ const createTable = (applicationArry) => {
                             exportButton: true,
                             exportAllData: true,
                             sorting: true,
+                            thirdSortClick: false,
                             rowStyle: {
                                 '&:hover': {
                                     backgroundColor: '#bbdefb',
@@ -85,25 +114,10 @@ const createTable = (applicationArry) => {
                             }
                         }
                     }
-                    actions={actions}
+                    actions={tableActions}
                 >
                 </MaterialTable>
             </div>
         </Container>
     );
-}
-
-export default function ApplicationContainer({applicationData}) {
-=======
-export default function ApplicationRender(props) {
-    let { applicationData } = props;
->>>>>>> ae50c5a1480796c8e8b2cb689a5d0b53471228e9
-    if (applicationData.requestPending) {
-        return (<Spinner></Spinner>)
-    } else if(applicationData.openDeletePopup) {
-        return (<ApplicationDeleteDialog {...props}/>);
-    }else if (applicationData.requestSuccessful) {
-        return <ApplicationTable {...props}></ApplicationTable>
-    }
-    return (<div></div>)
 }

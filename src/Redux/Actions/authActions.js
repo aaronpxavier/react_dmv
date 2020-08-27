@@ -21,7 +21,6 @@ export const get365Token = () => {
 }
 
 const _getTokenSuccess = (dat) => {
-  console.log(dat);
   return {
       type: GET_TOKEN_SUCCESFUL,
       data:  dat
