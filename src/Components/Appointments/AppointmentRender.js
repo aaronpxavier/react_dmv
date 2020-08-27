@@ -45,15 +45,17 @@ const tableIcons = {
 const createTable = (applicationArry) => {
     let columns = [
         { title: 'Appointment #', field: 'num' },
-        { title: 'Start Date', field: 'type' },
+        {title: 'Description',field:'text'},
+        { title: 'Start Date', field: 'date' },
         { title: 'End Date', field: 'date' },
         { title: 'Contact Id', field: 'status' },
     ]
     let data = applicationArry.map(item => {
         return {
-            num: item.teamtwo_application_number,
-            type: item.teamtwo_applicationname,
-            date: new Date(item.teamtwo_submitdate).toDateString(),
+            num: item.teamtwo_appointmentnumber,
+            text: item.subject,
+            date: new Date(item.scheduledstart).toLocaleTimeString() + " " + new Date(item.scheduledstart).toDateString(),
+            date: new Date(item.scheduledend).toLocaleTimeString() + " " + new Date(item.scheduledend).toDateString(),
             status: item.teamtwo_approvedstatus ? 'Approved': 'Not Approved'
         }
     })
@@ -84,7 +86,7 @@ const createTable = (applicationArry) => {
                 </Fab>
 
                 <MaterialTable
-                    title='Applications Table'
+                    title='Appointments Table'
                     columns={columns}
                     data={data}
                     icons={tableIcons}
@@ -114,6 +116,7 @@ function print(){
 }
 
 export default function ApplicationContainer(props) {
+    console.log("Appointment Render Props", props)
     let {appointmentData} = props;
     let {actions} = props;
     if (appointmentData.requestPending) {

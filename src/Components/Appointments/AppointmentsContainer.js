@@ -7,7 +7,7 @@ import * as appointmentActions from "../../Redux/Actions/appointmentActions";
 const Appointments = (props) => {
   useEffect(() => {
     const { actions } = props;
-    console.log(props);  
+    console.log("Appointment Container Props", props);  
     //contains action object and list of methods, those methods are my actions
     
     actions.getAppointments();
