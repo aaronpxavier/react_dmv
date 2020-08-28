@@ -145,6 +145,7 @@ function modal(actions) {
 
 export default function ApplicationContainer(props) {
     console.log("Appointment Render Props", props)
+    
     let {appointmentData} = props;
     let {actions} = props;
     if (appointmentData.requestPending) {
