@@ -124,7 +124,7 @@ function modal(actions) {
               <div className="modalCard">
                   <h2>Create an Appointment</h2>
             <form>
-               <input required type="text" placeholder="Enter Post Title" /><br /><br />
+              
                <input type="date" id="start" name="appointment-start"  value="2018-07-22"
      min="2018-01-01" max="2018-12-31" /> 
                <textarea required rows="5" cols="28" placeholder="Appointment Description" /><br /><br />
