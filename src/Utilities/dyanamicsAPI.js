@@ -22,9 +22,22 @@ export function getCallHeader () {
 
 export function dynGetCall(url) {
     return new Promise (res => {
-        getCallHeader()
+    getCallHeader()
     .then( header => Axios.get(encodeURI(url), header))
     .then(response => res(response))});
-} 
+}
 
+export function dynDeleteCall(url) {
+    return new Promise (res => {
+    getCallHeader()
+    .then( header => Axios.delete(encodeURI(url), header))
+    .then(response => res(response))});
+}
+
+export function dynPostCall(url, jsObj) {
+    return new Promise (res => {
+        getCallHeader()
+        .then( header => Axios.post(encodeURI(url), jsObj, header))
+        .then(response => res(response))});
+}
 
