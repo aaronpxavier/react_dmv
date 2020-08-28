@@ -89,7 +89,7 @@ export default class NavBar extends React.Component {
     // console.log("tab Data");
     // console.log(tabData);
 
-    const { classes } = this.props;
+    // const { classes } = this.props;
     const { activeTabIndex } = this.state;
     sessionStorage.setItem("lastTab", activeTabIndex);
     // console.log("Active tab");

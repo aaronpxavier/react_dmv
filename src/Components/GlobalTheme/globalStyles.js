@@ -6,7 +6,33 @@ export const GlobalStyles = createGlobalStyle`
     font-family: Tahoma, Helvetica, Arial, Roboto, sans-serif;
     transition: all 0.50s linear;
   }
+ #AppBar{
+  background-color: ${({ theme }) => theme.navBodColor};
+  color: ${({ theme }) => theme.navWordColor};
+ }
+ #Tabs #Tab{
+  color: ${({ theme }) => theme.navWordColor};
+ }
+ #footContainer{
+  background-color: ${({ theme }) => theme.navBodColor};
+  ${"" /* color: ${({ theme }) => theme.navWordColor}; */}
+ }
+ #footer p{
+  color: ${({ theme }) => theme.navWordColor};
+ }
+ #MobileMenu{
+  background-color: ${({ theme }) => theme.navBodColor};
+  color: ${({ theme }) => theme.navWordColor};
+
+ }
+ #MobileIcons{
+  color: ${({ theme }) => theme.navWordColor};
+
+ }
   `;
+
+//need to find a way to change datatables style.
+
 // export const GlobalStyles = createGlobalStyle`
 //   *,
 //   *::after,

@@ -17,6 +17,7 @@ export class App extends Component {
       <Provider store={store}>
         <DarkThemeProvider>
           <GlobalStyles />
+          {/* Will show navbar unless user is using phone.  */}
           {!!!navigator.userAgent.match(/iphone|android|blackberry/gi) && (
             <NavBar />
           )}
