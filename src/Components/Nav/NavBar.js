@@ -46,20 +46,6 @@ import {
 
 import DarkThemeToggle from "./DarkThemeToggle";
 
-//sessionStorage.setItem("lastTab", 0);
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-  },
-}));
-
 function TabContainer(props) {
   return (
     <Typography {...props} component="div" style={{ padding: 8 * 3 }}>
@@ -72,14 +58,6 @@ TabContainer.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-const styles = (theme) => ({
-  root: {
-    flexGrow: 1,
-    marginTop: theme.spacing.unit * 3,
-    backgroundColor: theme.palette.background.paper,
-  },
-});
-
 export default class NavBar extends React.Component {
   // tabData = sessionStorage.getItem("lastTab");
 
@@ -88,29 +66,23 @@ export default class NavBar extends React.Component {
     ShowSubBar: false,
     NightTheme: false,
   };
-  componentWillMount() {
-    // console.log("CDM");
-    var lTab = sessionStorage.getItem("lastTab");
 
-    //console.log(lTab);
+  //This allows the selected tab to stay active when the page
+  // is refreshed
+  componentWillMount() {
+    var lTab = sessionStorage.getItem("lastTab");
     if (isNaN(sessionStorage.getItem("lastTab"))) {
-      // console.log("was weird NaN");
       sessionStorage.setItem("lastTab", 0);
     } else {
       this.setState({ activeTabIndex: parseInt(lTab) });
-      // console.log("The state is " + this.state.activeTabIndex);
     }
   }
+
+  //Sets a tab to active when clicked
   handleChange = (event, value) => {
     this.setState({ activeTabIndex: value });
   };
 
-  changeTheme = (event, value) => {
-    this.setState({ NightTheme: !this.state.NightTheme });
-    //console.log("Theme change");
-    // NightMode = this.state.NightTheme;
-    localStorage.setItem("NightMode", !this.state.NightTheme);
-  };
   render() {
     // console.log("The state is " + this.state.activeTabIndex);
     let tabData = sessionStorage.getItem("lastTab");
@@ -210,28 +182,26 @@ export default class NavBar extends React.Component {
                 component={Link}
               />
             </Tabs>
-            <IconButton
+            {/* <IconButton
               id="IB"
               onClick={() => {
                 this.setState({ ShowSubBar: !this.state.ShowSubBar });
               }}
             >
               <ArrowDropDownCircleOutlined />
-            </IconButton>
+            </IconButton> */}
+            <div id="ThemeContainer">
+              <DarkThemeToggle />
+            </div>
           </Toolbar>
         </AppBar>
+
         <Grow in={this.state.ShowSubBar}>
           <AppBar
             id="SubAppBar"
             // style={{ display: this.state.ShowSubBar ? "block" : "none" }}
           >
             <FormGroup id="bBar">
-              {/* <label>{this.state.NightTheme ? "Night " : "Day "}Theme</label> */}
-              {/* {this.state.NightTheme ? <Brightness2 /> : <WbSunny />}
-            <FormControlLabel
-              id="DMSwitch"
-              control={<Switch onChange={this.changeTheme} />}
-            ></FormControlLabel> */}
               <DarkThemeToggle />
             </FormGroup>
           </AppBar>
@@ -240,7 +210,3 @@ export default class NavBar extends React.Component {
     );
   }
 }
-
-//export default withRouter(Nav);
-// var NightMode = true;
-// NavBar.export = NightMode;

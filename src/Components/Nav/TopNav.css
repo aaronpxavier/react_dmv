@@ -214,6 +214,7 @@ body {
   /* width: 0px; */
   margin-right: -50px;
 }
+
 #SubAppBar #DMSwitch {
   /* margin-left: 30px; */
   /* color: green; */
@@ -239,4 +240,21 @@ body {
   animation: growDown 300ms ease-in-out forwards;
 
   /* align-content: center; */
+}
+
+#MobileMenu {
+  background-color: #006570;
+  color: white;
+  height: 100vh;
+}
+#MobileIcons {
+  color: #f2f2f2;
+  opacity: 90%;
+}
+
+#ThemeContainer {
+  margin-left: 5rem;
+  height: 3rem;
+  border: 0;
+  margin-top: -2rem;
 }

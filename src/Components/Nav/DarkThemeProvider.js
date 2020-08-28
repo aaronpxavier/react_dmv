@@ -7,8 +7,7 @@ const DarkThemeProvider = ({ children }) => {
   const darkThemeEnabled = useSelector(
     (state) => state.themeReducer.darkThemeEnabled
   );
-  // console.log("State is");
-  // console.log(darkThemeEnabled);
+  //ThemeProvider changes the style of all it's children
   return (
     <ThemeProvider theme={darkThemeEnabled ? darkTheme : lightTheme}>
       {children}
