@@ -125,12 +125,15 @@ function modal(actions) {
                   <h2>Create an Appointment</h2>
             <form>
               
-               <input type="date" id="start" name="appointment-start"  value="2018-07-22"
-     min="2018-01-01" max="2018-12-31" /> 
+               Start Date/Time<input type="date" id="start" name="appointment-start"  value="2018-07-22"
+     min="2018-01-01" max="2018-12-31" /> <br />
+      End Date/Time<input type="date" id="start" name="appointment-end"  value="2018-07-22"
+     min="2018-01-01" max="2018-12-31" /> <br />
                <textarea required rows="5" cols="28" placeholder="Appointment Description" /><br /><br />
-               <button>Post</button>
+               <button>Create Appointment</button>
                
              </form>
+             <br />
 
                   <button onClick={() => actions.closeAppointmentModal()}>Close modal</button>
               </div>
