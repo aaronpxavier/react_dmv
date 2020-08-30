@@ -13,10 +13,10 @@ export function getAppointments() {
   };
 }
 
-export function postAppointments(data){
+export function postAppointments(postdata){
   return (dispatch) => {
     dispatch(_postAppointmentPending())
-    return dynGetCall("https://mdynamic0077.crm.dynamics.com/api/data/v9.1/appointments")
+    return dynPostCall("https://mdynamic0077.crm.dynamics.com/api/data/v9.1/appointments",postdata)
       .then((response) => {
         dispatch(_postAppointmentSuccess(response.data));
         //console.log(response.data)
@@ -46,7 +46,9 @@ export function openAppointmentModal() {
 export function closeAppointmentModal() {
   return (dispatch) => dispatch(openAppointmentModalDispatch(false))
 }
-
+export function postAppointment(){
+  return(dispatch) => dispatch(_appointmentPending())
+}
 export function openAppointmentModalDispatch(open) {
   return {
       type: "APPOINTMENT_MODAL_CHANGE",
@@ -54,9 +56,7 @@ export function openAppointmentModalDispatch(open) {
       
   }
 }
-export function postAppointment(){
-  return(dispatch) => dispatch(_appointmentPending())
-}
+
 export function _appointmentPending() {
   return {
     type: GET_APPOINTMENTS_PENDING,
