@@ -7,7 +7,6 @@ import * as applicationActions from "../../Redux/Actions/applicationActions";
 const Applications = (props) => {
   useEffect(() => {
     const { actions } = props;
-    
     actions.getApplications();
   }, []);
   return <ApplicationRender {...props}></ApplicationRender>

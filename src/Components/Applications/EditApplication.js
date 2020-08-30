@@ -1,11 +1,156 @@
 import React from 'react';
-import { Container, Box } from '@material-ui/core';
+import { Button, FormControl, Container, Box, makeStyles, InputLabel, MenuItem, FormGroup, Select, TextField } from '@material-ui/core';
+import { Autocomplete } from '@material-ui/lab'
+import {DRIVING_LICENSE, LEARNER_PERMIT} from '../../Constants/applicationTypes';
+import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers'
+import DateFnsUtils from '@date-io/date-fns';
+
+const useStyles = makeStyles((theme) => ({
+    formControl: {
+      paddingRight: '10px',
+      minWidth: 120,
+    },
+    selectEmpty: {
+      marginTop: theme.spacing(2),
+    },
+  }));
+
+
+function createDynUserMenuItems(userArray) {
+    let i = 0;
+    let users = userArray.map(item => {
+        let result = (<MenuItem key={i} value={i}>{item.fullname}</MenuItem>)
+        ++i;
+        return result;
+    });
+    return users;
+}
+
+function submitUpdate(appId, ownerId, applicationType, contactId, description, status, submitDate, action) {
+    let entity = {};
+    console.log("ownerID" + ownerId);
+    entity["ownerid@odata.bind"] = `/systemusers(${ownerId})`;
+    entity.teamtwo_applicationname = applicationType;
+    //entity["teamtwo_Contacttoapplicationid@odata.bind"] = "\contacts('9aa77588-8aaa-ea11-a812-000d3a8faaa7')";
+    entity.teamtwo_applicationdescription = description;
+    entity.teamtwo_approvedstatus = status;
+    entity.teamtwo_submitdate = submitDate.toISOString();
+    action(appId, entity);
+}
+
 
 export default function EditApplication(props) {
+    console.log(props);
+    let { applicationData, actions } = props;
+    let {data} = applicationData;
+    let { contact } = applicationData;
+    let currentDynUserIndex = 0;
+    let hasDefaultUser = false;
+    let appType = applicationData.appType;
+    let dynUserArray = applicationData.dynUser.value;
+    let ownerId = applicationData.ownerId;
+    let date = applicationData.date || new Date(data.teamtwo_submitdate)
+    let description = applicationData.description || data.teamtwo_applicationdescription;
+    let approvedStatus = applicationData.approvedStatus === undefined ? data.teamtwo_approvedstatus : applicationData.approvedStatus;
+    let contactOptions = {
+        options:  applicationData.contacts || [applicationData.contact],
+        getOptionLabel: (option) => (option && option.fullname) || ""
+    }
+    for (let i = 0; i < dynUserArray.length; ++i) {
+        if (dynUserArray[i].systemuserid === applicationData.ownerId) {
+            currentDynUserIndex = i;
+            hasDefaultUser = true;
+            break;
+        }
+    }
     return (
         <Container>
             <Box>
-                <h1>hello from edit applicaton</h1>
+            <h1 style={{paddingTop: '50px'}}>Edit Application <em>{contact.fullname || ''}</em> ({data.teamtwo_applicationid})</h1>
+                
+                <FormGroup row style={{marginTop: '50px'}}>
+                    <FormControl style={{paddingRight: '10px'}} >
+                        <InputLabel id="dynUserSelectLabel">Owner</InputLabel>
+                        <Select
+                        labelId="dynUserSelectLabel"
+                        id="dynUserSelect"
+                        value={hasDefaultUser ? currentDynUserIndex : 0}
+                        onChange={e => actions.applicationOnwerChange(dynUserArray[e.target.value])}>
+                            {createDynUserMenuItems(dynUserArray)}
+                        </Select>
+                    </FormControl>
+                    <FormControl style={{paddingRight: '10px'}}>
+                        <InputLabel id="applicationType">Application Type</InputLabel>
+                        <Select
+                        labelId="applicationType"
+                        id="applicaiton-select"
+                        value={applicationData.appType || data.teamtwo_applicationname}
+                        onChange={e => actions.applicationTypeChange(e.target.value)}>
+                            <MenuItem value={DRIVING_LICENSE}>Driver's License</MenuItem>
+                            <MenuItem value={LEARNER_PERMIT}>Learner's Permit</MenuItem>
+                        </Select>
+                    </FormControl>
+                    <Autocomplete
+                        id="combo-box-demo"
+                        onChange={(event, value) => {
+                            actions.applicationContactChangeCommit(value)
+                        }}
+                        {...contactOptions}
+                        style={{ width: 300 }}
+                        value={{fullname: contact.fullname}}
+                        renderInput={(params) => <TextField  onChange={e => actions.applicationContactFieldKeyup(e.target.value)} {...params}  label="Driver Applicable TO"  />}
+                    />
+                </FormGroup>
+                <FormGroup row style={{marginTop: '20px'}}>
+                    <FormControl style={{paddingRight: '10px'}}>
+                        <InputLabel id="approved-status-label">Status</InputLabel>
+                        <Select
+                        labelId="approved-status-label"
+                        id="applicaiton-select"
+                        value={approvedStatus ? 1 : 0}
+                        onChange={e => actions.approvedStatusChanged(e.target.value === 1 ? true : false)}>
+                            <MenuItem value={1}>Approved</MenuItem>
+                            <MenuItem value={0}>Not Approved</MenuItem>
+                        </Select>
+                    </FormControl>
+                    <TextField
+                        id="description"
+                        label="Description"
+                        multiline
+                        rowsMax={4}
+                        value={description}
+                        onChange={(e) => actions.descriptionFieldChanged(e.target.value)}
+                    />
+                </FormGroup>
+                <FormGroup row style={{marginTop: '10px'}}>
+                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                        <KeyboardDatePicker
+                            disableToolbar
+                            variant="inline"
+                            format="MM/dd/yyyy"
+                            margin="normal"
+                            id="submitDate"
+                            label="Submit Date"
+                            value={date}
+                            onChange={date => actions.dateFieldChanged(date)}
+                            KeyboardButtonProps={{
+                                'aria-label': 'change date',
+                            }}
+                        />
+                    </MuiPickersUtilsProvider>
+                </FormGroup>
+                <FormGroup row style={{marginTop: '20px'}}>
+                <Button 
+                    style={{marginRight: '10px'}} 
+                    onClick={()=>submitUpdate(data.teamtwo_applicationid, ownerId, appType, contact.contactid, description, approvedStatus, date, actions.editApplicaitonSubmit)} 
+                    variant="contained" 
+                    color="primary"
+                    >
+                    Submit
+                </Button>
+                <Button variant="contained" color="secondary" onClick={actions.getApplications}>Cancel</Button>
+                </FormGroup>
+                
             </Box>
         </Container>
     )
