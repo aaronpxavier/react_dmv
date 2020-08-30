@@ -1,8 +1,9 @@
 import { dynGetCall } from "../../Utilities/dyanamicsAPI";
 import { GET_APPOINTMENTS_PENDING, GET_APPOINTMENTS_SUCCESS, POST_APPOINTMENT,POST_APPOINTMENT_PENDING} from "../../Constants/actionTypes";
 
+//This is an action creator, it's going to return the action type and payload
 export function getAppointments() {
-  return (dispatch) => {
+  return (dispatch) => {    //This is a function being returned that takes dispatch method as argument, redux thunk makes this possible
     dispatch(_appointmentPending())
     return dynGetCall("https://mdynamic0077.crm.dynamics.com/api/data/v9.1/appointments?$select=scheduledend,scheduledstart,subject,teamtwo_appointmentnumber,_teamtwo_contactappointmentlookupid_value")
       .then((response) => {

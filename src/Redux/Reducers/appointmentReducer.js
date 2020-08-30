@@ -1,8 +1,11 @@
-import { GET_APPOINTMENTS_SUCCESS, GET_APPOINTMENTS_PENDING, POST_APPLICATION } from "../../Constants/actionTypes"
+import {
+  GET_APPOINTMENTS_SUCCESS,
+  GET_APPOINTMENTS_PENDING,
+  POST_APPLICATION,
+} from "../../Constants/actionTypes";
 
 export default function appointmentReducer(state = {}, action) {
   switch (action.type) {
-    
     case GET_APPOINTMENTS_SUCCESS:
       return {
         ...state,
@@ -11,24 +14,31 @@ export default function appointmentReducer(state = {}, action) {
           requestSuccessful: true,
         },
       };
+    case POST_APPLICATION:
+      return {
+        ...state,
+        newAppointment: action.payload,
+      };
     case GET_APPOINTMENTS_PENDING:
       return {
-      ...state,
-      appointmentsData: {
-        requestPending: true,
-      },
-      }
-      case "APPOINTMENT_MODAL_CHANGE":
-            return {
-                appointmentsData: {
-                    ...state.appointmentsData,
-                    openAppointmentPopup: action.open,
-                    
-                }
-            }
+        ...state,
+        appointmentsData: {
+          requestPending: true,
+        },
+      };
+    case "APPOINTMENT_MODAL_CHANGE":
+      return {
+        appointmentsData: {
+          ...state.appointmentsData,
+          openAppointmentPopup: action.open,
+        },
+      };
     default:
-      return {...state, appointmentsData: {
-        requestPending: true,
-      },};
+      return {
+        ...state,
+        appointmentsData: {
+          requestPending: true,
+        },
+      };
   }
 }

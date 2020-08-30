@@ -82,7 +82,7 @@ const createTable = (applicationArry,reduxActions) => {
     return (
         <Container>
             <div style={{paddingTop: '50px'}}>
-                <Fab onClick={()=> reduxActions.openAppointmentModal()}/*{actions.nameofactionidefinedinprops}*/style={{margin: '10px'}}size='small' color="primary" aria-label="add">
+                <Fab onClick={()=> reduxActions.openAppointmentModal()} style={{margin: '10px'}}size='small' color="primary" aria-label="add">
                     <AddIcon />  
                 </Fab>
 
@@ -126,9 +126,9 @@ function modal(actions) {
             <form>
               
                Start Date/Time<input type="datetime-local" id="start" name="appointment-start"  value="2018-07-22"
-     min="2018-01-01" max="2018-12-31" /> <br />
-      End Date/Time<input type="datetime-local" id="start" name="appointment-end"  value="2018-07-22"
-     min="2018-01-01" max="2018-12-31" /> <br />
+                    min="2018-01-01" max="2018-12-31" /> <br />
+                    End Date/Time<input type="datetime-local" id="start" name="appointment-end"  value="2018-07-22"
+                    min="2018-01-01" max="2018-12-31" /> <br />
                <textarea required rows="5" cols="28" placeholder="Appointment Description" /><br /><br />
                <button>Create Appointment</button>
                
