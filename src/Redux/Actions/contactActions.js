@@ -1,5 +1,5 @@
 import { dynGetCall } from '../../Utilities/dyanamicsAPI';
-import { GET_CONTACTS_SUCCESS, GET_CONTACTS_PENDING } from '../../Constants/actionTypes'
+import { GET_CONTACTS_SUCCESS, GET_CONTACTS_PENDING, CUSTOMER_MODAL_CHANGE } from '../../Constants/actionTypes'
 
 export function getContacts() {
     return (dispatch) => {
@@ -35,7 +35,7 @@ export function closeCustomerModal() {
 
 export function openCustomerModalDispatch(open, rowData) {
     return {
-        type: "CUSTOMER_MODAL_CHANGE",
+        type: CUSTOMER_MODAL_CHANGE,
         open: open,
         rowData: rowData
     }

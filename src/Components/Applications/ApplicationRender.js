@@ -3,7 +3,6 @@ import Spinner  from '../Spinner/spinner';
 import ApplicationDeleteDialog from './ApplicationDeleteDialog';
 import ApplicationTable from './ApplicationTable';
 
-
 export default function ApplicationRender(props) {
     let { applicationData } = props;
     if (applicationData.requestPending) {
@@ -13,5 +12,5 @@ export default function ApplicationRender(props) {
     }else if (applicationData.requestSuccessful) {
         return <ApplicationTable {...props}></ApplicationTable>
     }
-    return (<div></div>)
+    return (<div>Something Went Wrong :(</div>)
 }

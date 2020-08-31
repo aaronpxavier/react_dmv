@@ -1,6 +1,6 @@
 import React from "react";
-import { useTheme } from "@material-ui/core/styles";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
+// import { useTheme } from "@material-ui/core/styles";
+// import useMediaQuery from "@material-ui/core/useMediaQuery";
 import PropTypes from "prop-types";
 import { Link, withRouter } from "react-router-dom";
 import routes from "../../routes";
@@ -20,6 +20,11 @@ import {
   Receipt,
   Dns,
   BrandingWatermark,
+  ArrowDropDown,
+  ArrowDropDownCircleOutlined,
+  Brightness5,
+  Brightness2,
+  WbSunny,
 } from "@material-ui/icons";
 
 import {
@@ -32,21 +37,14 @@ import {
   Typography,
   Tab,
   Tabs,
+  Switch,
+  FormControlLabel,
+  FormGroup,
+  Hidden,
+  Grow,
 } from "@material-ui/core";
 
-//sessionStorage.setItem("lastTab", 0);
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-  },
-}));
+import DarkThemeToggle from "./DarkThemeToggle";
 
 function TabContainer(props) {
   return (
@@ -60,43 +58,38 @@ TabContainer.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-const styles = (theme) => ({
-  root: {
-    flexGrow: 1,
-    marginTop: theme.spacing.unit * 3,
-    backgroundColor: theme.palette.background.paper,
-  },
-});
-
 export default class NavBar extends React.Component {
   // tabData = sessionStorage.getItem("lastTab");
 
   state = {
     activeTabIndex: 0,
+    ShowSubBar: false,
+    NightTheme: false,
   };
-  componentWillMount() {
-    // console.log("CDM");
-    var lTab = sessionStorage.getItem("lastTab");
 
-    //console.log(lTab);
+  //This allows the selected tab to stay active when the page
+  // is refreshed
+  componentWillMount() {
+    var lTab = sessionStorage.getItem("lastTab");
     if (isNaN(sessionStorage.getItem("lastTab"))) {
-      // console.log("was weird NaN");
       sessionStorage.setItem("lastTab", 0);
     } else {
       this.setState({ activeTabIndex: parseInt(lTab) });
-      // console.log("The state is " + this.state.activeTabIndex);
     }
   }
+
+  //Sets a tab to active when clicked
   handleChange = (event, value) => {
     this.setState({ activeTabIndex: value });
   };
+
   render() {
     // console.log("The state is " + this.state.activeTabIndex);
     let tabData = sessionStorage.getItem("lastTab");
     // console.log("tab Data");
     // console.log(tabData);
 
-    const { classes } = this.props;
+    // const { classes } = this.props;
     const { activeTabIndex } = this.state;
     sessionStorage.setItem("lastTab", activeTabIndex);
     // console.log("Active tab");
@@ -189,11 +182,31 @@ export default class NavBar extends React.Component {
                 component={Link}
               />
             </Tabs>
+            {/* <IconButton
+              id="IB"
+              onClick={() => {
+                this.setState({ ShowSubBar: !this.state.ShowSubBar });
+              }}
+            >
+              <ArrowDropDownCircleOutlined />
+            </IconButton> */}
+            <div id="ThemeContainer">
+              <DarkThemeToggle />
+            </div>
           </Toolbar>
         </AppBar>
+
+        <Grow in={this.state.ShowSubBar}>
+          <AppBar
+            id="SubAppBar"
+            // style={{ display: this.state.ShowSubBar ? "block" : "none" }}
+          >
+            <FormGroup id="bBar">
+              <DarkThemeToggle />
+            </FormGroup>
+          </AppBar>
+        </Grow>
       </div>
     );
   }
 }
-
-//export default withRouter(Nav);

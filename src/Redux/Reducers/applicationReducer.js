@@ -1,4 +1,8 @@
-import { DELETE_POPUP_CHANGE, APPLICATION_REQUEST_PENDING, APPLICATION_REQUEST_SUCCESS } from "../../Constants/actionTypes"
+import { 
+  DELETE_POPUP_CHANGE, 
+  APPLICATION_REQUEST_PENDING, 
+  APPLICATION_REQUEST_SUCCESS, 
+} from "../../Constants/actionTypes"
 
 export default function applicationReducer(state = {}, action) {
   switch (action.type) {

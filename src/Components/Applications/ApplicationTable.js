@@ -18,11 +18,8 @@ import ViewColumn from '@material-ui/icons/ViewColumn';
 import { Container, Fab } from "@material-ui/core";
 import MaterialTable from 'material-table';
 import AddIcon from '@material-ui/icons/Add';
+import {DRIVING_LICENSE, LEARNER_PERMIT} from '../../Constants/applicationTypes';
 
-
-function print() {
-    console.log('hello print')
-}
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -54,10 +51,23 @@ const tableIcons = {
 }
 
 const createTableData = (array) => {
+    let type;
+    
     return array.map(item => {
+
+        switch(item.teamtwo_applicationname) {
+            case LEARNER_PERMIT:
+                type = "Learner's Permit"
+                break;
+            case DRIVING_LICENSE: 
+                type = "Driver's License"
+                break;
+            default:
+                type = item.teamtwo_applicationname
+        }
         return {
             num: item.teamtwo_application_number,
-            type: item.teamtwo_applicationname,
+            type: type,
             date: new Date(item.teamtwo_submitdate),
             status: item.teamtwo_approvedstatus ? 'Approved': 'Not Approved',
             id: item.teamtwo_applicationid
@@ -75,7 +85,6 @@ export default function ApplicationTable(props) {
             icon: () => <Delete color="secondary"></Delete>,
             tooltip: 'Delete Application',
             onClick:(event, rowData) => {
-                console.log('delete table click');
                 actions.openDeletePopup(rowData);
             }
         },
@@ -84,13 +93,14 @@ export default function ApplicationTable(props) {
             tooltip: 'Edit Application',
             onClick:(event, rowData) => {
                 console.log('edit table click');
+                props.history.push(`/applications/edit/${rowData.id}`)
             }
         }
     ]
     return (
         <Container>
             <div style={{paddingTop: '50px'}}>
-                <Fab onClick={print} style={{margin: '10px'}}size='small' color="primary" aria-label="add">
+                <Fab onClick={()=>props.history.push('/applications/edit/add')} style={{margin: '10px'}}size='small' color="primary" aria-label="add">
                     <AddIcon />
                 </Fab>
 

@@ -7,13 +7,25 @@ import vehicleReducer from './vehicleReducer'
 import applicationReducer from './applicationReducer'
 import appointmentReducer from './appointmentReducer'
 
+import contactReducer from "./contactReducer";
+import vehicleReducer from "./vehicleReducer";
+import applicationReducer from "./applicationReducer";
+import themeReducer from "./themeReducer";
+import editApplicationReducer from './editApplicationReducer';
+import historyReducer from './historyReducer';
+
+
 const allReducers = combineReducers({
   //reducers go here as key value pairs
   authReducer,
   contactReducer,
   vehicleReducer,
   applicationReducer,
-  appointmentReducer
+  appointmentReducer,
+  themeReducer,
+  editApplicationReducer,
+  historyReducer
+
 });
 
 export default allReducers;

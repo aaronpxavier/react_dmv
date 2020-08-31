@@ -1,0 +1,2 @@
+export const DRIVING_LICENSE = 317310004;
+export const LEARNER_PERMIT = 317310003;

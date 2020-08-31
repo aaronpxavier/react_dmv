@@ -163,17 +163,5 @@ export default function customerContainer(props) {
 }
 
 
-    // <Modal isOpen = {this.state.modalIsOpen} onRequestClose = {() => this.setState({ modalIsOpen: false })}>
-    //     <div className="modalContainer">
-    //         <div className="modalCard">
-    //             <h2>{this.state.fullnamesave}</h2>
-    //             <p>  Email:     {this.state.emailsave}</p>
-    //             <p> Contact Number:    {this.state.contactnumbersave}</p>
-    //             <p>Age:      {this.state.contactagesave}</p>
-    //             {console.log(this.state.contactnumbersave)}
-    //             <button onClick={() => this.setState({ modalIsOpen: false })}>Close modal</button>
-    //         </div>
-    //     </div>
 
-    //                 </Modal >
 
