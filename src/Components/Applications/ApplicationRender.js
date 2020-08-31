@@ -4,7 +4,6 @@ import ApplicationDeleteDialog from './ApplicationDeleteDialog';
 import ApplicationTable from './ApplicationTable';
 
 export default function ApplicationRender(props) {
-    console.log(props)
     let { applicationData } = props;
     if (applicationData.requestPending) {
         return (<Spinner></Spinner>)
