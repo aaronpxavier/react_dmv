@@ -1,4 +1,4 @@
-import { GET_CONTACTS_SUCCESS, GET_CONTACTS_PENDING } from '../../Constants/actionTypes'
+import { GET_CONTACTS_SUCCESS, GET_CONTACTS_PENDING, CUSTOMER_MODAL_CHANGE } from '../../Constants/actionTypes'
 
 export default function contactReducer(state = {}, action) {
     switch (action.type) {
@@ -17,7 +17,7 @@ export default function contactReducer(state = {}, action) {
                     requestPending: true,
                 },
             };
-        case "CUSTOMER_MODAL_CHANGE":
+        case CUSTOMER_MODAL_CHANGE:
             return {
                 contactsData: {
                     ...state.contactsData,
@@ -25,6 +25,7 @@ export default function contactReducer(state = {}, action) {
                     rowData: action.rowData
                 }
             }
+
         default:
             return {
                 ...state,

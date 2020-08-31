@@ -5,13 +5,15 @@ import authReducer from "./authReducer";
 import contactReducer from './contactReducer'
 import vehicleReducer from './vehicleReducer'
 import applicationReducer from './applicationReducer'
+import historyReducer from './historyReducer'
 
 const allReducers = combineReducers({
   //reducers go here as key value pairs
   authReducer,
   contactReducer,
   vehicleReducer,
-  applicationReducer
+  applicationReducer,
+  historyReducer
 });
 
 export default allReducers;

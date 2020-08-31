@@ -3,7 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import Activites from "./Components/Activites/Activities";
 import Applications from "./Components/Applications/ApplicationsContainer";
 import Customers from "./Components/Customers/CustomerContainer";
-import History from "./Components/History/History";
+import History from "./Components/History/HistoryContainer";
 import NewApplication from "./Components/NewApplication/NewApplication";
 import Vehicles from "./Components/Vehicles/VehiclesContainer";
 import AuthContainer from "./Components/Auth/AuthContainer";
