@@ -1,9 +1,10 @@
 import { updateDYNToken } from './apiServer';
 import Axios from "axios";
 
+
 export function getCallHeader (size) {
 
-    return new Promise( res => {
+    return new Promise(res => {
         updateDYNToken()
         .then (token => res(
             {

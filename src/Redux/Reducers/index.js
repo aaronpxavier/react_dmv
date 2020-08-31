@@ -2,10 +2,11 @@
 
 import { combineReducers } from "redux";
 import authReducer from "./authReducer";
-import contactReducer from './contactReducer'
-import vehicleReducer from './vehicleReducer'
-import applicationReducer from './applicationReducer'
-import editApplicationReducer from './editApplicationReducer'
+import contactReducer from './contactReducer';
+import vehicleReducer from './vehicleReducer';
+import applicationReducer from './applicationReducer';
+import editApplicationReducer from './editApplicationReducer';
+import historyReducer from './historyReducer';
 
 const allReducers = combineReducers({
   //reducers go here as key value pairs
@@ -13,7 +14,8 @@ const allReducers = combineReducers({
   contactReducer,
   vehicleReducer,
   applicationReducer,
-  editApplicationReducer
+  editApplicationReducer,
+  historyReducer
 });
 
 export default allReducers;
