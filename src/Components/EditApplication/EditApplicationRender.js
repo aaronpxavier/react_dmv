@@ -3,7 +3,6 @@ import Spinner from '../Spinner/spinner';
 import EditApplication from './EditApplication';
 
 export default function EditApplicationRender(props) {
-    console.log(props)
     let { applicationData } = props;
     if(applicationData.requestPending) {
         return (<Spinner></Spinner>)

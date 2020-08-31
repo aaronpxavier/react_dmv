@@ -56,8 +56,6 @@ import {
           }
         }
       case CONTACT_CHANGE:
-        console.log(state.applicationData)
-        console.log(action.contact)
         return {
           ...state,
           applicationData: {

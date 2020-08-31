@@ -47,7 +47,6 @@ function submitPost(ownerId, applicationType, contactId, description, status, su
     entity.teamtwo_applicationname = applicationType;
     entity.teamtwo_name = "Created from react app";
     entity["teamtwo_ContactToApplicationId@odata.bind"] = `/contacts(${contactId})`;
-    console.log(entity)
     action(entity);
 }
 
