@@ -69,19 +69,6 @@ export function openEditForm(appId) {
     return dispatch => dispatch(_appTypeChange(type))
   }
   
-  export function applicationContactFieldKeyup(value) {
-    return dispatch => {
-      dynGetCall(`${DYN_BASE_URL}/api/data/v9.1/contacts?$select=fullname&$filter=contains(fullname, '${value}')`)
-      .then(response => {
-        dispatch(_appContactChange(response.data.value, value))
-      })
-    }
-  }
-  
-  export function applicationContactChangeCommit(contact) {
-    return dispatch => dispatch(_appContactChange([], contact, contact.contactid));
-  }
-  
   export function approvedStatusChanged(status) {
     console.log(status);
     return dispatch => dispatch(_approvedStatus(status));
@@ -104,6 +91,20 @@ export function openEditForm(appId) {
     }
   }
 
+  export function applicationContactChangeCommit(contact) {
+    return dispatch => dispatch(_appContactChange([], contact, contact.contactid));
+  }
+
+  export function applicationContactFieldKeyup(value) {
+    
+    return dispatch => {
+      dispatch(_appContactChange([], value))
+      dynGetCall(`${DYN_BASE_URL}/api/data/v9.1/contacts?$select=fullname&$filter=contains(fullname, '${value}')`)
+      .then(response => {
+        dispatch(_appContactChange(response.data.value))
+      })
+    }
+  }
     //dispatchers
 
   export function _dateField(date) {
@@ -139,11 +140,10 @@ export function openEditForm(appId) {
   }
   
   export function _appContactChange(contactsArry, value, id) {
-    console.log(contactsArry)
     return {
       type: CONTACT_CHANGE,
       contacts: contactsArry,
-      contact: value.fullname ? value : {fullname: value, contactid: id}
+      contact: value && value.fullname ? value : {fullname: value, contactid: id}
     }
   }
   

@@ -56,11 +56,13 @@ import {
           }
         }
       case CONTACT_CHANGE:
+        console.log(state.applicationData)
+        console.log(action.contact)
         return {
           ...state,
           applicationData: {
             ...state.applicationData,
-            contact: action.contact,
+            contact: action.contact.fullname === undefined ? state.applicationData.contact:action.contact,
             contacts: action.contacts
           }
         }
