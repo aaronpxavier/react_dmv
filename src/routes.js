@@ -8,6 +8,7 @@ import NewApplication from "./Components/NewApplication/NewApplication";
 import Vehicles from "./Components/Vehicles/VehiclesContainer";
 import AuthContainer from "./Components/Auth/AuthContainer";
 import Appointments from "./Components/Appointments/Appointments";
+import EditApplication from './Components/EditApplication/EditApplicationContainer'
 
 export default (
   <Switch>
@@ -19,5 +20,6 @@ export default (
     <Route exact path="/vehicles" component={Vehicles} />
     <Route exact path="/appointments" component={Appointments} />
     <Route exact path="/auth" component={AuthContainer} />
+    <Route exact path="/applications/edit/:appId" component={EditApplication}/>
   </Switch>
 );
