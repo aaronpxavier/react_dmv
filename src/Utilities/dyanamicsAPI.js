@@ -91,3 +91,34 @@ export function ajaxPatchCall(url, entity) {
         
     
 }
+
+export function ajaxPostCall (url, entity) {
+    return new Promise ( res => {
+        updateDYNToken()
+        .then(token => {
+            var req = new XMLHttpRequest();
+            req.open("POST",  url, true);
+            req.setRequestHeader("OData-MaxVersion", "4.0");
+            req.setRequestHeader("OData-Version", "4.0");
+            req.setRequestHeader("Accept", "hgb/json");
+            req.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+            req.setRequestHeader("Authorization", "Bearer " + token); //Replace token with your token value
+            req.onreadystatechange = function() {
+                if (this.readyState === 4) {
+                    req.onreadystatechange = null;
+                    if (this.status === 204) {
+                        var uri = this.getResponseHeader("OData-EntityId");
+                        var regExp = /\(([^)]+)\)/;
+                        var matches = regExp.exec(uri);
+                        var newEntityId = matches[1];
+                        res(newEntityId)
+                    } else {
+
+                    }
+                }
+            }
+            req.send(JSON.stringify(entity));
+            
+        })
+    })
+}

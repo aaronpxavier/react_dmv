@@ -20,9 +20,6 @@ import MaterialTable from 'material-table';
 import AddIcon from '@material-ui/icons/Add';
 import {DRIVING_LICENSE, LEARNER_PERMIT} from '../../Constants/applicationTypes';
 
-function print() {
-    console.log('hello print')
-}
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -96,14 +93,14 @@ export default function ApplicationTable(props) {
             tooltip: 'Edit Application',
             onClick:(event, rowData) => {
                 console.log('edit table click');
-                actions.openEditForm(rowData);
+                props.history.push(`/applications/edit/${rowData.id}`)
             }
         }
     ]
     return (
         <Container>
             <div style={{paddingTop: '50px'}}>
-                <Fab onClick={print} style={{margin: '10px'}}size='small' color="primary" aria-label="add">
+                <Fab onClick={()=>props.history.push('/applications/edit/add')} style={{margin: '10px'}}size='small' color="primary" aria-label="add">
                     <AddIcon />
                 </Fab>
 
