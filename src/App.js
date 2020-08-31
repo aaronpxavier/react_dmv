@@ -1,16 +1,33 @@
-import React, { Component } from "react";
+import React, { Component, useState, useEffect } from "react";
 import routes from "./routes";
 import { withRouter } from "react-router-dom";
 import NavBar from "./Components/Nav/NavBar";
+import MobileNavBar from "./Components/Nav/MobileNavBar";
 import Footer from "./Components/Nav/Footer";
 import "./App.css";
+import { GlobalStyles } from "./Components/GlobalTheme/globalStyles";
+import { useSelector, Provider } from "react-redux";
+import DarkThemeProvider from "./Components/Nav/DarkThemeProvider";
+import configureStore from "./Redux/Store/configureStore";
+const store = configureStore();
 
 export class App extends Component {
   render = () => (
-    <div>
-      <NavBar />
-      <div id="dd">{routes}</div>
-      <Footer />
+    <div id="all">
+      <Provider store={store}>
+        <DarkThemeProvider>
+          <GlobalStyles />
+          {/* Will show navbar unless user is using phone.  */}
+          {!!!navigator.userAgent.match(/iphone|android|blackberry/gi) && (
+            <NavBar />
+          )}
+          {!!navigator.userAgent.match(/iphone|android|blackberry/gi) && (
+            <MobileNavBar />
+          )}
+          <div id="dd">{routes}</div>
+          <Footer />
+        </DarkThemeProvider>
+      </Provider>
     </div>
   );
 }

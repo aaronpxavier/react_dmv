@@ -6,4 +6,10 @@ Footer {
 #dd {
   min-height: calc(100vh - 6.5rem);
   margin-top: 4rem;
+  /* background-color: red;
+  color: blue; */
+}
+#all {
+  /* background: green; */
+  opacity: 100;
 }
