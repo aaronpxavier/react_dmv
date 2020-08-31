@@ -2,6 +2,7 @@ import {
   GET_APPOINTMENTS_SUCCESS,
   GET_APPOINTMENTS_PENDING,
   POST_APPLICATION,
+  POST_APPOINTMENT,
 } from "../../Constants/actionTypes";
 
 export default function appointmentReducer(state = {}, action) {
@@ -14,7 +15,7 @@ export default function appointmentReducer(state = {}, action) {
           requestSuccessful: true,
         },
       };
-    case POST_APPLICATION:
+    case POST_APPOINTMENT:
       return {
         ...state,
         newAppointment: action.payload,

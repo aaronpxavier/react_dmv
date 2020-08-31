@@ -1,4 +1,4 @@
-import { dynGetCall } from "../../Utilities/dyanamicsAPI";
+import { dynGetCall,dynPostCall } from "../../Utilities/dyanamicsAPI";
 import { GET_APPOINTMENTS_PENDING, GET_APPOINTMENTS_SUCCESS, POST_APPOINTMENT,POST_APPOINTMENT_PENDING} from "../../Constants/actionTypes";
 
 //This is an action creator, it's going to return the action type and payload
@@ -19,11 +19,12 @@ export function postAppointments(postdata){
     return dynPostCall("https://mdynamic0077.crm.dynamics.com/api/data/v9.1/appointments",postdata)
       .then((response) => {
         dispatch(_postAppointmentSuccess(response.data));
-        //console.log(response.data)
+        console.log("Post Appointments",response.data)
       });
   };
 
 }
+
 
 export function _getAppointmentSuccess(dat) {
   return {
@@ -32,10 +33,10 @@ export function _getAppointmentSuccess(dat) {
   };
 }
 
-export function _postAppointmentSuccess(dat) {
+export function _postAppointmentSuccess(post) {
   return {
     type: POST_APPOINTMENT,
-    data: dat,
+    payload: post,
   };
 }
 

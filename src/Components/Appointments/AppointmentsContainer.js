@@ -6,10 +6,18 @@ import * as appointmentActions from "../../Redux/Actions/appointmentActions";
 
 const Appointments = (props) => {
   useEffect(() => {
-    const { actions } = props;
+    const { actions } = props; //this is just fancy, could also just be props.actions otherwise would be props.actions redux mystery
     console.log("Appointment Container Props", props);  
     //contains action object and list of methods, those methods are my actions
+    var entity = {};
+    entity.subject = "My Honda has a flat tire again";
+    entity.scheduledend = new Date("09/09/2020 09:00:00").toISOString();
+    entity.scheduledstart = new Date("09/09/2020 08:30:00").toISOString();
+    entity["regardingobjectid@odata.bind"] = "/contacts(40cda8ca-fcaf-ea11-a812-000d3a8faaa7)";
+    entity["regardingobjectid@odata.bind"] = "s"
     
+
+    actions.postAppointments(entity);
     actions.getAppointments();
   }, []);
   return <AppointmentRender {...props}></AppointmentRender>
