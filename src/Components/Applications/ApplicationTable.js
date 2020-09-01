@@ -1,8 +1,4 @@
-import React, { forwardRef } from 'react'
-import Spinner from '../Spinner/spinner'
-import Modal from 'react-modal'
-
-import { Container, Box, Fab } from "@material-ui/core";
+import React, { forwardRef } from 'react';
 import AddBox from '@material-ui/icons/AddBox';
 import ArrowDownward from '@material-ui/icons/ArrowDownward';
 import Check from '@material-ui/icons/Check';
@@ -19,9 +15,10 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
+import { Container, Fab } from "@material-ui/core";
 import MaterialTable from 'material-table';
 import AddIcon from '@material-ui/icons/Add';
-import { findAllByTestId } from '@testing-library/react';
+import {DRIVING_LICENSE, LEARNER_PERMIT} from '../../Constants/applicationTypes';
 
 
 const tableIcons = {
@@ -42,84 +39,73 @@ const tableIcons = {
     SortArrow: forwardRef((props, ref) => <ArrowDownward {...props} ref={ref} />),
     ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
-};
+  };
 
-function modal(actions, rowData) {
-
-    return (
-        <Modal isOpen={true}>
-            <div className="modalContainer">
-                <div className="modalCard">
-                    <h2>{rowData.customer}</h2>
-                    <p>  Type:     {rowData.type}</p>
-                    <p> Description:     {rowData.description}</p>
-                    <p>Points:      {rowData.points}</p>
-                    <p>History Number: {rowData.historyNumber}</p>
-                    <p>State: {rowData.state}</p>
-                    <button onClick={() => actions.closeHistoryModal()}>Close modal</button>
-                </div>
-            </div>
-
-        </Modal >
-    )
+  const createTableColumns = () => {
+    return [
+        { title: 'Application #', field: 'num' },
+        { title: 'Application Type', field: 'type' },
+        { title: 'Submit Date', field: 'date', defaultSort: 'desc', type: 'date' },
+        { title: 'Application Approved Status', field: 'status' },
+    ]
 }
 
-const createTable = (historyArray, reduxActions) => {
+const createTableData = (array) => {
+    let type;
+    
+    return array.map(item => {
 
-    console.log(historyArray)
-
-    let columns = [
-        { title: 'Customer Associated', field: 'customer' },
-        { title: 'Incident Type', field: 'type' },
-        { title: 'State', field: 'state' }
-    ]
-    let data = historyArray.map(item => {
-        console.log(item["_teamtwo_contacttodrivinghistoryid_value@OData.Community.Display.V1.FormattedValue"])
+        switch(item.teamtwo_applicationname) {
+            case LEARNER_PERMIT:
+                type = "Learner's Permit"
+                break;
+            case DRIVING_LICENSE: 
+                type = "Driver's License"
+                break;
+            default:
+                type = item.teamtwo_applicationname
+        }
         return {
-            customer: item["_teamtwo_contacttodrivinghistoryid_value@OData.Community.Display.V1.FormattedValue"],
-            type: item.teamtwo_incidenttype,
-            description: item.teamtwo_drivinghistorydescription,
-            points: item.teamtwo_points,
-            historyNumber: item.teamtwo_driving_history_number,
-            state: item["teamtwo_drivinghistorystate@OData.Community.Display.V1.FormattedValue"]
-
+            num: item.teamtwo_application_number,
+            type: type,
+            date: new Date(item.teamtwo_submitdate),
+            status: item.teamtwo_approvedstatus ? 'Approved': 'Not Approved',
+            id: item.teamtwo_applicationid
         }
     })
+}
 
-    let actions = [
+export default function ApplicationTable(props) {
+    let {actions} = props;
+    let columns = createTableColumns();
+    let data = createTableData(props.applicationData.appArray);
+
+    let tableActions=[
         {
             icon: () => <Delete color="secondary"></Delete>,
             tooltip: 'Delete Application',
-            onClick: (event, rowData) => {
-                console.log('delete table click');
+            onClick:(event, rowData) => {
+                actions.openDeletePopup(rowData);
             }
         },
         {
             icon: () => <Edit color="primary"></Edit>,
             tooltip: 'Edit Application',
-            onClick: (event, rowData) => {
+            onClick:(event, rowData) => {
                 console.log('edit table click');
-            }
-        },
-        {
-            icon: () => '...',
-            tooltip: 'See more',
-            onClick: (event, rowData) => {
-                console.log(rowData)
-                console.log('opening module on click functionality goes here I think')
-                reduxActions.openHistoryModal(rowData)
+                props.history.push(`/applications/edit/${rowData.id}`)
             }
         }
     ]
     return (
         <Container>
-            <div style={{ paddingTop: '50px' }}>
-                <Fab style={{ margin: '10px' }} size='small' color="primary" aria-label="add">
+            <div style={{paddingTop: '50px'}}>
+                <Fab onClick={()=>props.history.push('/applications/edit/add')} style={{margin: '10px'}}size='small' color="primary" aria-label="add">
                     <AddIcon />
                 </Fab>
 
                 <MaterialTable
-                    title='Driving History'
+                    title='Applications Table'
                     columns={columns}
                     data={data}
                     icons={tableIcons}
@@ -130,6 +116,7 @@ const createTable = (historyArray, reduxActions) => {
                             exportButton: true,
                             exportAllData: true,
                             sorting: true,
+                            thirdSortClick: false,
                             rowStyle: {
                                 '&:hover': {
                                     backgroundColor: '#bbdefb',
@@ -137,26 +124,10 @@ const createTable = (historyArray, reduxActions) => {
                             }
                         }
                     }
-                    actions={actions}
+                    actions={tableActions}
                 >
                 </MaterialTable>
             </div>
         </Container>
     );
-}
-
-
-export default function historyContainer(props) {
-    if (props.historyData.requestPending) {
-        return (
-            <Spinner></Spinner>
-        )
-    }
-    else if (props.historyData.openHistoryPopup) {
-        return modal(props.actions, props.historyData.rowData)
-    }
-    else if (props.historyData.requestSuccessful) {
-        return createTable(props.historyData.historyArray, props.actions)
-    }
-    return (<div></div>)
 }
