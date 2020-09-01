@@ -38,8 +38,6 @@ export function getPatchCallHeader () {
         );
     });
 }
-<<<<<<< HEAD
-=======
 
 export function dynGetCall(url, numOfRows) {
     return new Promise (res => {
@@ -47,7 +45,6 @@ export function dynGetCall(url, numOfRows) {
     .then( header => Axios.get(encodeURI(url), header))
     .then(response => res(response))});
 }
->>>>>>> origin
 
 export function dynDeleteCall(url) {
     return new Promise (res => {

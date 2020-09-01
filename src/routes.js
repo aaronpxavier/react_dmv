@@ -8,7 +8,7 @@ import NewApplication from "./Components/NewApplication/NewApplication";
 import Vehicles from "./Components/Vehicles/VehiclesContainer";
 import AuthContainer from "./Components/Auth/AuthContainer";
 import Appointments from "./Components/Appointments/AppointmentsContainer";
-import Appointments from "./Components/Appointments/Appointments";
+
 import EditApplication from './Components/EditApplication/EditApplicationContainer'
 
 export default (

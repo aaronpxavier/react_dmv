@@ -10,11 +10,13 @@ const Appointments = (props) => {
     console.log("Appointment Container Props", props);  
     //contains action object and list of methods, those methods are my actions
     var entity = {};
-    entity.subject = "My Honda has a flat tire again";
-    entity.scheduledend = new Date("09/09/2020 09:00:00").toISOString();
-    entity.scheduledstart = new Date("09/09/2020 08:30:00").toISOString();
-    entity["regardingobjectid@odata.bind"] = "/contacts(40cda8ca-fcaf-ea11-a812-000d3a8faaa7)";
-    entity["regardingobjectid@odata.bind"] = "s"
+    entity["regardingobjectid_contact_appointment@odata.bind"] = "/contacts(40cda8ca-fcaf-ea11-a812-000d3a8faaa7)";
+
+    entity.subject = "Where can I get a drivers manual";
+    entity.scheduledend = new Date("09/10/2020 09:00:00").toISOString();
+    entity.scheduledstart = new Date("09/10/2020 08:30:00").toISOString();
+
+    //entity["regardingobjectid@odata.bind"] = "s"
     
 
     actions.postAppointments(entity);
