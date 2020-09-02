@@ -20,6 +20,7 @@ import ViewColumn from '@material-ui/icons/ViewColumn';
 import Spinner  from '../Spinner/spinner';
 import MaterialTable from 'material-table';
 import AddIcon from '@material-ui/icons/Add';
+import './Appointment.css'
 
 
 const tableIcons = {
@@ -112,25 +113,38 @@ const createTable = (applicationArry,reduxActions) => {
         </Container>
     );
 }
-function print(){
-  console.log("hello from add");
+
+
+
+ function onSubmit(e){
+    e.preventDefault();
+    alert('hello')
+    
+
+
 }
-
 function modal(actions) {
-
+    
+    console.log("Modal Actions " + actions)
+    var entity = {};  
+    entity["regardingobjectid_contact_appointment@odata.bind"] = "/contacts(40cda8ca-fcaf-ea11-a812-000d3a8faaa7)";
+    entity.subject = "I made an appointment online, but I forgot my docs";
+    entity.scheduledend = new Date("09/10/2020 09:00:00").toISOString();
+    entity.scheduledstart = new Date("09/10/2020 08:30:00").toISOString();
+    //actions.postAppointments(entity);
   return (
       <Modal isOpen={true}>
           <div className="modalContainer">
               <div className="modalCard">
                   <h2>Create an Appointment</h2>
-            <form>
+            <form onSubmit = {onSubmit}>
               
                Start Date/Time<input type="datetime-local" id="start" name="appointment-start"  value="2018-07-22"
                     min="2018-01-01" max="2018-12-31" /> <br />
                     End Date/Time<input type="datetime-local" id="start" name="appointment-end"  value="2018-07-22"
                     min="2018-01-01" max="2018-12-31" /> <br />
                <textarea required rows="5" cols="28" placeholder="Appointment Description" /><br /><br />
-               <button>Create Appointment</button>
+               <button type = "Submit">Create Appointment</button>
                
              </form>
              <br />
@@ -144,6 +158,7 @@ function modal(actions) {
 }
 
 export default function ApplicationContainer(props) {
+    
     console.log("Appointment Render Props", props)
     
     let {appointmentData} = props;
