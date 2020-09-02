@@ -25,6 +25,7 @@ import {
   Brightness5,
   Brightness2,
   WbSunny,
+  AccountCircle,
 } from "@material-ui/icons";
 
 import {
@@ -45,6 +46,7 @@ import {
 } from "@material-ui/core";
 
 import DarkThemeToggle from "./DarkThemeToggle";
+import ProfileIcon from "./NavComponents/ProfileIcon";
 
 function TabContainer(props) {
   return (
@@ -193,6 +195,7 @@ export default class NavBar extends React.Component {
             <div id="ThemeContainer">
               <DarkThemeToggle />
             </div>
+            <ProfileIcon />
           </Toolbar>
         </AppBar>
 
