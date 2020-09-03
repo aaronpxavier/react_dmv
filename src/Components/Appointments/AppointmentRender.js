@@ -113,24 +113,13 @@ const createTable = (applicationArry,reduxActions) => {
         </Container>
     );
 }
-
-
-
- function onSubmit(e){
-    e.preventDefault();
-    alert('hello')
+function modal(props,onSubmit) {
     
-
-
-}
-function modal(actions) {
+    console.log(props);
+    let {actions} = props;
     
-    console.log("Modal Actions " + actions)
-    var entity = {};  
-    entity["regardingobjectid_contact_appointment@odata.bind"] = "/contacts(40cda8ca-fcaf-ea11-a812-000d3a8faaa7)";
-    entity.subject = "I made an appointment online, but I forgot my docs";
-    entity.scheduledend = new Date("09/10/2020 09:00:00").toISOString();
-    entity.scheduledstart = new Date("09/10/2020 08:30:00").toISOString();
+    //console.log("Modal Actions " + actions)
+    
     //actions.postAppointments(entity);
   return (
       <Modal isOpen={true}>
@@ -160,6 +149,23 @@ function modal(actions) {
 export default function ApplicationContainer(props) {
     
     console.log("Appointment Render Props", props)
+
+    //these will be the state values
+    var entity = {};  
+    entity["regardingobjectid_contact_appointment@odata.bind"] = "/contacts(ea404b1f-08a9-ea11-a812-000d3a8faaa7)";
+    entity.subject = "Avery did a drivers test";
+    entity.scheduledend = new Date("09/27/2020 09:00:00").toISOString();
+    entity.scheduledstart = new Date("09/27/2020 08:30:00").toISOString();
+    //props.postAppointments(entity);
+    
+ function onSubmit(e){
+    
+    e.preventDefault();
+    props.actions.postAppointments(entity) //should pass entity based on state in here
+    console.log(entity)
+    alert('hello')
+    props.history.push("/appointments")
+}
     
     let {appointmentData} = props;
     let {actions} = props;
@@ -169,7 +175,7 @@ export default function ApplicationContainer(props) {
     }     
     else if(appointmentData.openAppointmentPopup){
       console.log(appointmentData)
-      return modal(actions);
+      return modal(props,onSubmit);
     }
     else if (appointmentData.requestSuccessful) {
       return createTable(appointmentData.appArray,actions)
