@@ -159,11 +159,15 @@ export default function ApplicationContainer(props) {
     //props.postAppointments(entity);
     
  function onSubmit(e){
-    
+    console.log("inside onsumbit", props)
     e.preventDefault();
     props.actions.postAppointments(entity) //should pass entity based on state in here
     console.log(entity)
     alert('hello')
+    //return createTable(props.appointmentData.appArray,actions)
+    //props.appointmentData.appArray.openAppointmentPopup = false;
+    //props.appointmentData.appArray.requestSuccessful = true;
+    props.actions.getAppointments();
     props.history.push("/appointments")
 }
     

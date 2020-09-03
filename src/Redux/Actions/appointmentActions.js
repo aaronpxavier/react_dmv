@@ -50,7 +50,7 @@ export function closeAppointmentModal() {
 export function postAppointment(){
   return(dispatch) => dispatch(_appointmentPending())
 }
-export function openAppointmentModalDispatch(open) {
+export function openAppointmentModalDispatch(open) {   
   return {
       type: "APPOINTMENT_MODAL_CHANGE",
       open: open

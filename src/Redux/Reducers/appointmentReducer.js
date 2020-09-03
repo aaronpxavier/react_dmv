@@ -19,6 +19,7 @@ export default function appointmentReducer(state = {}, action) {
       return {
         ...state,
         newAppointment: action.payload,
+        requestSuccessful: true,
       };
     case GET_APPOINTMENTS_PENDING:
       return {
