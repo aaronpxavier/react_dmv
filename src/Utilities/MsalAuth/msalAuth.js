@@ -50,3 +50,8 @@ export function getTokenRedirect(callback) {
     authCallback();
   }
 }
+
+export function logout() {
+  let msal = _createMSAL();
+  msal.logout();
+}

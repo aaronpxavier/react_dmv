@@ -29,6 +29,20 @@ export const GlobalStyles = createGlobalStyle`
   color: ${({ theme }) => theme.navWordColor};
 
  }
+ #tContainer{
+ 
+  ${"" /* background-color: ${({ theme }) => theme.body}; */}
+
+ }
+ #tContainer #dTable{
+   ${"" /* this does not work yet */}
+  page-Size: 3;
+  main: ${({ theme }) => "red"};
+  color: ${({ theme }) => "blue"};
+  background-color: ${({ theme }) => "red"};
+  backgroundColor: ${({ theme }) => "red"};
+ }
+
   `;
 
 //need to find a way to change datatables style.

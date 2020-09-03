@@ -241,8 +241,21 @@ body {
 }
 
 #ThemeContainer {
-  margin-left: 5rem;
+  margin-left: 1rem;
   height: 3rem;
   border: 0;
   margin-top: -2rem;
+}
+
+#Profile {
+  margin-left: 2rem;
+  /* height: 3rem; */
+  border: 0;
+  /* size: 20px; */
+  width: 30px;
+  height: 30px;
+}
+#Profile:hover {
+  color: red;
+  opacity: 80%;
 }

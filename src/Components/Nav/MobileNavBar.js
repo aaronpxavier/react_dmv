@@ -30,6 +30,7 @@ import { green } from "@material-ui/core/colors";
 
 const drawerWidth = 240;
 
+//Need to give mobileNav a css so it won't use 'useStyles'
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -193,12 +194,12 @@ function MobileNavBar(props) {
   );
 }
 
-MobileNavBar.propTypes = {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
-  window: PropTypes.func,
-};
+// MobileNavBar.propTypes = {
+//   /**
+//    * Injected by the documentation to work in an iframe.
+//    * You won't need it on your project.
+//    */
+//   window: PropTypes.func,
+// };
 
 export default MobileNavBar;
