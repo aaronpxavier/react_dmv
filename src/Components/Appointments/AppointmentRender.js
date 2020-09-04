@@ -1,5 +1,7 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useState } from 'react';
 import Modal from 'react-modal'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
 import { Container, Box, Fab } from "@material-ui/core";
 import AddBox from '@material-ui/icons/AddBox';
 import ArrowDownward from '@material-ui/icons/ArrowDownward';
@@ -44,21 +46,23 @@ const tableIcons = {
   };
  
  
-const createTable = (applicationArry,reduxActions) => {
+const createTable = (applicationArry,reduxActions,props) => {
+    console.log(applicationArry)
     let columns = [
-        { title: 'Appointment #', field: 'num' },
-        {title: 'Description',field:'text'},
-        { title: 'Start Date', field: 'date' },
-        { title: 'End Date', field: 'date' },
-        { title: 'Contact Id', field: 'status' },
+        { title: 'Appointment #', field: 'appntNumber' },
+        { title: 'Description', field: 'description'},
+        { title: 'Start Date', field: 'startdate' },
+        { title: 'End Date', field: 'enddate' },
+        { title: 'Contact Id', field: 'ContactId' },
     ]
     let data = applicationArry.map(item => {
+    
         return {
-            num: item.teamtwo_appointmentnumber,
-            text: item.subject,
-            date: new Date(item.scheduledstart).toLocaleTimeString() + " " + new Date(item.scheduledstart).toDateString(),
-            date: new Date(item.scheduledend).toLocaleTimeString() + " " + new Date(item.scheduledend).toDateString(),
-            status: item.teamtwo_approvedstatus ? 'Approved': 'Not Approved'
+            appntNumber: item.teamtwo_appointmentnumber,
+            description: item.subject,
+            startdate: new Date(item.scheduledstart).toLocaleTimeString() + " " + new Date(item.scheduledstart).toDateString(),
+            enddate: new Date(item.scheduledend).toLocaleTimeString() + " " + new Date(item.scheduledend).toDateString(),
+            ContactId: item._teamtwo_contactappointmentlookupid_value
         }
     })
 
@@ -77,13 +81,13 @@ const createTable = (applicationArry,reduxActions) => {
                 console.log('edit table click');
             }
         }
-        //this is where I have to trigger the action to create a new appointment
+        
     ]
 
     return (
         <Container>
             <div style={{paddingTop: '50px'}}>
-                <Fab onClick={()=> reduxActions.openAppointmentModal()} style={{margin: '10px'}}size='small' color="primary" aria-label="add">
+                <Fab onClick={()=> props.history.push('/appointments/add') /*reduxActions.openAppointmentModal()*/} style={{margin: '10px'}}size='small' color="primary" aria-label="add">
                     <AddIcon />  
                 </Fab>
 
@@ -113,7 +117,7 @@ const createTable = (applicationArry,reduxActions) => {
         </Container>
     );
 }
-function modal(props,onSubmit) {
+function modal(props,onSubmit,selectedDate,setSelectedDate) {
     
     console.log(props);
     let {actions} = props;
@@ -127,12 +131,13 @@ function modal(props,onSubmit) {
               <div className="modalCard">
                   <h2>Create an Appointment</h2>
             <form onSubmit = {onSubmit}>
-              
+              {/* <DatePicker selected = {selectedDate} onChange = { date=> setSelectedDate(date)}/> */}
                Start Date/Time<input type="datetime-local" id="start" name="appointment-start"  value="2018-07-22"
-                    min="2018-01-01" max="2018-12-31" /> <br />
-                    End Date/Time<input type="datetime-local" id="start" name="appointment-end"  value="2018-07-22"
-                    min="2018-01-01" max="2018-12-31" /> <br />
-               <textarea required rows="5" cols="28" placeholder="Appointment Description" /><br /><br />
+                     /> <br />
+                    End Date/Time<input type="datetime-local" id="end" name="appointment-end"  value="2018-07-22"
+                     /> <br />
+               Appointment Subject
+               <textarea placeholder="subject" required rows="5" cols="28" placeholder="Appointment Description" /><br /><br />
                <button type = "Submit">Create Appointment</button>
                
              </form>
@@ -146,9 +151,11 @@ function modal(props,onSubmit) {
   )
 }
 
-export default function ApplicationContainer(props) {
+export default function AppointmentContainer(props) {
+
+    const[selectedDate,setSelectedDate] = useState(null)
     
-    console.log("Appointment Render Props", props)
+    //console.log("Appointment Render Props", props)
 
     //these will be the state values
     var entity = {};  
@@ -164,10 +171,8 @@ export default function ApplicationContainer(props) {
     props.actions.postAppointments(entity) //should pass entity based on state in here
     console.log(entity)
     alert('hello')
-    //return createTable(props.appointmentData.appArray,actions)
-    //props.appointmentData.appArray.openAppointmentPopup = false;
-    //props.appointmentData.appArray.requestSuccessful = true;
-    props.actions.getAppointments();
+    
+    props.actions.getAppointments(); //this will refresh the view to bring the listing of appointments
     props.history.push("/appointments")
 }
     
@@ -182,7 +187,7 @@ export default function ApplicationContainer(props) {
       return modal(props,onSubmit);
     }
     else if (appointmentData.requestSuccessful) {
-      return createTable(appointmentData.appArray,actions)
+      return createTable(appointmentData.appArray,actions,props)
   }
  
 
