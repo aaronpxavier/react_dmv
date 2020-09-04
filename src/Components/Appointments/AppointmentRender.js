@@ -117,43 +117,43 @@ const createTable = (applicationArry,reduxActions,props) => {
         </Container>
     );
 }
-function modal(props,onSubmit,selectedDate,setSelectedDate) {
+// function modal(props,onSubmit,selectedDate,setSelectedDate) {
     
-    console.log(props);
-    let {actions} = props;
+//     console.log(props);
+//     let {actions} = props;
     
-    //console.log("Modal Actions " + actions)
+//     //console.log("Modal Actions " + actions)
     
-    //actions.postAppointments(entity);
-  return (
-      <Modal isOpen={true}>
-          <div className="modalContainer">
-              <div className="modalCard">
-                  <h2>Create an Appointment</h2>
-            <form onSubmit = {onSubmit}>
-              {/* <DatePicker selected = {selectedDate} onChange = { date=> setSelectedDate(date)}/> */}
-               Start Date/Time<input type="datetime-local" id="start" name="appointment-start"  value="2018-07-22"
-                     /> <br />
-                    End Date/Time<input type="datetime-local" id="end" name="appointment-end"  value="2018-07-22"
-                     /> <br />
-               Appointment Subject
-               <textarea placeholder="subject" required rows="5" cols="28" placeholder="Appointment Description" /><br /><br />
-               <button type = "Submit">Create Appointment</button>
+//     //actions.postAppointments(entity);
+//   return (
+//       <Modal isOpen={true}>
+//           <div className="modalContainer">
+//               <div className="modalCard">
+//                   <h2>Create an Appointment</h2>
+//             <form onSubmit = {onSubmit}>
+//               {/* <DatePicker selected = {selectedDate} onChange = { date=> setSelectedDate(date)}/> */}
+//                Start Date/Time<input type="datetime-local" id="start" name="appointment-start"  value="2018-07-22"
+//                      /> <br />
+//                     End Date/Time<input type="datetime-local" id="end" name="appointment-end"  value="2018-07-22"
+//                      /> <br />
+//                Appointment Subject
+//                <textarea placeholder="subject" required rows="5" cols="28" placeholder="Appointment Description" /><br /><br />
+//                <button type = "Submit">Create Appointment</button>
                
-             </form>
-             <br />
+//              </form>
+//              <br />
 
-                  <button onClick={() => actions.closeAppointmentModal()}>Close modal</button>
-              </div>
-          </div>
+//                   <button onClick={() => actions.closeAppointmentModal()}>Close modal</button>
+//               </div>
+//           </div>
 
-      </Modal >
-  )
-}
+//       </Modal >
+//   )
+// }
 
 export default function AppointmentContainer(props) {
 
-    const[selectedDate,setSelectedDate] = useState(null)
+   
     
     //console.log("Appointment Render Props", props)
 
@@ -182,10 +182,10 @@ export default function AppointmentContainer(props) {
         return (<Spinner></Spinner>)       
     
     }     
-    else if(appointmentData.openAppointmentPopup){
-      console.log(appointmentData)
-      return modal(props,onSubmit);
-    }
+    // else if(appointmentData.openAppointmentPopup){
+    //   console.log(appointmentData)
+    //   return modal(props,onSubmit);
+    // }
     else if (appointmentData.requestSuccessful) {
       return createTable(appointmentData.appArray,actions,props)
   }

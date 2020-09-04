@@ -3,11 +3,11 @@ import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 
 function CreateAppointment(){
-    // const[selectedDate,]
+        const[selectedDate,setSelectedDate] = useState(null)
         return (
             <div>
                 Hi I'm create component
-                {/* <DatePicker selected={} onChange={} /> */}
+                <DatePicker minDate = {new Date()} selected={selectedDate} onChange={date => setSelectedDate(date)} /> 
             </div>
         )
 }
