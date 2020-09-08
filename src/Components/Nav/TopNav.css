@@ -230,16 +230,6 @@ body {
   /* align-content: center; */
 }
 
-#MobileMenu {
-  background-color: #006570;
-  color: white;
-  height: 100vh;
-}
-#MobileIcons {
-  color: #f2f2f2;
-  opacity: 90%;
-}
-
 #ThemeContainer {
   margin-left: 1rem;
   height: 3rem;
@@ -258,4 +248,19 @@ body {
 #Profile:hover {
   color: red;
   opacity: 80%;
+}
+
+/* /////////// Mobile //////////// */
+#MobileMenu {
+  background-color: #006570;
+  color: white;
+  height: 100vh;
+}
+#MobileIcons {
+  color: #f2f2f2;
+  opacity: 90%;
+}
+
+#Mroot {
+  display: "flex";
 }

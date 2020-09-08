@@ -76,7 +76,7 @@ function MobileNavBar(props) {
 
   const drawer = (
     <div id="MobileMenu">
-      <div className={classes.toolbar} />
+      <div className={classes.toolbar} id="Mtoolbar" />
       <Typography variant="h5" noWrap>
         DMV Logo Here
       </Typography>
@@ -140,7 +140,7 @@ function MobileNavBar(props) {
     window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} id="MRoot">
       <CssBaseline />
       <AppBar position="fixed" className={classes.appBar} id="AppBar">
         <Toolbar>
@@ -159,7 +159,7 @@ function MobileNavBar(props) {
           {/* <DarkThemeToggle /> */}
         </Toolbar>
       </AppBar>
-      <nav className={classes.drawer} aria-label="mailbox folders">
+      <nav className={classes.drawer} aria-label="mailbox folders" id="Mdrawer">
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Hidden smUp implementation="css">
           <Drawer
@@ -174,6 +174,7 @@ function MobileNavBar(props) {
             ModalProps={{
               keepMounted: true, // Better open performance on mobile.
             }}
+            id="MdrawerPaper"
           >
             {drawer}
           </Drawer>
@@ -185,6 +186,7 @@ function MobileNavBar(props) {
             }}
             variant="permanent"
             open
+            id="MdrawerPaper"
           >
             {drawer}
           </Drawer>

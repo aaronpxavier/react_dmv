@@ -12,13 +12,9 @@ const ProfileIcon = ({}) => {
     (state) => state.themeReducer.darkThemeEnabled
   );
 
-  const handleLogout2 = () => {
-    Axios.post("/logout").then(() => (window.location.href = "#/customers"));
-  };
-
   //This function will handle the logout
   function handleLogout() {
-    console.log("Logout was clicked");
+    //console.log("Logout was clicked");
     logout();
     // Axios.post("/logout").then(() => (window.location.href = "#/customers"));
   }
