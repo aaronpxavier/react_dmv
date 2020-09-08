@@ -9,7 +9,8 @@ import Vehicles from "./Components/Vehicles/VehiclesContainer";
 import AuthContainer from "./Components/Auth/AuthContainer";
 import Appointments from "./Components/Appointments/AppointmentsContainer";
 import CreateAppointment from "./Components/Appointments/CreateAppointment"
-
+import CreateAppointmentContainer from "./Components/Appointments/CreateAppointmentContainer"
+import CreateAppointmentRender from "./Components/Appointments/CreateAppointmentRender"
 import EditApplication from './Components/EditApplication/EditApplicationContainer'
 
 export default (
@@ -23,6 +24,6 @@ export default (
     <Route exact path="/appointments" component={Appointments} />
     <Route exact path="/auth" component={AuthContainer} />
     <Route exact path="/applications/edit/:appId" component={EditApplication}/>
-    <Route exact path = "/appointments/add" component = {CreateAppointment} />
+    <Route exact path = "/appointments/add" component = {CreateAppointmentContainer} />
   </Switch>
 );

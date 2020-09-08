@@ -3,8 +3,9 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import AppointmentRender from './AppointmentRender' ;
 import * as appointmentActions from "../../Redux/Actions/appointmentActions";
+import CreateAppointmentRender from "./CreateAppointmentRender";
 
-const Appointments = (props) => {
+const CreateAppointmentContainer = (props) => {
   useEffect(() => {
     const { actions } = props; //this is just fancy, could also just be props.actions otherwise would be props.actions redux mystery
     console.log("Appointment Container Props", props);  
@@ -17,7 +18,7 @@ const Appointments = (props) => {
     //actions.postAppointments(entity);
     actions.getAppointments();
   }, []);
-  return <AppointmentRender {...props}></AppointmentRender>
+  return <CreateAppointmentRender {...props}></CreateAppointmentRender>
 }
 
 
@@ -33,4 +34,4 @@ function mapStateToProps (state) {
   }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Appointments);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateAppointmentContainer);

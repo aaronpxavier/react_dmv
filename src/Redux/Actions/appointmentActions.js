@@ -25,6 +25,16 @@ export function postAppointments(postdata){
 
 }
 
+export function getAppointmentsContactId() {
+  return (dispatch) => {    //This is a function being returned that takes dispatch method as argument, redux thunk makes this possible
+    dispatch(_appointmentPending())
+    return dynGetCall("https://mdynamic0077.crm.dynamics.com/api/data/v9.1/appointments?$select=scheduledend,scheduledstart,subject,teamtwo_appointmentnumber,_teamtwo_contactappointmentlookupid_value")
+      .then((response) => {
+        dispatch(_getAppointmentSuccess(response.data));
+        //console.log(response.data)
+      });
+  };
+}
 
 export function _getAppointmentSuccess(dat) {
   return {
