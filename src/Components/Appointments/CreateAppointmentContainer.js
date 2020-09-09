@@ -8,7 +8,7 @@ import CreateAppointmentRender from "./CreateAppointmentRender";
 const CreateAppointmentContainer = (props) => {
   useEffect(() => {
     const { actions } = props; //this is just fancy, could also just be props.actions otherwise would be props.actions redux mystery
-    console.log("Appointment Container Props", props);  
+    console.log("Create Appointment Container Props", props);  
     //contains action object and list of methods, those methods are my actions
     // var entity = {};  
     //  entity["regardingobjectid_contact_appointment@odata.bind"] = "/contacts(40cda8ca-fcaf-ea11-a812-000d3a8faaa7)";
@@ -16,9 +16,10 @@ const CreateAppointmentContainer = (props) => {
     // entity.scheduledend = new Date("09/10/2020 09:00:00").toISOString();
     // entity.scheduledstart = new Date("09/10/2020 08:30:00").toISOString();
     //actions.postAppointments(entity);
-    actions.getAppointments();
+    //actions.getAppointments();
+    actions.getAppointmentsContactId();
   }, []);
-  return <CreateAppointmentRender {...props}></CreateAppointmentRender>
+  return <div><CreateAppointmentRender {...props}></CreateAppointmentRender></div>
 }
 
 

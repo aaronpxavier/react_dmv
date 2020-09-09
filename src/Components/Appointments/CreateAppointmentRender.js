@@ -9,37 +9,91 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import * as appointmentActions from "../../Redux/Actions/appointmentActions";
+import Spinner from '../Spinner/spinner';
+import { render } from '@testing-library/react';
+import CreateAppointment from './CreateAppointment'
 
 
 function CreateAppointmentRender(props) {
-    console.log("Create appnt props >>>>>>>>>",props.actions)
-    const [startDate, setStartDate] = useState(new Date());
-    const [endDate, setEndDate] = useState(new Date());
 
-    function onSubmit(){
-      alert("Hi")
+   console.log(props);
+  // let { applicationData } = props;
+    if(props.appointmentData.requestPending) {
+        return (<Spinner></Spinner>)
+    } else if (props.appointmentData.contactSuccess) {
+        return(<CreateAppointment {...props}/>)
     }
-  return (
+    else{
+      return(<div>Something Went Wrong :-(</div>)
+    }
+  //   } else if (applicationData.requestSuccessful) {
+  //       props.history.push('/applications');
+  //   }
+  //   return(<h1>Something Went Wrong :(</h1>)
+    // const {value} = props.appointmentData.contactData
+    // console.log(typeof(props.appointmentData.contactData));
+    // console.log(value)
+    // if(props.appointmentData.contactData !== undefined){
+    //    console.log(props.appointmentData.contactData.value);
+    //  }
 
-    <div>
-    <form onSubmit = {onSubmit}>
-    <input type="text" placeholder="Appointment Description"></input>   
-    <label for="cars">Choose a car:</label>
+      // const [contactList,setContactsList] = useState([])
+      // const [startDate, setStartDate] = useState(new Date());
+      // const [endDate, setEndDate] = useState(new Date());
+    //const [contactList,setContactsList] = useState(this.props.appointmentData.value)
 
-<select name="contacts" id="cars">
-  <option value="volvo">Volvo</option>
-  <option value="saab">Saab</option>
-  <option value="mercedes">Mercedes</option>
-  <option value="audi">Audi</option>
-</select> 
-    <DatePicker selected={startDate} onChange={date => setStartDate(date)} />
-    <DatePicker selected={endDate} onChange={date => setEndDate(date)} />
-    <button>Create Appointment</button>
+    //  console.log("These are the props ",appointment)
+    //  let content = (<div>hello</div>)
+    // console.log("Contact List", contactList )
 
-                    </form>
-    </div>
-  );
-  }
+    //  let content = "";
+    //  if(appointment.appointmentData.requestPending){
+      
+    //   content = (<Spinner></Spinner>)      
+   
+    //  }
+
+    //  if(appointment.appointmentData.contactSuccess){
+     
+    //   // const arrayOfContacts = props.appointmentData.contactData.value;    
+      
+    //   // setContactsList(arrayOfContacts)
+    //   // console.log("This is list >>>>>>>>>>>>>>>",contactList);
+    //   content = ( <div>
+    //     <form onSubmit = {onSubmit}>
+    //     <input type="text" placeholder="Appointment Description"></input>   
+    //     <label for="cars">Choose a car:</label>
+    
+    // <select name="contacts" id="cars">
+    //   <option value="volvo">Volvo</option>
+    //   <option value="saab">Saab</option>
+    //   <option value="mercedes">Mercedes</option>
+    //   <option value="audi">Audi</option>
+    // </select> 
+    //     <DatePicker selected={startDate} onChange={date => setStartDate(date)} />
+    //     <DatePicker selected={endDate} onChange={date => setEndDate(date)} />
+    //     <button>Create Appointment</button>
+    
+    //                     </form>
+    //     </div>)
+     
+    //  }
+    
+     
+
+    
+
+    // function onSubmit(){
+    //   alert("Hi There")
+    // }
+
+    
+    
+  // return (
+  //   <h1>Appointment Create</h1>
+   
+  // );
+}
 
  // export default CreateAppointment;
 

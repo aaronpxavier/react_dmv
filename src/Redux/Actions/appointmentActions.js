@@ -1,5 +1,5 @@
 import { dynGetCall,dynPostCall } from "../../Utilities/dyanamicsAPI";
-import { GET_APPOINTMENTS_PENDING, GET_APPOINTMENTS_SUCCESS, POST_APPOINTMENT,POST_APPOINTMENT_PENDING} from "../../Constants/actionTypes";
+import {GET_CONTACTS_ID_PENDING, GET_APPOINTMENTS_PENDING, GET_APPOINTMENTS_SUCCESS, POST_APPOINTMENT,POST_APPOINTMENT_PENDING, GET_CONTACT_ID_NAME, GET_CONTACTS_SUCCESS} from "../../Constants/actionTypes";
 
 //This is an action creator, it's going to return the action type and payload
 export function getAppointments() {
@@ -27,19 +27,32 @@ export function postAppointments(postdata){
 
 export function getAppointmentsContactId() {
   return (dispatch) => {    //This is a function being returned that takes dispatch method as argument, redux thunk makes this possible
-    dispatch(_appointmentPending())
-    return dynGetCall("https://mdynamic0077.crm.dynamics.com/api/data/v9.1/appointments?$select=scheduledend,scheduledstart,subject,teamtwo_appointmentnumber,_teamtwo_contactappointmentlookupid_value")
+     dispatch(_getContactPending())
+    return dynGetCall("https://mdynamic0077.crm.dynamics.com/api/data/v9.1/contacts?$select=fullname")
       .then((response) => {
-        dispatch(_getAppointmentSuccess(response.data));
-        //console.log(response.data)
+        dispatch(_getContactSuccess(response.data));
+       // console.log("xoxoxox " + response.data)
       });
   };
 }
 
+export function _getContactPending(){
+  return {
+    type: GET_CONTACTS_ID_PENDING,
+
+  }
+}
 export function _getAppointmentSuccess(dat) {
   return {
     type: GET_APPOINTMENTS_SUCCESS,
     data: dat,
+  };
+}
+
+export function _getContactSuccess(dat) {
+  return {
+    type: GET_CONTACT_ID_NAME,
+    payload: dat,
   };
 }
 

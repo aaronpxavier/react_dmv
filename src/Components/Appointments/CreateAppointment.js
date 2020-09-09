@@ -10,7 +10,7 @@ import 'react-datepicker/dist/react-datepicker.css'
 function CreateAppointment(props) {
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
-
+   
     function onSubmit(){
       alert("Hi")
     }
@@ -19,7 +19,7 @@ function CreateAppointment(props) {
     <div>
     <form onSubmit = {onSubmit}>
     <input type="text" placeholder="Appointment Description"></input>   
-    <label for="cars">Choose a car:</label>
+  
 
 <select name="contacts" id="cars">
   <option value="volvo">Volvo</option>

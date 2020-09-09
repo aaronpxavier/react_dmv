@@ -47,7 +47,6 @@ const tableIcons = {
  
  
 const createTable = (applicationArry,reduxActions,props) => {
-    console.log(applicationArry)
     let columns = [
         { title: 'Appointment #', field: 'appntNumber' },
         { title: 'Description', field: 'description'},

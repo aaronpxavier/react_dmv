@@ -7,7 +7,7 @@ import * as appointmentActions from "../../Redux/Actions/appointmentActions";
 const Appointments = (props) => {
   useEffect(() => {
     const { actions } = props; //this is just fancy, could also just be props.actions otherwise would be props.actions redux mystery
-    console.log("Appointment Container Props", props);  
+   
     //contains action object and list of methods, those methods are my actions
     // var entity = {};  
     //  entity["regardingobjectid_contact_appointment@odata.bind"] = "/contacts(40cda8ca-fcaf-ea11-a812-000d3a8faaa7)";
