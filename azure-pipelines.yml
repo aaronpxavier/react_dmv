@@ -7,7 +7,7 @@ trigger:
 - master
 
 variables:
-  WEB_DOMAIN: "https://www.fltprep.com"
+  WEB_DOMAIN: "dmv-app-team2-prod.azurewebsites.net"
   BUILD_DIR: 'build'
 pool:
   vmImage: 'ubuntu-latest'
