@@ -264,3 +264,11 @@ body {
 #Mroot {
   display: "flex";
 }
+
+.MuiTableSortLabel-root.MuiTableSortLabel-active {
+  color: green;
+}
+
+.MuiTableSortLabel-root:hover {
+  color: green;
+}

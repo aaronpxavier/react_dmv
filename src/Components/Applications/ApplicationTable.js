@@ -31,32 +31,6 @@ import { useSelector, useDispatch } from "react-redux";
 //   return darkThemeEnabled;
 // }
 
-const tableIcons = {
-  Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
-  Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
-  Clear: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
-  Delete: forwardRef((props, ref) => <DeleteOutline {...props} ref={ref} />),
-  DetailPanel: forwardRef((props, ref) => (
-    <ChevronRight {...props} ref={ref} />
-  )),
-  Edit: forwardRef((props, ref) => <Edit {...props} ref={ref} />),
-  Export: forwardRef((props, ref) => (
-    <SaveAlt {...props} ref={ref} style={{ color: true ? "blue" : "black" }} />
-  )),
-  Filter: forwardRef((props, ref) => <FilterList {...props} ref={ref} />),
-  FirstPage: forwardRef((props, ref) => <FirstPage {...props} ref={ref} />),
-  LastPage: forwardRef((props, ref) => <LastPage {...props} ref={ref} />),
-  NextPage: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
-  PreviousPage: forwardRef((props, ref) => (
-    <ChevronLeft {...props} ref={ref} />
-  )),
-  ResetSearch: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
-  Search: forwardRef((props, ref) => <Search {...props} ref={ref} />),
-  SortArrow: forwardRef((props, ref) => <ArrowDownward {...props} ref={ref} />),
-  ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
-  ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />),
-};
-
 const createTableColumns = () => {
   return [
     { title: "Application #", field: "num" },
@@ -94,6 +68,79 @@ export default function ApplicationTable(props) {
   const darkThemeEnabled = useSelector(
     (state) => state.themeReducer.darkThemeEnabled
   );
+
+  const tableIcons = {
+    Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
+    Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
+    Clear: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
+    Delete: forwardRef((props, ref) => <DeleteOutline {...props} ref={ref} />),
+    DetailPanel: forwardRef((props, ref) => (
+      <ChevronRight {...props} ref={ref} />
+    )),
+    Edit: forwardRef((props, ref) => <Edit {...props} ref={ref} />),
+    Export: forwardRef((props, ref) => (
+      <SaveAlt
+        {...props}
+        ref={ref}
+        style={{ color: darkThemeEnabled ? "white" : "black" }}
+      />
+    )),
+    Filter: forwardRef((props, ref) => <FilterList {...props} ref={ref} />),
+    FirstPage: forwardRef((props, ref) => (
+      <FirstPage
+        {...props}
+        ref={ref}
+        style={{ color: darkThemeEnabled ? "white" : "black" }}
+      />
+    )),
+    LastPage: forwardRef((props, ref) => (
+      <LastPage
+        {...props}
+        ref={ref}
+        style={{ color: darkThemeEnabled ? "white" : "black" }}
+      />
+    )),
+    NextPage: forwardRef((props, ref) => (
+      <ChevronRight
+        {...props}
+        ref={ref}
+        style={{ color: darkThemeEnabled ? "white" : "black" }}
+      />
+    )),
+    PreviousPage: forwardRef((props, ref) => (
+      <ChevronLeft
+        {...props}
+        ref={ref}
+        style={{ color: darkThemeEnabled ? "white" : "black" }}
+      />
+    )),
+    ResetSearch: forwardRef((props, ref) => (
+      <Clear
+        {...props}
+        ref={ref}
+        style={{ color: darkThemeEnabled ? "white" : "grey" }}
+      />
+    )),
+    Search: forwardRef((props, ref) => (
+      <Search
+        {...props}
+        ref={ref}
+        style={{ color: darkThemeEnabled ? "white" : "black" }}
+      />
+    )),
+    SortArrow: forwardRef((props, ref) => (
+      <ArrowDownward
+        {...props}
+        ref={ref}
+        style={{ color: darkThemeEnabled ? "green" : "green" }}
+      />
+    )),
+    ThirdStateCheck: forwardRef((props, ref) => (
+      <Remove {...props} ref={ref} />
+    )),
+    ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />),
+  };
+
   let { actions } = props;
   let columns = createTableColumns();
   let data = createTableData(props.applicationData.appArray);
@@ -137,8 +184,8 @@ export default function ApplicationTable(props) {
           style={{
             // fontSize: 100,
             textAlign: "center",
-            color: darkThemeEnabled ? "blue" : "black",
-            backgroundColor: darkThemeEnabled ? "#2f2f30" : "white",
+            color: darkThemeEnabled ? "white" : "black",
+            backgroundColor: darkThemeEnabled ? "black" : "white",
           }}
           options={{
             pageSize: 10,
@@ -147,26 +194,35 @@ export default function ApplicationTable(props) {
             exportAllData: true,
             sorting: true,
             thirdSortClick: false,
+
             headerStyle: {
-              color: darkThemeEnabled ? "blue" : "black",
-              backgroundColor: darkThemeEnabled ? "#2f2f30" : "white",
+              root: {
+                "&:hover": {
+                  backgroundColor: darkThemeEnabled ? "white" : "black",
+                  color: darkThemeEnabled ? "white" : "black",
+                },
+              },
+              color: darkThemeEnabled ? "white" : "black",
+              backgroundColor: darkThemeEnabled ? "black" : "white",
             },
+
             rowStyle: {
               "&:hover": {
                 backgroundColor: darkThemeEnabled ? "#bbdefb" : "white",
+                color: darkThemeEnabled ? "white" : "black",
               },
             },
             searchFieldStyle: {
-              color: darkThemeEnabled ? "blue" : "black",
-              backgroundColor: darkThemeEnabled ? "#2f2f30" : "white",
+              color: darkThemeEnabled ? "white" : "black",
+              backgroundColor: darkThemeEnabled ? "black" : "white",
             },
             actionsCellStyle: {
-              color: darkThemeEnabled ? "blue" : "black",
-              backgroundColor: darkThemeEnabled ? "#2f2f30" : "white",
+              color: darkThemeEnabled ? "white" : "black",
+              backgroundColor: darkThemeEnabled ? "black" : "white",
             },
           }}
           actionsCellStyle={{
-            color: darkThemeEnabled ? "blue" : "black",
+            color: darkThemeEnabled ? "white" : "black",
             backgroundColor: darkThemeEnabled ? "black" : "white",
           }}
           actions={tableActions}

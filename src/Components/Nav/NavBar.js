@@ -4,8 +4,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-
-
 import {
   AccessAlarm,
   ThreeDRotation,
@@ -46,6 +44,7 @@ import {
 
 import DarkThemeToggle from "./DarkThemeToggle";
 import ProfileIcon from "./NavComponents/ProfileIcon";
+import LogoutButton from "./NavComponents/LogoutButton";
 
 function TabContainer(props) {
   return (
@@ -71,6 +70,8 @@ export default class NavBar extends React.Component {
   //This allows the selected tab to stay active when the page
   // is refreshed
   componentWillMount() {
+    console.log("Test");
+    console.log(this.props);
     var lTab = sessionStorage.getItem("lastTab");
     if (isNaN(sessionStorage.getItem("lastTab"))) {
       sessionStorage.setItem("lastTab", 0);
@@ -194,6 +195,7 @@ export default class NavBar extends React.Component {
             <div id="ThemeContainer">
               <DarkThemeToggle />
             </div>
+            {/* <LogoutButton /> */}
             <ProfileIcon />
           </Toolbar>
         </AppBar>
