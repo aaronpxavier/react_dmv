@@ -14,6 +14,7 @@ const Appointments = (props) => {
     // entity.subject = "Where can I get a drivers manual";
     // entity.scheduledend = new Date("09/10/2020 09:00:00").toISOString();
     // entity.scheduledstart = new Date("09/10/2020 08:30:00").toISOString();
+    
     //actions.postAppointments(entity);
     actions.getAppointments();
   }, []);

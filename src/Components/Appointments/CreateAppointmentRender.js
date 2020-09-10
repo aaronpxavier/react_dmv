@@ -16,7 +16,7 @@ import CreateAppointment from './CreateAppointment'
 
 function CreateAppointmentRender(props) {
 
-   console.log(props);
+   console.log("Appointment Render", props);   
   // let { applicationData } = props;
     if(props.appointmentData.requestPending) {
         return (<Spinner></Spinner>)

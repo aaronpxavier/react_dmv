@@ -152,7 +152,7 @@ const createTable = (applicationArry,reduxActions,props) => {
 
 export default function AppointmentContainer(props) {
 
-   
+   console.log(props);
     
     //console.log("Appointment Render Props", props)
 

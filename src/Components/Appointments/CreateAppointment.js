@@ -5,35 +5,56 @@ import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
+import "./Appointment.css"
+
 
 
 function CreateAppointment(props) {
+    console.log("Create Appointment Props", props)
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
+    const [contacts,setContacts] = useState(props.appointmentData.contactData.value)
+    
    
-    function onSubmit(){
-      alert("Hi")
+    function onSubmit(e){
+      e.preventDefault();
+      let appointment = {}
+       appointment["regardingobjectid_contact_appointment@odata.bind"] = "/contacts(f60af183-9cc7-ea11-a812-000d3a8faaa7)";
+       appointment.subject = "Where can I get a Working from onSubmit";
+       appointment.scheduledstart = startDate.toISOString();
+       appointment.scheduledend = endDate.toISOString();
+       props.actions.postAppointments(appointment);
+       props.history.push('/appointments');
+       //props.actions.getAppointmentsContactId();
+      console.log(startDate.toISOString())
+      console.log(endDate.toISOString())
+      console.log({contacts})
+      //console.log(startDate)
     }
-  return (
 
-    <div>
-    <form onSubmit = {onSubmit}>
-    <input type="text" placeholder="Appointment Description"></input>   
-  
-
-<select name="contacts" id="cars">
-  <option value="volvo">Volvo</option>
-  <option value="saab">Saab</option>
-  <option value="mercedes">Mercedes</option>
-  <option value="audi">Audi</option>
-</select> 
-    <DatePicker selected={startDate} onChange={date => setStartDate(date)} />
-    <DatePicker selected={endDate} onChange={date => setEndDate(date)} />
-    <button>Create Appointment</button>
-
-                    </form>
-    </div>
-  );
+    return (
+      <div className = "form-container">
+      <form onSubmit = {onSubmit}>       
+          
+        <input type = "text" ></input>  
+    
+        <DatePicker selected={startDate} onChange={date => setStartDate(date)} />
+        <DatePicker selected={endDate} onChange={date => setEndDate(date)} />
+        <select>
+            {contacts.map(contact => (
+              <option
+                key={contact.contactid}
+                value={contact.fullname}
+              >
+                {contact.fullname}
+              </option>
+            ))}
+        </select>
+   
+        <button>Submit</button>
+      </form>
+      </div>
+    );
   }
 
   export default CreateAppointment;

@@ -15,13 +15,20 @@ export default function appointmentReducer(state = {}, action) {
         appointmentsData: {
           appArray: action.data.value,
           requestSuccessful: true,
+          
         },
       };
     case POST_APPOINTMENT:
       return {
         ...state,
-        newAppointment: action.payload,
-        requestSuccessful: true,
+        //  appointmentsData :{
+        //  // newAppointment: action.payload,
+        //  ...state.appointmentsData,
+         //   ...appArray,
+          // requestSuccessful: true,
+          // requestPending: false,/
+          //contactSuccess : true
+        //  }  
       };
     case GET_CONTACTS_ID_PENDING:
       return {
@@ -43,6 +50,7 @@ export default function appointmentReducer(state = {}, action) {
           appointmentsData: {
           contactData: action.payload,
           contactSuccess: true,
+          //requestPending: false
           }
         };
       
