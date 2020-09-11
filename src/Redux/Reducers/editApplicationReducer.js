@@ -26,16 +26,18 @@ import {
           },
         }
       case EDIT_FORM_VIEW:
+        let appType = action.applicationData && action.applicationData.teamtwo_applicationname ? action.applicationData.teamtwo_applicationname : undefined;
+        let ownerId = action.applicationData && action.applicationData._ownerid_value ? action.applicationData._ownerid_value : undefined;
         return {
           ...state,
           applicationData: {
             editApplication: true,
             isPost: action.isPost,
-            contact: action.contact,
-            data: action.applicationData,
+            contact: action.contact || undefined,
+            data: action.applicationData || undefined,
             dynUser: action.userData,
-            ownerId: action.applicationData && action.applicationData._ownerid_value,
-            appType: action.applicationData && action.applicationData.teamtwo_applicationname
+            ownerId: ownerId,
+            appType: appType || undefined
           },
         }
       

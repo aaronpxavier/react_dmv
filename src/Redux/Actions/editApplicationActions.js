@@ -96,10 +96,11 @@ export function openEditForm(appId) {
   }
 
   export function applicationContactFieldKeyup(value) {
-    
+    let apiQueryString = '';
+    apiQueryString = value ? `/api/data/v9.1/contacts?$select=fullname&$filter=contains(fullname, '${value}')` : '/api/data/v9.1/contacts?$select=fullname&$count=true'
     return dispatch => {
       dispatch(_appContactChange([], value))
-      dynGetCall(`${DYN_BASE_URL}/api/data/v9.1/contacts?$select=fullname&$filter=contains(fullname, '${value}')`)
+      dynGetCall(DYN_BASE_URL + apiQueryString, 25)
       .then(response => {
         dispatch(_appContactChange(response.data.value))
       })
