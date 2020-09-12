@@ -109,19 +109,12 @@ body {
 }
 
 #AppBar {
-  /* overflow: hidden; */
-  /* background-color: #333; */
   background-color: #006570;
-  /* background-color: #4447e4; */
   list-style-type: none;
   position: fixed;
   top: 0;
   width: 100%;
   opacity: 100%;
-  /* border: 0; */
-  /* border-radius: 7px; */
-  /* margin-left: -8px; */
-  /* margin-top: -1px; */
 }
 
 /* #navLinks {
@@ -244,9 +237,11 @@ body {
   /* size: 20px; */
   width: 30px;
   height: 30px;
+  /* right: 20rem; */
+  /* position: fixed; */
 }
 #Profile:hover {
-  color: red;
+  color: #2df313;
   opacity: 80%;
 }
 
@@ -265,6 +260,42 @@ body {
   display: "flex";
 }
 
+/* ///// SideBar      ///////// */
+#SideMenu {
+  background-color: #266676;
+  color: white;
+  height: 100vh;
+  width: 30vw;
+  position: fixed;
+  top: 0;
+}
+#SideMenu:focus {
+  background-color: #13f3f3;
+}
+#backArrow {
+  right: 0;
+  margin-left: 170px;
+  margin-top: 20px;
+}
+#backArrow:hover {
+  color: #2df313;
+}
+
+#SideIcons {
+  color: #f2f2f2;
+  opacity: 90%;
+}
+#SideMenuButton {
+  margin-right: 2rem;
+}
+
+#Spacer {
+  color: pink;
+  background-color: yellow;
+  width: 500px;
+}
+
+/* Tables */
 .MuiTableSortLabel-root.MuiTableSortLabel-active {
   color: green;
 }
