@@ -1,46 +1,56 @@
-import { dynGetCall,dynPostCall } from "../../Utilities/dyanamicsAPI";
-import {GET_CONTACTS_ID_PENDING, GET_APPOINTMENTS_PENDING, GET_APPOINTMENTS_SUCCESS, POST_APPOINTMENT,POST_APPOINTMENT_PENDING, GET_CONTACT_ID_NAME, GET_CONTACTS_SUCCESS} from "../../Constants/actionTypes";
+import { dynGetCall, dynPostCall } from "../../Utilities/dyanamicsAPI";
+import {
+  GET_CONTACTS_ID_PENDING,
+  GET_APPOINTMENTS_PENDING,
+  GET_APPOINTMENTS_SUCCESS,
+  POST_APPOINTMENT,
+  POST_APPOINTMENT_PENDING,
+  GET_CONTACT_ID_NAME,
+} from "../../Constants/actionTypes";
 
 //This is an action creator, it's going to return the action type and payload
 export function getAppointments() {
-  return (dispatch) => {    //This is a function being returned that takes dispatch method as argument, redux thunk makes this possible
-    dispatch(_appointmentPending())
-    return dynGetCall("https://mdynamic0077.crm.dynamics.com/api/data/v9.1/appointments?$select=scheduledend,scheduledstart,subject,teamtwo_appointmentnumber,_teamtwo_contactappointmentlookupid_value")
-      .then((response) => {
-        dispatch(_getAppointmentSuccess(response.data));
-        //console.log(response.data)
-      });
+  return (dispatch) => {
+    //This is a function being returned that takes dispatch method as argument, redux thunk makes this possible
+    dispatch(_appointmentPending());
+    return dynGetCall(
+      "https://mdynamic0077.crm.dynamics.com/api/data/v9.1/appointments?$select=_regardingobjectid_value,scheduledend,scheduledstart,subject,teamtwo_appointmentnumber,_teamtwo_contactappointmentlookupid_value"
+    ).then((response) => {
+      dispatch(_getAppointmentSuccess(response.data));
+      console.log("Goodie ", response.data);
+    });
   };
 }
 
-export function postAppointments(postdata){
+export function postAppointments(postdata) {
   return (dispatch) => {
-    dispatch(_postAppointmentPending())
-    return dynPostCall("https://mdynamic0077.crm.dynamics.com/api/data/v9.1/appointments",postdata)
-      .then((response) => {
-        dispatch(_postAppointmentSuccess(response.data));
-        console.log("Post Appointments",response.data)
-      });
+    dispatch(_postAppointmentPending());
+    return dynPostCall(
+      "https://mdynamic0077.crm.dynamics.com/api/data/v9.1/appointments",
+      postdata
+    ).then((response) => {
+      dispatch(_postAppointmentSuccess(response.data));
+      console.log("Post Appointments", response.data);
+    });
   };
-
 }
 
 export function getAppointmentsContactId() {
-  return (dispatch) => {    //This is a function being returned that takes dispatch method as argument, redux thunk makes this possible
-     dispatch(_getContactPending())
-    return dynGetCall("https://mdynamic0077.crm.dynamics.com/api/data/v9.1/contacts?$select=fullname")
-      .then((response) => {
-        dispatch(_getContactSuccess(response.data));
-       // console.log("xoxoxox " + response.data)
-      });
+  return (dispatch) => {
+    //This is a function being returned that takes dispatch method as argument, redux thunk makes this possible
+    dispatch(_getContactPending());
+    return dynGetCall(
+      "https://mdynamic0077.crm.dynamics.com/api/data/v9.1/contacts?$select=fullname"
+    ).then((response) => {
+      dispatch(_getContactSuccess(response.data));
+    });
   };
 }
 
-export function _getContactPending(){
+export function _getContactPending() {
   return {
     type: GET_CONTACTS_ID_PENDING,
-
-  }
+  };
 }
 export function _getAppointmentSuccess(dat) {
   return {
@@ -64,21 +74,20 @@ export function _postAppointmentSuccess(post) {
 }
 
 export function openAppointmentModal() {
-  return (dispatch) => dispatch(openAppointmentModalDispatch(true))
+  return (dispatch) => dispatch(openAppointmentModalDispatch(true));
 }
 
 export function closeAppointmentModal() {
-  return (dispatch) => dispatch(openAppointmentModalDispatch(false))
+  return (dispatch) => dispatch(openAppointmentModalDispatch(false));
 }
-export function postAppointment(){
-  return(dispatch) => dispatch(_appointmentPending())
+export function postAppointment() {
+  return (dispatch) => dispatch(_appointmentPending());
 }
-export function openAppointmentModalDispatch(open) {   
+export function openAppointmentModalDispatch(open) {
   return {
-      type: "APPOINTMENT_MODAL_CHANGE",
-      open: open
-      
-  }
+    type: "APPOINTMENT_MODAL_CHANGE",
+    open: open,
+  };
 }
 
 export function _appointmentPending() {

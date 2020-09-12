@@ -4,7 +4,7 @@ import {
   POST_APPLICATION,
   POST_APPOINTMENT,
   GET_CONTACT_ID_NAME,
-  GET_CONTACTS_ID_PENDING
+  GET_CONTACTS_ID_PENDING,
 } from "../../Constants/actionTypes";
 
 export default function appointmentReducer(state = {}, action) {
@@ -15,20 +15,11 @@ export default function appointmentReducer(state = {}, action) {
         appointmentsData: {
           appArray: action.data.value,
           requestSuccessful: true,
-          
         },
       };
     case POST_APPOINTMENT:
       return {
         ...state,
-        //  appointmentsData :{
-        //  // newAppointment: action.payload,
-        //  ...state.appointmentsData,
-         //   ...appArray,
-          // requestSuccessful: true,
-          // requestPending: false,/
-          //contactSuccess : true
-        //  }  
       };
     case GET_CONTACTS_ID_PENDING:
       return {
@@ -37,30 +28,23 @@ export default function appointmentReducer(state = {}, action) {
           requestPending: true,
         },
       };
-      case GET_APPOINTMENTS_PENDING:
+    case GET_APPOINTMENTS_PENDING:
       return {
         ...state,
         appointmentsData: {
           requestPending: true,
         },
       };
-      case GET_CONTACT_ID_NAME:
-        return {
-          ...state,
-          appointmentsData: {
+    case GET_CONTACT_ID_NAME:
+      return {
+        ...state,
+        appointmentsData: {
           contactData: action.payload,
           contactSuccess: true,
-          //requestPending: false
-          }
-        };
-      
-    case "APPOINTMENT_MODAL_CHANGE":
-      return {
-        appointmentsData: {
-          ...state.appointmentsData,
-          openAppointmentPopup: action.open,
+          //requestSuccessful:true
         },
       };
+
     default:
       return {
         ...state,
