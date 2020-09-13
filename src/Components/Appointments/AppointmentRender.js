@@ -82,6 +82,7 @@ const createTable = (applicationArry, reduxActions, props) => {
       tooltip: "Delete Application",
       onClick: (event, rowData) => {
         console.log("delete table click");
+        console.log("RowData ", rowData)
       },
     },
     {

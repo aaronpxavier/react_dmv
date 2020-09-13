@@ -23,7 +23,7 @@ function CreateAppointment(props) {
       e.preventDefault();
       let appointment = {}
        appointment["regardingobjectid_contact_appointment@odata.bind"] = "/contacts(" + contactId.toString() + ")"; 
-       //appointment["teamtwo_contact_appointment@odata.bind"] = "/contacts(" + contactId.toString() + ")";
+       appointment["teamtwo_contactappointmentlookupId_Appointment@odata.bind"] = `/contacts(${contactId})`;
        appointment.subject = subject;
        appointment.scheduledstart = startDate.toISOString();
        appointment.scheduledend = endDate.toISOString();
