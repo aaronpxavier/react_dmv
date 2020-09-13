@@ -47,29 +47,6 @@ function logoutThing() {
   });
 }
 
-const StyledMenu = withStyles({
-  paper: {
-    border: "1px solid #d3d4d5",
-    borderColor: "#01393f",
-    color: "white",
-    backgroundColor: "#006570",
-  },
-})((props) => (
-  <Menu
-    elevation={0}
-    getContentAnchorEl={null}
-    anchorOrigin={{
-      vertical: "bottom",
-      horizontal: "center",
-    }}
-    transformOrigin={{
-      vertical: "top",
-      horizontal: "center",
-    }}
-    {...props}
-  />
-));
-
 const StyledMenuItem = withStyles((theme) => ({
   root: {
     "&:focus": {
@@ -82,6 +59,31 @@ const StyledMenuItem = withStyles((theme) => ({
 }))(MenuItem);
 
 export default function ProfileIcon() {
+  const darkThemeEnabled = useSelector(
+    (state) => state.themeReducer.darkThemeEnabled
+  );
+  const StyledMenu = withStyles({
+    paper: {
+      border: "1px solid #d3d4d5",
+      borderColor: "#01393f",
+      color: "white",
+      backgroundColor: darkThemeEnabled ? "#01393f" : "#006570",
+    },
+  })((props) => (
+    <Menu
+      elevation={0}
+      getContentAnchorEl={null}
+      anchorOrigin={{
+        vertical: "bottom",
+        horizontal: "center",
+      }}
+      transformOrigin={{
+        vertical: "top",
+        horizontal: "center",
+      }}
+      {...props}
+    />
+  ));
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -115,8 +117,18 @@ export default function ProfileIcon() {
             logoutThing();
             handleClose();
           }}
+          style={{
+            color: darkThemeEnabled ? "#4447e4" : "",
+            backgroundColor: darkThemeEnabled ? "#01393f" : "",
+          }}
         >
-          <ListItemIcon id="MobileIcons">
+          <ListItemIcon
+            id="MobileIcons"
+            style={{
+              color: darkThemeEnabled ? "#4447e4" : "",
+              backgroundColor: darkThemeEnabled ? "#01393f" : "",
+            }}
+          >
             <ExitToApp fontSize="small" />
           </ListItemIcon>
           <ListItemText primary="Logout" />
@@ -125,18 +137,44 @@ export default function ProfileIcon() {
           onClick={() => {
             handleClose();
           }}
+          style={{
+            color: darkThemeEnabled ? "#4447e4" : "",
+            backgroundColor: darkThemeEnabled ? "#01393f" : "",
+          }}
         >
-          <ListItemIcon id="MobileIcons">
+          <ListItemIcon
+            id="MobileIcons"
+            style={{
+              color: darkThemeEnabled ? "#4447e4" : "",
+              backgroundColor: darkThemeEnabled ? "#01393f" : "",
+            }}
+          >
             <Room fontSize="small" />
           </ListItemIcon>
-          <ListItemText primary="Map" />
+          <ListItemText
+            primary="Map"
+            style={{
+              color: darkThemeEnabled ? "#4447e4" : "",
+              backgroundColor: darkThemeEnabled ? "#01393f" : "",
+            }}
+          />
         </StyledMenuItem>
         <StyledMenuItem
           onClick={() => {
             handleClose();
           }}
+          style={{
+            color: darkThemeEnabled ? "#4447e4" : "",
+            backgroundColor: darkThemeEnabled ? "#01393f" : "",
+          }}
         >
-          <ListItemIcon id="MobileIcons">
+          <ListItemIcon
+            id="MobileIcons"
+            style={{
+              color: darkThemeEnabled ? "#4447e4" : "",
+              backgroundColor: darkThemeEnabled ? "#01393f" : "",
+            }}
+          >
             <Settings fontSize="small" />
           </ListItemIcon>
           <ListItemText primary="Settings" />

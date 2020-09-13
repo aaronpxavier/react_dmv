@@ -222,7 +222,7 @@ export default class NavBar extends React.Component {
             }}
           >
             <Toolbar>
-              <Hidden mdUp>
+              <Hidden lgUp>
                 <IconButton
                   color="inherit"
                   aria-label="open drawer"
@@ -354,7 +354,7 @@ export default class NavBar extends React.Component {
             >
               <ArrowDropDownCircleOutlined />
             </IconButton> */}
-              <Hidden mdUp>
+              <Hidden lgUp>
                 <div id="Spacer" />
               </Hidden>
               <div id="ThemeContainer" onClick={this.toggleNightTheme}>
@@ -381,7 +381,10 @@ export default class NavBar extends React.Component {
                 style={{
                   width: this.state.ShowSideMenu ? "200px" : "0px",
                   display: this.state.ShowSideMenu ? "block" : "none",
+                  backgroundColor: this.state.NightTheme ? "#01393f" : "",
+                  color: this.state.NightTheme ? "#4447e4" : "",
                 }}
+
                 // style={{ width: this.state.ShowSideMenu ? "30vw" : "0px" }}
               >
                 <div id="Mtoolbar" />
@@ -392,41 +395,71 @@ export default class NavBar extends React.Component {
                 <Divider />
                 <List>
                   <ListItem button component="a" href="#/">
-                    <ListItemIcon id="MobileIcons">
+                    <ListItemIcon
+                      id="MobileIcons"
+                      style={{
+                        color: this.state.NightTheme ? "#4447e4" : "",
+                      }}
+                    >
                       <Home />
                     </ListItemIcon>
                     <ListItemText> Activities</ListItemText>
                   </ListItem>
 
                   <ListItem button component="a" href="#/applications">
-                    <ListItemIcon id="MobileIcons">
+                    <ListItemIcon
+                      id="MobileIcons"
+                      style={{
+                        color: this.state.NightTheme ? "#4447e4" : "",
+                      }}
+                    >
                       <LibraryBooks />
                     </ListItemIcon>
                     <ListItemText> Applications</ListItemText>
                   </ListItem>
                   <ListItem button component="a" href="#/customers">
-                    <ListItemIcon id="MobileIcons">
+                    <ListItemIcon
+                      id="MobileIcons"
+                      style={{
+                        color: this.state.NightTheme ? "#4447e4" : "",
+                      }}
+                    >
                       <Contacts />
                     </ListItemIcon>
                     <ListItemText> Customers</ListItemText>
                   </ListItem>
 
                   <ListItem button component="a" href="#/history">
-                    <ListItemIcon id="MobileIcons">
+                    <ListItemIcon
+                      id="MobileIcons"
+                      style={{
+                        color: this.state.NightTheme ? "#4447e4" : "",
+                      }}
+                    >
                       <Receipt />
                     </ListItemIcon>
                     <ListItemText> History</ListItemText>
                   </ListItem>
 
                   <ListItem button component="a" href="#/newapplication">
-                    <ListItemIcon id="MobileIcons">
+                    <ListItemIcon
+                      id="MobileIcons"
+                      style={{
+                        color: this.state.NightTheme ? "#4447e4" : "",
+                      }}
+                    >
                       <PostAdd />
                     </ListItemIcon>
                     <ListItemText> New Application</ListItemText>
                   </ListItem>
 
                   <ListItem button component="a" href="#/vehicles">
-                    <ListItemIcon id="MobileIcons">
+                    <ListItemIcon
+                      id="MobileIcons"
+                      style={{
+                        color: this.state.NightTheme ? "#4447e4" : "",
+                      }}
+                    >
                       <DirectionsCar />
                     </ListItemIcon>
                     <ListItemText> Vehicles</ListItemText>
@@ -435,7 +468,12 @@ export default class NavBar extends React.Component {
                 <Divider />
                 <List>
                   <ListItem button component="a" href="#/appointments">
-                    <ListItemIcon id="MobileIcons">
+                    <ListItemIcon
+                      id="MobileIcons"
+                      style={{
+                        color: this.state.NightTheme ? "#4447e4" : "",
+                      }}
+                    >
                       <Schedule />
                     </ListItemIcon>
                     <ListItemText> Appointments</ListItemText>
