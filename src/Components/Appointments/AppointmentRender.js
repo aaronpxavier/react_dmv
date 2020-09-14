@@ -73,13 +73,14 @@ const createTable = (applicationArry, reduxActions, props) => {
         item[
           "_teamtwo_contactappointmentlookupid_value@OData.Community.Display.V1.FormattedValue"
         ],
+      ContactId: item._teamtwo_contactappointmentlookupid_value
     };
   });
 
   let actions = [
     {
       icon: () => <Delete color="secondary"></Delete>,
-      tooltip: "Delete Application",
+      tooltip: "Delete Appointment",
       onClick: (event, rowData) => {
         console.log("delete table click");
         console.log("RowData ", rowData)
