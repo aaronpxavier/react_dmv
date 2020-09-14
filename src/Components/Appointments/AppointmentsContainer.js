@@ -11,8 +11,6 @@ const Appointments = (props) => {
     const { actions } = props;
 
     actions.getAppointments();
-
-    console.log("Pointment ", props);
   }, []);
   return <AppointmentRender {...props}></AppointmentRender>;
 };

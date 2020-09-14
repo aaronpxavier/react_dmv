@@ -41,7 +41,6 @@ export default function appointmentReducer(state = {}, action) {
         appointmentsData: {
           contactData: action.payload,
           contactSuccess: true,
-          //requestSuccessful:true
         },
       };
 

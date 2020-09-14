@@ -1,4 +1,8 @@
-import { dynGetCall, dynPostCall } from "../../Utilities/dyanamicsAPI";
+import {
+  dynGetCall,
+  dynPostCall,
+  dynDeleteCall,
+} from "../../Utilities/dyanamicsAPI";
 import {
   GET_CONTACTS_ID_PENDING,
   GET_APPOINTMENTS_PENDING,
@@ -7,6 +11,10 @@ import {
   POST_APPOINTMENT_PENDING,
   GET_CONTACT_ID_NAME,
 } from "../../Constants/actionTypes";
+import { DYN_BASE_URL } from "../../Constants/config";
+
+const URL_PARAMS =
+  "/api/data/v9.1/appointments?$select=_regardingobjectid_value,scheduledend,scheduledstart,subject,teamtwo_appointmentnumber,_teamtwo_contactappointmentlookupid_value";
 
 //This is an action creator, it's going to return the action type and payload
 export function getAppointments() {
@@ -14,7 +22,7 @@ export function getAppointments() {
     //This is a function being returned that takes dispatch method as argument, redux thunk makes this possible
     dispatch(_appointmentPending());
     return dynGetCall(
-      "https://mdynamic0077.crm.dynamics.com/api/data/v9.1/appointments?$select=_regardingobjectid_value,scheduledend,scheduledstart,subject,teamtwo_appointmentnumber,_teamtwo_contactappointmentlookupid_value"
+      "https://mdynamic0077.crm.dynamics.com/api/data/v9.1/appointments?$select=_regardingobjectid_value,scheduledend,scheduledstart,subject,activityid,teamtwo_appointmentnumber,_teamtwo_contactappointmentlookupid_value"
     ).then((response) => {
       dispatch(_getAppointmentSuccess(response.data));
       console.log("Goodie ", response.data);
@@ -47,6 +55,15 @@ export function getAppointmentsContactId() {
   };
 }
 
+export function deleteAppointments(guid) {
+  return (dispatch) => {
+    dispatch(_appointmentPending());
+    return dynDeleteCall(`${DYN_BASE_URL}/api/data/v9.1/appointments(${guid})`)
+      .then(() => dynGetCall(DYN_BASE_URL + URL_PARAMS))
+      .then((response) => dispatch(_getAppointmentSuccess(response.data)));
+  };
+}
+
 export function _getContactPending() {
   return {
     type: GET_CONTACTS_ID_PENDING,
@@ -73,13 +90,7 @@ export function _postAppointmentSuccess(post) {
   };
 }
 
-export function openAppointmentModal() {
-  return (dispatch) => dispatch(openAppointmentModalDispatch(true));
-}
 
-export function closeAppointmentModal() {
-  return (dispatch) => dispatch(openAppointmentModalDispatch(false));
-}
 export function postAppointment() {
   return (dispatch) => dispatch(_appointmentPending());
 }

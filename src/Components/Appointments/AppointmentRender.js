@@ -2,6 +2,7 @@ import React, { forwardRef, useState, useEffect } from "react";
 import Modal from "react-modal";
 import axios from "axios";
 import { dynGetCall, dynPostCall } from "../../Utilities/dyanamicsAPI";
+import deleteAppointments from '../../Redux/Actions/appointmentActions';
 
 import { Container, Box, Fab } from "@material-ui/core";
 import AddBox from "@material-ui/icons/AddBox";
@@ -73,7 +74,8 @@ const createTable = (applicationArry, reduxActions, props) => {
         item[
           "_teamtwo_contactappointmentlookupid_value@OData.Community.Display.V1.FormattedValue"
         ],
-      ContactId: item._teamtwo_contactappointmentlookupid_value
+      ContactId: item._teamtwo_contactappointmentlookupid_value,
+      activityId: item.activityid
     };
   });
 
@@ -82,11 +84,13 @@ const createTable = (applicationArry, reduxActions, props) => {
       icon: () => <Delete color="secondary"></Delete>,
       tooltip: "Delete Appointment",
       onClick: (event, rowData) => {
-        console.log("delete table click");
-        console.log("RowData ", rowData)
+        
         let deleteAppnt = window.confirm("Are you sure you want to delete this appointment?");
+        
         if(deleteAppnt){
           alert("hello");
+          props.actions.deleteAppointments(rowData.activityId)
+         
         }
       },
     },
@@ -94,7 +98,7 @@ const createTable = (applicationArry, reduxActions, props) => {
       icon: () => <Edit color="primary"></Edit>,
       tooltip: "Edit Appointment",
       onClick: (event, rowData) => {
-        console.log("edit table click");
+        
        
       },
     },
@@ -140,9 +144,6 @@ const createTable = (applicationArry, reduxActions, props) => {
 export default function AppointmentContainer(props) {
   let { appointmentData } = props;
   let { actions } = props;
-  console.log("Type of ", typeof appointmentData.appArray);
-  //let whatever = [...appointmentData.appArray, ...contacts];
-  console.log("appntdata", appointmentData.appArray);
   if (appointmentData.requestPending) {
     return <Spinner></Spinner>;
   } else if (appointmentData.requestSuccessful) {
