@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import Customers from './Customers'
+import CustomerRender from './CustomerRender'
 import * as contactActionCreators from '../../Redux/Actions/contactActions'
 
 const Contacts = (props) => {
@@ -10,7 +10,7 @@ const Contacts = (props) => {
         props.actions.getContacts();
 
     }, [])
-    return <Customers {...props}></Customers>
+    return <CustomerRender {...props}></CustomerRender>
 }
 
 function mapDispatchToProps(dispatch) {

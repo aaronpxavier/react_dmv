@@ -46,39 +46,21 @@ const tableIcons = {
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
 
-function modal(actions, rowData) {
 
-    return (
-        <Modal isOpen={true}>
-            <div className="modalContainer">
-                <div className="modalCard">
-                    <h2>{rowData.num}</h2>
-                    <p>  Email:     {rowData.type}</p>
-                    <p> Contact Number:     {rowData.number}</p>
-                    <p>Age:      {rowData.age}</p>
-
-                    <button onClick={() => actions.closeCustomerModal()}>Close modal</button>
-                </div>
-            </div>
-
-        </Modal >
-    )
-}
-
-const createTable = (contactArray, reduxActions) => {
-
+export default function CustomerTable(props) {
 
 
     let columns = [
         { title: 'Customer Name', field: 'num' },
         { title: 'Customer Email', field: 'type' },
     ]
-    let data = contactArray.map(item => {
+    let data = props.contactData.contactArray.map(item => {
         return {
             num: item.fullname,
             type: item.emailaddress1,
             age: item.teamtwo_age,
-            number: item.teamtwo_contactnumber
+            number: item.teamtwo_contactnumber,
+            id: item.contactid
 
         }
     })
@@ -86,25 +68,23 @@ const createTable = (contactArray, reduxActions) => {
     let actions = [
         {
             icon: () => <Delete color="secondary"></Delete>,
-            tooltip: 'Delete Application',
+            tooltip: 'Delete Customer',
             onClick: (event, rowData) => {
-                console.log('delete table click');
+                props.actions.openContactDeletePopup(rowData)
             }
         },
         {
             icon: () => <Edit color="primary"></Edit>,
-            tooltip: 'Edit Application',
+            tooltip: 'Edit Customer',
             onClick: (event, rowData) => {
-                console.log('edit table click');
+                props.history.push(`/customers/edit/${rowData.id}`)
             }
         },
         {
             icon: () => '...',
             tooltip: 'See more',
             onClick: (event, rowData) => {
-                console.log(rowData)
-                console.log('opening module on click functionality goes here I think')
-                reduxActions.openCustomerModal(rowData)
+                props.actions.openCustomerModal(rowData)
             }
         }
     ]
@@ -140,26 +120,6 @@ const createTable = (contactArray, reduxActions) => {
             </div>
         </Container>
     );
-}
-
-
-
-
-export default function customerContainer(props) {
-
-    if (props.contactData.requestPending) {
-        return (
-            <Spinner></Spinner>
-        )
-    } else if (props.contactData.openCustomerPopup) {
-        return modal(props.actions, props.contactData.rowData)
-    }
-    else if (props.contactData.requestSuccessful) {
-        return (
-            createTable(props.contactData.contactArray, props.actions)
-        )
-    }
-    return (<div></div>)
 }
 
 

@@ -1,19 +1,19 @@
 import React from 'react';
 import { Button, FormControl, Container, Box, makeStyles, InputLabel, MenuItem, FormGroup, Select, TextField } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab'
-import {DRIVING_LICENSE, LEARNER_PERMIT} from '../../Constants/applicationTypes';
+import { DRIVING_LICENSE, LEARNER_PERMIT } from '../../Constants/applicationTypes';
 import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers'
 import DateFnsUtils from '@date-io/date-fns';
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
-      paddingRight: '10px',
-      minWidth: 120,
+        paddingRight: '10px',
+        minWidth: 120,
     },
     selectEmpty: {
-      marginTop: theme.spacing(2),
+        marginTop: theme.spacing(2),
     },
-  }));
+}));
 
 
 function createDynUserMenuItems(userArray) {
@@ -55,7 +55,7 @@ function redirectToApplicationsView(history) {
 }
 export default function EditApplication(props) {
     let { applicationData, actions } = props;
-    let {data} = applicationData;
+    let { data } = applicationData;
     let { contact } = applicationData;
     let currentDynUserIndex = 0;
     let hasDefaultUser = false;
@@ -66,7 +66,7 @@ export default function EditApplication(props) {
     let description = applicationData.descChanged ? applicationData.description : data && data.teamtwo_applicationdescription;
     let approvedStatus = applicationData.approvedStatus === undefined ? (data && data.teamtwo_approvedstatus) || false : applicationData.approvedStatus;
     let contactOptions = {
-        options:  applicationData.contacts || [applicationData.contact],
+        options: applicationData.contacts || [applicationData.contact],
         getOptionLabel: (option) => (option && option.fullname) || ""
     }
     for (let i = 0; i < dynUserArray.length; ++i) {
@@ -79,26 +79,26 @@ export default function EditApplication(props) {
     return (
         <Container>
             <Box>
-            <h1 style={{paddingTop: '50px'}}>Edit Application <em>{(contact && contact.fullname) || ''}</em> ({(data && data.teamtwo_applicationid) || ''})</h1>
-                
-                <FormGroup row style={{marginTop: '50px'}}>
-                    <FormControl style={{paddingRight: '10px'}} >
+                <h1 style={{ paddingTop: '50px' }}>Edit Application <em>{(contact && contact.fullname) || ''}</em> ({(data && data.teamtwo_applicationid) || ''})</h1>
+
+                <FormGroup row style={{ marginTop: '50px' }}>
+                    <FormControl style={{ paddingRight: '10px' }} >
                         <InputLabel id="dynUserSelectLabel">Owner</InputLabel>
                         <Select
-                        labelId="dynUserSelectLabel"
-                        id="dynUserSelect"
-                        value={hasDefaultUser ? currentDynUserIndex : 0}
-                        onChange={e => actions.applicationOnwerChange(dynUserArray[e.target.value])}>
+                            labelId="dynUserSelectLabel"
+                            id="dynUserSelect"
+                            value={hasDefaultUser ? currentDynUserIndex : 0}
+                            onChange={e => actions.applicationOnwerChange(dynUserArray[e.target.value])}>
                             {createDynUserMenuItems(dynUserArray)}
                         </Select>
                     </FormControl>
-                    <FormControl style={{paddingRight: '10px', minWidth: '100px', minHeight: '50px'}}>
+                    <FormControl style={{ paddingRight: '10px', minWidth: '100px', minHeight: '50px' }}>
                         <InputLabel id="applicationType">Type</InputLabel>
                         <Select
-                        labelId="applicationType"
-                        id="applicaiton-select"
-                        value={applicationData.appType || (data && data.teamtwo_applicationname)}
-                        onChange={e => actions.applicationTypeChange(e.target.value)}>
+                            labelId="applicationType"
+                            id="applicaiton-select"
+                            value={applicationData.appType || (data && data.teamtwo_applicationname)}
+                            onChange={e => actions.applicationTypeChange(e.target.value)}>
                             <MenuItem value={DRIVING_LICENSE}>Driver's License</MenuItem>
                             <MenuItem value={LEARNER_PERMIT}>Learner's Permit</MenuItem>
                         </Select>
@@ -110,18 +110,18 @@ export default function EditApplication(props) {
                         }}
                         {...contactOptions}
                         style={{ width: 300 }}
-                        value={{fullname: contact && contact.fullname}}
-                        renderInput={(params) => <TextField  onChange={e => actions.applicationContactFieldKeyup(e.target.value)} {...params}  label="Driver Applicable TO"  />}
+                        value={{ fullname: contact && contact.fullname }}
+                        renderInput={(params) => <TextField onChange={e => actions.applicationContactFieldKeyup(e.target.value)} {...params} label="Driver Applicable TO" />}
                     />
                 </FormGroup>
-                <FormGroup row style={{marginTop: '20px'}}>
-                    <FormControl style={{paddingRight: '10px'}}>
+                <FormGroup row style={{ marginTop: '20px' }}>
+                    <FormControl style={{ paddingRight: '10px' }}>
                         <InputLabel id="approved-status-label">Status</InputLabel>
                         <Select
-                        labelId="approved-status-label"
-                        id="applicaiton-select"
-                        value={approvedStatus ? 1 : 0}
-                        onChange={e => actions.approvedStatusChanged(e.target.value === 1 ? true : false)}>
+                            labelId="approved-status-label"
+                            id="applicaiton-select"
+                            value={approvedStatus ? 1 : 0}
+                            onChange={e => actions.approvedStatusChanged(e.target.value === 1 ? true : false)}>
                             <MenuItem value={1}>Approved</MenuItem>
                             <MenuItem value={0}>Not Approved</MenuItem>
                         </Select>
@@ -135,7 +135,7 @@ export default function EditApplication(props) {
                         onChange={(e) => actions.descriptionFieldChanged(e.target.value)}
                     />
                 </FormGroup>
-                <FormGroup row style={{marginTop: '10px'}}>
+                <FormGroup row style={{ marginTop: '10px' }}>
                     <MuiPickersUtilsProvider utils={DateFnsUtils}>
                         <KeyboardDatePicker
                             disableToolbar
@@ -152,22 +152,22 @@ export default function EditApplication(props) {
                         />
                     </MuiPickersUtilsProvider>
                 </FormGroup>
-                <FormGroup row style={{marginTop: '20px'}}>
-                <Button 
-                    style={{marginRight: '10px'}} 
-                    onClick={() => {
-                        applicationData.isPost ? 
-                            submitPost( ownerId, appType, contact && contact.contactid, description, approvedStatus, date, actions.postApplication)
-                            : submitUpdate(data.teamtwo_applicationid, ownerId, appType, contact && contact.contactid, description, approvedStatus, date, actions.editApplicaitonSubmit)
-                    }} 
-                    variant="contained" 
-                    color="primary"
+                <FormGroup row style={{ marginTop: '20px' }}>
+                    <Button
+                        style={{ marginRight: '10px' }}
+                        onClick={() => {
+                            applicationData.isPost ?
+                                submitPost(ownerId, appType, contact && contact.contactid, description, approvedStatus, date, actions.postApplication)
+                                : submitUpdate(data.teamtwo_applicationid, ownerId, appType, contact && contact.contactid, description, approvedStatus, date, actions.editApplicaitonSubmit)
+                        }}
+                        variant="contained"
+                        color="primary"
                     >
-                    Submit
+                        Submit
                 </Button>
-                <Button variant="contained" color="secondary" onClick={()=>redirectToApplicationsView(props.history)}>Cancel</Button>
+                    <Button variant="contained" color="secondary" onClick={() => redirectToApplicationsView(props.history)}>Cancel</Button>
                 </FormGroup>
-                
+
             </Box>
         </Container>
     )

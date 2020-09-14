@@ -9,7 +9,9 @@ import applicationReducer from "./applicationReducer";
 import themeReducer from "./themeReducer";
 import editApplicationReducer from './editApplicationReducer';
 import historyReducer from './historyReducer';
-
+import editVehiclesReducer from './editVehicleReducer'
+import editContactReducer from './editContactReducer'
+import editHistoryReducer from './editHistoryReducer'
 
 const allReducers = combineReducers({
   //reducers go here as key value pairs
@@ -19,7 +21,10 @@ const allReducers = combineReducers({
   applicationReducer,
   themeReducer,
   editApplicationReducer,
-  historyReducer
+  historyReducer,
+  editVehiclesReducer,
+  editContactReducer,
+  editHistoryReducer
 
 });
 

@@ -9,6 +9,9 @@ import Vehicles from "./Components/Vehicles/VehiclesContainer";
 import AuthContainer from "./Components/Auth/AuthContainer";
 import Appointments from "./Components/Appointments/Appointments";
 import EditApplication from './Components/EditApplication/EditApplicationContainer'
+import EditVehicle from './Components/EditVehicle/EditVehicleContainer'
+import EditContact from './Components/EditContact/EditContactContainer'
+import EditHistory from './Components/EditHistory/EditHistoryContainer'
 
 export default (
   <Switch>
@@ -20,6 +23,9 @@ export default (
     <Route exact path="/vehicles" component={Vehicles} />
     <Route exact path="/appointments" component={Appointments} />
     <Route exact path="/auth" component={AuthContainer} />
-    <Route exact path="/applications/edit/:appId" component={EditApplication}/>
+    <Route exact path="/applications/edit/:appId" component={EditApplication} />
+    <Route exact path="/vehicles/edit/:vehicleId" component={EditVehicle} />
+    <Route exact path="/customers/edit/:customerId" component={EditContact} />
+    <Route exact path="/history/edit/:historyId" component={EditHistory} />
   </Switch>
 );

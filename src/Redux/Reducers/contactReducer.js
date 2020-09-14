@@ -1,4 +1,4 @@
-import { GET_CONTACTS_SUCCESS, GET_CONTACTS_PENDING, CUSTOMER_MODAL_CHANGE } from '../../Constants/actionTypes'
+import { GET_CONTACTS_SUCCESS, GET_CONTACTS_PENDING, CUSTOMER_MODAL_CHANGE, DELETE_CONTACT_POPUP_CHANGE } from '../../Constants/actionTypes'
 
 export default function contactReducer(state = {}, action) {
     switch (action.type) {
@@ -25,7 +25,15 @@ export default function contactReducer(state = {}, action) {
                     rowData: action.rowData
                 }
             }
-
+        case DELETE_CONTACT_POPUP_CHANGE:
+            return {
+                ...state,
+                contactsData: {
+                    ...state.contactsData,
+                    openDeletePopup: action.open,
+                    rowData: action.rowData
+                }
+            }
         default:
             return {
                 ...state,
