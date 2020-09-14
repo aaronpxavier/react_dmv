@@ -84,13 +84,18 @@ const createTable = (applicationArry, reduxActions, props) => {
       onClick: (event, rowData) => {
         console.log("delete table click");
         console.log("RowData ", rowData)
+        let deleteAppnt = window.confirm("Are you sure you want to delete this appointment?");
+        if(deleteAppnt){
+          alert("hello");
+        }
       },
     },
     {
       icon: () => <Edit color="primary"></Edit>,
-      tooltip: "Edit Application",
+      tooltip: "Edit Appointment",
       onClick: (event, rowData) => {
         console.log("edit table click");
+       
       },
     },
   ];
