@@ -88,7 +88,7 @@ const createTable = (applicationArry, reduxActions, props) => {
         let deleteAppnt = window.confirm("Are you sure you want to delete this appointment?");
         
         if(deleteAppnt){
-          alert("hello");
+          
           props.actions.deleteAppointments(rowData.activityId)
          
         }
