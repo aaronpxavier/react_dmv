@@ -2,10 +2,9 @@ import React from "react";
 // import { useTheme } from "@material-ui/core/styles";
 // import useMediaQuery from "@material-ui/core/useMediaQuery";
 import PropTypes from "prop-types";
-import { Link, withRouter } from "react-router-dom";
-import routes from "../../routes";
+import { Link } from "react-router-dom";
 
-import * as styles2 from "./TopNav.css";
+
 
 import {
   AccessAlarm,
@@ -25,6 +24,7 @@ import {
   Brightness5,
   Brightness2,
   WbSunny,
+  AccountCircle,
 } from "@material-ui/icons";
 
 import {
@@ -45,6 +45,7 @@ import {
 } from "@material-ui/core";
 
 import DarkThemeToggle from "./DarkThemeToggle";
+import ProfileIcon from "./NavComponents/ProfileIcon";
 
 function TabContainer(props) {
   return (
@@ -193,6 +194,7 @@ export default class NavBar extends React.Component {
             <div id="ThemeContainer">
               <DarkThemeToggle />
             </div>
+            <ProfileIcon />
           </Toolbar>
         </AppBar>
 

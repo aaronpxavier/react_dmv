@@ -3,7 +3,7 @@ import { LOGIN_REDIRECT_URL } from "../../Constants/config";
 import { USER_TOKEN_KEY } from "../../Constants/sessionKeys";
 
 function _createMSAL() {
-  let organizationURI = "https://mdynamics0077.crm.dynamics.com";
+  let organizationURI = process.env.DYN_ORG_URI;
   let tenant = "2df8f3a3-344d-4681-ac70-155db3cbf455";
   let clientId = "63f764bc-8595-4c54-a4a1-6353db3ec141";
   let pageUrl = LOGIN_REDIRECT_URL;
@@ -49,4 +49,9 @@ export function getTokenRedirect(callback) {
   } else {
     authCallback();
   }
+}
+
+export function logout() {
+  let msal = _createMSAL();
+  msal.logout();
 }

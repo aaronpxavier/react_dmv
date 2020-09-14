@@ -1,8 +1,7 @@
 import React from "react";
 
-import { Link, withRouter } from "react-router-dom";
 
-import * as styles from "./TopNav.css";
+
 
 export default class Footer extends React.Component {
   render() {

@@ -17,13 +17,9 @@ export class App extends Component {
       <Provider store={store}>
         <DarkThemeProvider>
           <GlobalStyles />
-          {/* Will show navbar unless user is using phone.  */}
-          {!!!navigator.userAgent.match(/iphone|android|blackberry/gi) && (
-            <NavBar />
-          )}
-          {!!navigator.userAgent.match(/iphone|android|blackberry/gi) && (
-            <MobileNavBar />
-          )}
+          {/* Will show navbar unless user screen is less then 500 wide.  */}
+          {document.documentElement.clientWidth > 500 && <NavBar />}
+          {document.documentElement.clientWidth < 500 && <MobileNavBar />}
           <div id="dd">{routes}</div>
           <Footer />
         </DarkThemeProvider>
