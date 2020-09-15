@@ -2,10 +2,9 @@ import React from "react";
 // import { useTheme } from "@material-ui/core/styles";
 // import useMediaQuery from "@material-ui/core/useMediaQuery";
 import PropTypes from "prop-types";
-import { Link, withRouter } from "react-router-dom";
-import routes from "../../routes";
+import { Link } from "react-router-dom";
 
-import * as styles2 from "./TopNav.css";
+
 
 import {
   AccessAlarm,

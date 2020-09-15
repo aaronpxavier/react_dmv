@@ -19,6 +19,7 @@ const allReducers = combineReducers({
   contactReducer,
   vehicleReducer,
   applicationReducer,
+  appointmentReducer,
   themeReducer,
   editApplicationReducer,
   historyReducer,
@@ -26,6 +27,9 @@ const allReducers = combineReducers({
   dashboardContactReducer,
   licenseReducer,
   editLicenseReducer,
+  editVehiclesReducer,
+  editContactReducer,
+  editHistoryReducer,
 });
 
 export default allReducers;
