@@ -1,6 +1,5 @@
 import React from "react";
 import clsx from "clsx";
-import PropTypes from "prop-types";
 import MoneyIcon from "@material-ui/icons/Money";
 
 import {
@@ -28,7 +27,7 @@ const TotalApplicationsRender = ({ className, ...props }) => {
   const classes = useStyles();
   const totalApplications = props.dashApplicationArray.length;
   return (
-    <Card className={clsx(classes.root, className)} {...props}>
+    <Card className={clsx(classes.root, className)}>
       <CardContent>
         <Grid container justify="space-between" spacing={3}>
           <Grid item>
@@ -48,10 +47,6 @@ const TotalApplicationsRender = ({ className, ...props }) => {
       </CardContent>
     </Card>
   );
-};
-
-TotalApplicationsRender.propTypes = {
-  className: PropTypes.string,
 };
 
 export default TotalApplicationsRender;

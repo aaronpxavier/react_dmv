@@ -1,6 +1,5 @@
 import React from "react";
 import clsx from "clsx";
-import PropTypes from "prop-types";
 import { Doughnut } from "react-chartjs-2";
 import AirportShuttleIcon from "@material-ui/icons/AirportShuttle";
 import DriveEtaIcon from "@material-ui/icons/DriveEta";
@@ -16,8 +15,6 @@ import {
   makeStyles,
   useTheme,
 } from "@material-ui/core";
-import LaptopMacIcon from "@material-ui/icons/LaptopMac";
-import TabletIcon from "@material-ui/icons/Tablet";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -111,7 +108,7 @@ const PieChartRender = ({ className, ...rest }) => {
   ];
 
   return (
-    <Card className={clsx(classes.root, className)} {...rest}>
+    <Card className={clsx(classes.root)}>
       <CardHeader title="APPLICATION TYPE" />
       <Divider />
       <CardContent>
@@ -134,10 +131,6 @@ const PieChartRender = ({ className, ...rest }) => {
       </CardContent>
     </Card>
   );
-};
-
-PieChartRender.propTypes = {
-  className: PropTypes.string,
 };
 
 export default PieChartRender;

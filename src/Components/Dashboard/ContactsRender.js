@@ -1,6 +1,5 @@
 import React from "react";
 import clsx from "clsx";
-import PropTypes from "prop-types";
 import {
   Avatar,
   Box,
@@ -36,7 +35,7 @@ const ContactsRender = ({ ...props }) => {
   let totalCustomers = [];
   totalCustomers = props.contactArray.length;
   return (
-    <Card className={clsx(classes.root)} {...props}>
+    <Card className={clsx(classes.root)}>
       <CardContent>
         <Grid container justify="space-between" spacing={3}>
           <Grid item>
@@ -56,10 +55,6 @@ const ContactsRender = ({ ...props }) => {
       </CardContent>
     </Card>
   );
-};
-
-ContactsRender.propTypes = {
-  className: PropTypes.string,
 };
 
 export default ContactsRender;

@@ -1,6 +1,5 @@
 import React from "react";
 import clsx from "clsx";
-import PropTypes from "prop-types";
 import {
   Avatar,
   Box,
@@ -39,7 +38,7 @@ const ApplicationsApprovalRender = ({ className, ...props }) => {
   const ApprovalRate = Math.round((Approved / total) * 100);
 
   return (
-    <Card className={clsx(classes.root, className)} {...props}>
+    <Card className={clsx(classes.root)}>
       <CardContent>
         <Grid container justify="space-between" spacing={3}>
           <Grid item>
@@ -62,10 +61,6 @@ const ApplicationsApprovalRender = ({ className, ...props }) => {
       </CardContent>
     </Card>
   );
-};
-
-ApplicationsApprovalRender.propTypes = {
-  className: PropTypes.string,
 };
 
 export default ApplicationsApprovalRender;

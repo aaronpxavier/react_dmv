@@ -6,7 +6,6 @@ import ChevronLeft from "@material-ui/icons/ChevronLeft";
 import ChevronRight from "@material-ui/icons/ChevronRight";
 import Clear from "@material-ui/icons/Clear";
 import DeleteOutline from "@material-ui/icons/DeleteOutline";
-import Delete from "@material-ui/icons/Delete";
 import Edit from "@material-ui/icons/Edit";
 import FilterList from "@material-ui/icons/FilterList";
 import FirstPage from "@material-ui/icons/FirstPage";
@@ -15,7 +14,6 @@ import Remove from "@material-ui/icons/Remove";
 import SaveAlt from "@material-ui/icons/SaveAlt";
 import Search from "@material-ui/icons/Search";
 import ViewColumn from "@material-ui/icons/ViewColumn";
-import { Container, Fab } from "@material-ui/core";
 import MaterialTable from "material-table";
 import {
   DRIVING_LICENSE,
@@ -24,15 +22,7 @@ import {
 
 import clsx from "clsx";
 
-import {
-  Avatar,
-  Card,
-  CardContent,
-  Grid,
-  Typography,
-  makeStyles,
-  colors,
-} from "@material-ui/core";
+import { Card, CardContent, Grid, makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -103,7 +93,7 @@ export default function AppListRender({ className, ...props }) {
   let data = createTableData(props.dashApplicationArray);
 
   return (
-    <Card className={clsx(classes.root, className)}>
+    <Card className={clsx(classes.root)}>
       <CardContent>
         <Grid>
           <MaterialTable
