@@ -110,10 +110,10 @@ export default class NavBar extends React.Component {
                 value={0}
                 label={
                   <>
-                    <Home fontSize="inherit" /> Activities
+                    <Home fontSize="inherit" /> Dashboard
                   </>
                 }
-                to="/"
+                to="/dashboard"
                 component={Link}
               />
 
@@ -181,6 +181,17 @@ export default class NavBar extends React.Component {
                   </>
                 }
                 to="/appointments"
+                component={Link}
+              />
+              <Tab
+                id="Tab"
+                value={7}
+                label={
+                  <>
+                    <Receipt fontSize="inherit" /> Licenses
+                  </>
+                }
+                to="/Licenses"
                 component={Link}
               />
             </Tabs>
