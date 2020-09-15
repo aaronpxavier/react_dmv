@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import History from './History'
+import HistoryRender from './HistoryRender'
 import * as historyActionCreators from '../../Redux/Actions/historyActions'
 
-const HistoryRender = (props) => {
+const History = (props) => {
     useEffect(() => {
         props.actions.getHistory()
     }, [])
-    return <History {...props}></History>
+    return <HistoryRender {...props}></HistoryRender>
 }
 
 function mapDispatchToProps(dispatch) {
@@ -23,4 +23,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(HistoryRender)
+export default connect(mapStateToProps, mapDispatchToProps)(History)
