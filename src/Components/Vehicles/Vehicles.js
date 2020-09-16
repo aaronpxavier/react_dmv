@@ -1,6 +1,7 @@
 import React, { Component, forwardRef } from 'react'
 import Spinner from '../Spinner/spinner'
 import Modal from 'react-modal'
+import VehicleDelete from './VehicleDelete'
 
 import { Container, Box, Fab } from "@material-ui/core";
 import AddBox from '@material-ui/icons/AddBox';
@@ -45,38 +46,20 @@ const tableIcons = {
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
 
-function modal(actions, rowData) {
-    return (
-        <Modal isOpen={true}>
-            <div className="modalContainer">
-                <div className="modalCard">
-                    <h2>{rowData.vin}</h2>
-                    <p> Vehicle Make:     {rowData.make}</p>
-                    <p> Vehicle Year:     {rowData.number}</p>
-                    <p>model:      {rowData.model}</p>
-
-                    <button onClick={() => actions.closeVehicleModal()}>Close modal</button>
-                </div>
-            </div>
-        </Modal>
-    )
-}
-
-const createTable = (vehicleArray, reduxActions) => {
-
-
+export default function VehicleTable(props) {
     let columns = [
         { title: 'Vehicle Make', field: 'make' },
         { title: 'Vehicle Model', field: 'model' },
         { title: 'Vehicle year', field: 'year' },
         { title: 'Vehicle vin', field: 'vin' },
     ]
-    let data = vehicleArray.map(item => {
+    let data = props.vehicleData.vehicleArray.map(item => {
         return {
             make: item.teamtwo_make,
             model: item.teamtwo_model,
             year: item.teamtwo_year,
-            vin: item.teamtwo_vin
+            vin: item.teamtwo_vin,
+            id: item.teamtwo_vehicleid
 
         }
     })
@@ -84,24 +67,23 @@ const createTable = (vehicleArray, reduxActions) => {
     let actions = [
         {
             icon: () => <Delete color="secondary"></Delete>,
-            tooltip: 'Delete Application',
+            tooltip: 'Delete Vehicle',
             onClick: (event, rowData) => {
-                console.log('delete table click');
+                props.actions.openVehicleDeletePopup(rowData)
             }
         },
         {
             icon: () => <Edit color="primary"></Edit>,
-            tooltip: 'Edit Application',
+            tooltip: 'Edit Vehicle',
             onClick: (event, rowData) => {
-                console.log('edit table click');
+                props.history.push(`/vehicles/edit/${rowData.id}`)
             }
         },
         {
             icon: () => '...',
             tooptip: 'See More',
             onClick: (event, rowData) => {
-                console.log('open modal')
-                reduxActions.openVehicleModal(rowData)
+                props.actions.openVehicleModal(rowData)
             }
         }
     ]
@@ -138,17 +120,5 @@ const createTable = (vehicleArray, reduxActions) => {
         </Container>
     );
 }
-export default function vehicleContainer(props) {
-    if (props.vehicleData.requestPending) {
-        return (
-            <Spinner></Spinner>
-        )
-    } else if (props.vehicleData.openVehiclePopup) {
-        return modal(props.actions, props.vehicleData.rowData)
-    }
-    else if (props.vehicleData.requestSuccessful) {
-        return (createTable(props.vehicleData.vehicleArray, props.actions))
-    }
-    return (<div></div>)
-}
+
 
