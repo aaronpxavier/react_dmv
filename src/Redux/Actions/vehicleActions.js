@@ -68,4 +68,3 @@ export function openVehicleDeletePopup(rowData) {
 export function closeVehicleDeletePopup(rowData) {
     return dispatch => dispatch(changeVehicleDeletePopup(false, rowData))
 }
-
