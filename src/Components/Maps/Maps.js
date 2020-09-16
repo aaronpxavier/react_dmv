@@ -35,10 +35,12 @@ var icons = {
   },
 };
 
-const API_KEY = "AIzaSyBokhmON551Q7J0aiJFoBXTNTUipwJXPqY";
+const API_KEY = GOOGLE_API_KEY;
 // console.log("Api key.");
 // const apiKey = process.env.REACT_APP_GOOGLE_API_KEY;
+// console.log(apiKey);
 // console.log(GOOGLE_API_KEY);
+// console.log(process.env);
 
 const MyMapComponent = compose(
   withProps({
