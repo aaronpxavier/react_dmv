@@ -151,17 +151,6 @@ export default class NavBar extends React.Component {
               />
               <Tab
                 id="Tab"
-                value={5}
-                label={
-                  <>
-                    <PostAdd fontSize="inherit" /> New Application
-                  </>
-                }
-                to="/newapplication"
-                component={Link}
-              />
-              <Tab
-                id="Tab"
                 value={6}
                 label={
                   <>
@@ -180,17 +169,6 @@ export default class NavBar extends React.Component {
                   </>
                 }
                 to="/appointments"
-                component={Link}
-              />
-              <Tab
-                id="Tab"
-                value={7}
-                label={
-                  <>
-                    <Receipt fontSize="inherit" /> Licenses
-                  </>
-                }
-                to="/Licenses"
                 component={Link}
               />
             </Tabs>
@@ -212,7 +190,7 @@ export default class NavBar extends React.Component {
         <Grow in={this.state.ShowSubBar}>
           <AppBar
             id="SubAppBar"
-            // style={{ display: this.state.ShowSubBar ? "block" : "none" }}
+          // style={{ display: this.state.ShowSubBar ? "block" : "none" }}
           >
             <FormGroup id="bBar">
               <DarkThemeToggle />

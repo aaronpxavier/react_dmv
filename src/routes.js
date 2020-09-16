@@ -4,7 +4,6 @@ import Dashboard from "./Components/Dashboard/Dashboard";
 import Applications from "./Components/Applications/ApplicationsContainer";
 import Customers from "./Components/Customers/CustomerContainer";
 import History from "./Components/History/HistoryContainer";
-import NewApplication from "./Components/NewApplication/NewApplication";
 import Vehicles from "./Components/Vehicles/VehiclesContainer";
 import AuthContainer from "./Components/Auth/AuthContainer";
 import Appointments from "./Components/Appointments/AppointmentsContainer";
@@ -18,11 +17,11 @@ import EditHistory from "./Components/EditHistory/EditHistoryContainer";
 
 export default (
   <Switch>
+    <Route exact path="/" component={Dashboard} />
     <Route exact path="/dashboard" component={Dashboard} />
     <Route exact path="/applications" component={Applications} />
     <Route exact path="/customers" component={Customers} />
     <Route exact path="/history" component={History} />
-    <Route exact path="/newapplication" component={NewApplication} />
     <Route exact path="/vehicles" component={Vehicles} />
     <Route exact path="/appointments" component={Appointments} />
     <Route exact path="/auth" component={AuthContainer} />
