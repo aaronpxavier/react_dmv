@@ -227,7 +227,7 @@ body {
   margin-left: 1rem;
   height: 3rem;
   border: 0;
-  margin-top: -2rem;
+  /* margin-top: -2rem; */
 }
 
 #Profile {
@@ -290,10 +290,30 @@ body {
 }
 
 #Spacer {
-  color: pink;
-  background-color: yellow;
+  /* color: pink;
+  background-color: yellow; */
   width: 900px;
 }
+#Spacer2 {
+  /* color: pink;
+  background-color: yellow; */
+  /* width: 200px; */
+  margin-right: 12rem;
+}
+
+#rightSide {
+  /* margin-left: 1rem; */
+  /* height: 3rem;
+  border: 0; */
+  margin-top: -1rem;
+  /* margin-left: 13rem; */
+  /* margin-left: 10vw; */
+  /* margin-right: 100px; */
+}
+
+/* #Toolbar {
+  margin-right: 0;
+} */
 
 /* Tables */
 .MuiTableSortLabel-root.MuiTableSortLabel-active {

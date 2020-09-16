@@ -190,7 +190,7 @@ export default class NavBar extends React.Component {
               backgroundColor: this.state.NightTheme ? "#01393f" : "",
             }}
           >
-            <Toolbar>
+            <Toolbar id="Toolbar">
               <Hidden lgUp>
                 <IconButton
                   color="inherit"
@@ -310,13 +310,18 @@ export default class NavBar extends React.Component {
             >
               <ArrowDropDownCircleOutlined />
             </IconButton> */}
+              <Hidden mdDown>
+                <div id="Spacer2" />
+              </Hidden>
               <Hidden lgUp>
                 <div id="Spacer" />
               </Hidden>
-              <div id="ThemeContainer" onClick={this.toggleNightTheme}>
-                <DarkThemeToggle />
+              <div id="rightSide">
+                <div id="ThemeContainer" onClick={this.toggleNightTheme}>
+                  <DarkThemeToggle />
+                </div>
+                {/* <LogoutButton /> */}
               </div>
-              {/* <LogoutButton /> */}
               <ProfileIcon />
             </Toolbar>
 
