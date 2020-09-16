@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { TOGGLE_DARKTHEME } from "../../../Constants/actionTypes";
+//import { TOGGLE_DARKTHEME } from "../../../Constants/actionTypes";
 import {
   AccountCircle,
   ExitToApp,
@@ -10,17 +10,14 @@ import {
 } from "@material-ui/icons";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
-import Axios from "axios";
+//import Axios from "axios";
 import { logout } from "../../../Utilities/MsalAuth/msalAuth";
 import { withStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
+//import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import DraftsIcon from "@material-ui/icons/Drafts";
-import SendIcon from "@material-ui/icons/Send";
 
 function handleLogout() {
   logout();
@@ -33,9 +30,7 @@ function logoutThing() {
     buttons: [
       {
         label: "Yes",
-        // onClick: () => alert("Click Yes"),
         onClick: () => {
-          //   handleLogout2;
           handleLogout();
         },
       },
@@ -94,6 +89,10 @@ export default function ProfileIcon() {
     setAnchorEl(null);
   };
 
+  const toMaps = () => {
+    window.location.href = "#/maps";
+  };
+
   return (
     <div>
       <AccountCircle
@@ -136,6 +135,7 @@ export default function ProfileIcon() {
         <StyledMenuItem
           onClick={() => {
             handleClose();
+            toMaps();
           }}
           style={{
             color: darkThemeEnabled ? "#4447e4" : "",

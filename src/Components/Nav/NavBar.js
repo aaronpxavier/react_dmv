@@ -118,44 +118,13 @@ export default class NavBar extends React.Component {
     ShowSideMenu: false,
   };
 
-  useStyles = makeStyles((theme) => ({
-    root: {
-      display: "flex",
-    },
-    drawer: {
-      [theme.breakpoints.up("sm")]: {
-        width: drawerWidth,
-        flexShrink: 0,
-      },
-    },
-    appBar: {
-      [theme.breakpoints.up("sm")]: {
-        width: `calc(100% - ${drawerWidth}px)`,
-        marginLeft: drawerWidth,
-      },
-    },
-    menuButton: {
-      marginRight: theme.spacing(2),
-      [theme.breakpoints.up("sm")]: {
-        display: "none",
-      },
-    },
-    // necessary for content to be below app bar
-    toolbar: theme.mixins.toolbar,
-    drawerPaper: {
-      width: drawerWidth,
-    },
-    content: {
-      flexGrow: 1,
-      padding: theme.spacing(3),
-    },
-  }));
   //This allows the selected tab to stay active when the page
   // is refreshed
   componentWillMount() {
     // console.log("Test");
     // console.log(this.props);
     var lTab = sessionStorage.getItem("lastTab");
+    sessionStorage.setItem("darkTheme", true);
     if (isNaN(sessionStorage.getItem("lastTab"))) {
       sessionStorage.setItem("lastTab", 0);
     } else {
