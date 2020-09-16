@@ -218,10 +218,10 @@ export default class NavBar extends React.Component {
                     value={0}
                     label={
                       <>
-                        <Home fontSize="inherit" /> Activities
+                        <Home fontSize="inherit" /> Dashboard
                       </>
                     }
-                    to="/"
+                    to="/dashboard"
                     component={Link}
                     style={{
                       color: this.state.NightTheme ? "#4447e4" : "",
@@ -270,20 +270,7 @@ export default class NavBar extends React.Component {
                       color: this.state.NightTheme ? "#4447e4" : "",
                     }}
                   />
-                  <Tab
-                    id="Tab"
-                    value={5}
-                    label={
-                      <>
-                        <PostAdd fontSize="inherit" /> New Application
-                      </>
-                    }
-                    to="/newapplication"
-                    component={Link}
-                    style={{
-                      color: this.state.NightTheme ? "#4447e4" : "",
-                    }}
-                  />
+
                   <Tab
                     id="Tab"
                     value={6}

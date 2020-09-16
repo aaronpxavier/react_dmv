@@ -64,24 +64,21 @@ function modal(actions, rowData) {
     )
 }
 
-const createTable = (historyArray, reduxActions) => {
-
-    console.log(historyArray)
-
+export default function historyTable(props) {
     let columns = [
         { title: 'Customer Associated', field: 'customer' },
         { title: 'Incident Type', field: 'type' },
         { title: 'State', field: 'state' }
     ]
-    let data = historyArray.map(item => {
-        console.log(item["_teamtwo_contacttodrivinghistoryid_value@OData.Community.Display.V1.FormattedValue"])
+    let data = props.historyData.historyArray.map(item => {
         return {
             customer: item["_teamtwo_contacttodrivinghistoryid_value@OData.Community.Display.V1.FormattedValue"],
             type: item.teamtwo_incidenttype,
             description: item.teamtwo_drivinghistorydescription,
             points: item.teamtwo_points,
             historyNumber: item.teamtwo_driving_history_number,
-            state: item["teamtwo_drivinghistorystate@OData.Community.Display.V1.FormattedValue"]
+            state: item["teamtwo_drivinghistorystate@OData.Community.Display.V1.FormattedValue"],
+            id: item.teamtwo_drivinghistoryid
 
         }
     })
@@ -89,25 +86,23 @@ const createTable = (historyArray, reduxActions) => {
     let actions = [
         {
             icon: () => <Delete color="secondary"></Delete>,
-            tooltip: 'Delete Application',
+            tooltip: 'Delete History',
             onClick: (event, rowData) => {
-                console.log('delete table click');
+                props.actions.openHistoryDeletePopup(rowData)
             }
         },
         {
             icon: () => <Edit color="primary"></Edit>,
-            tooltip: 'Edit Application',
+            tooltip: 'Edit History',
             onClick: (event, rowData) => {
-                console.log('edit table click');
+                props.history.push(`/history/edit/${rowData.id}`)
             }
         },
         {
             icon: () => '...',
             tooltip: 'See more',
             onClick: (event, rowData) => {
-                console.log(rowData)
-                console.log('opening module on click functionality goes here I think')
-                reduxActions.openHistoryModal(rowData)
+                props.actions.openHistoryModal(rowData)
             }
         }
     ]
@@ -146,17 +141,3 @@ const createTable = (historyArray, reduxActions) => {
 }
 
 
-export default function historyContainer(props) {
-    if (props.historyData.requestPending) {
-        return (
-            <Spinner></Spinner>
-        )
-    }
-    else if (props.historyData.openHistoryPopup) {
-        return modal(props.actions, props.historyData.rowData)
-    }
-    else if (props.historyData.requestSuccessful) {
-        return createTable(props.historyData.historyArray, props.actions)
-    }
-    return (<div></div>)
-}

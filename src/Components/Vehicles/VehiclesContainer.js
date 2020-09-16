@@ -1,15 +1,14 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import VehiclesComp from './Vehicles'
+import VehiclesRender from './VehicleRender'
 import * as vehicleActionCreators from '../../Redux/Actions/vehicleActions'
 
 const Vehicles = (props) => {
     useEffect(() => {
-        console.log(props)
         props.actions.getVehicles();
     }, [])
-    return <VehiclesComp {...props}></VehiclesComp>
+    return <VehiclesRender {...props} />
 }
 
 function mapDispatchToProps(dispatch) {
