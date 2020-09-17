@@ -4,6 +4,7 @@ import { withRouter } from "react-router-dom";
 import NavBar from "./Components/Nav/NavBar";
 import MobileNavBar from "./Components/Nav/MobileNavBar";
 import Footer from "./Components/Nav/Footer";
+import NavTest from "./Components/Nav/NavTest";
 import "./App.css";
 import { GlobalStyles } from "./Components/GlobalTheme/globalStyles";
 import { useSelector, Provider } from "react-redux";
@@ -18,8 +19,13 @@ export class App extends Component {
         <DarkThemeProvider>
           <GlobalStyles />
           {/* Will show navbar unless user screen is less then 500 wide.  */}
-          {document.documentElement.clientWidth > 500 && <NavBar />}
-          {document.documentElement.clientWidth < 500 && <MobileNavBar />}
+          {!!!navigator.userAgent.match(/iphone|android|blackberry/gi) && (
+            <NavBar store={store} />
+          )}
+          {!!navigator.userAgent.match(/iphone|android|blackberry/gi) && (
+            <MobileNavBar />
+          )}
+          {/* <NavTest /> */}
           <div id="dd">{routes}</div>
           <Footer />
         </DarkThemeProvider>

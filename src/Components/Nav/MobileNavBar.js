@@ -24,6 +24,7 @@ import {
   Schedule,
   PostAdd,
   Receipt,
+  Room,
 } from "@material-ui/icons";
 import DarkThemeToggle from "./DarkThemeToggle";
 import { green } from "@material-ui/core/colors";
@@ -76,17 +77,17 @@ function MobileNavBar(props) {
 
   const drawer = (
     <div id="MobileMenu">
-      <div className={classes.toolbar} />
+      <div className={classes.toolbar} id="Mtoolbar" />
       <Typography variant="h5" noWrap>
         DMV Logo Here
       </Typography>
       <Divider />
       <List>
-        <ListItem button component="a" href="#/">
+        <ListItem button component="a" href="#/dashboard">
           <ListItemIcon id="MobileIcons">
             <Home />
           </ListItemIcon>
-          <ListItemText> Activities</ListItemText>
+          <ListItemText> Dashboard</ListItemText>
         </ListItem>
 
         <ListItem button component="a" href="#/applications">
@@ -109,13 +110,6 @@ function MobileNavBar(props) {
           <ListItemText> History</ListItemText>
         </ListItem>
 
-        <ListItem button component="a" href="#/newapplication">
-          <ListItemIcon id="MobileIcons">
-            <PostAdd />
-          </ListItemIcon>
-          <ListItemText> New Application</ListItemText>
-        </ListItem>
-
         <ListItem button component="a" href="#/vehicles">
           <ListItemIcon id="MobileIcons">
             <DirectionsCar />
@@ -131,6 +125,12 @@ function MobileNavBar(props) {
           </ListItemIcon>
           <ListItemText> Appointments</ListItemText>
         </ListItem>
+        <ListItem button component="a" href="#/maps">
+          <ListItemIcon id="MobileIcons">
+            <Room />
+          </ListItemIcon>
+          <ListItemText> Maps</ListItemText>
+        </ListItem>
       </List>
       {/* <DarkThemeToggle /> */}
     </div>
@@ -140,7 +140,7 @@ function MobileNavBar(props) {
     window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} id="MRoot">
       <CssBaseline />
       <AppBar position="fixed" className={classes.appBar} id="AppBar">
         <Toolbar>
@@ -159,7 +159,7 @@ function MobileNavBar(props) {
           {/* <DarkThemeToggle /> */}
         </Toolbar>
       </AppBar>
-      <nav className={classes.drawer} aria-label="mailbox folders">
+      <nav className={classes.drawer} aria-label="mailbox folders" id="Mdrawer">
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Hidden smUp implementation="css">
           <Drawer
@@ -174,6 +174,7 @@ function MobileNavBar(props) {
             ModalProps={{
               keepMounted: true, // Better open performance on mobile.
             }}
+            id="MdrawerPaper"
           >
             {drawer}
           </Drawer>
@@ -185,6 +186,7 @@ function MobileNavBar(props) {
             }}
             variant="permanent"
             open
+            id="MdrawerPaper"
           >
             {drawer}
           </Drawer>
