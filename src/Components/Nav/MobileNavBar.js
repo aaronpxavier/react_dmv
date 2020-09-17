@@ -24,6 +24,7 @@ import {
   Schedule,
   PostAdd,
   Receipt,
+  Room,
 } from "@material-ui/icons";
 import DarkThemeToggle from "./DarkThemeToggle";
 import { green } from "@material-ui/core/colors";
@@ -82,11 +83,11 @@ function MobileNavBar(props) {
       </Typography>
       <Divider />
       <List>
-        <ListItem button component="a" href="#/">
+        <ListItem button component="a" href="#/dashboard">
           <ListItemIcon id="MobileIcons">
             <Home />
           </ListItemIcon>
-          <ListItemText> Activities</ListItemText>
+          <ListItemText> Dashboard</ListItemText>
         </ListItem>
 
         <ListItem button component="a" href="#/applications">
@@ -109,13 +110,6 @@ function MobileNavBar(props) {
           <ListItemText> History</ListItemText>
         </ListItem>
 
-        <ListItem button component="a" href="#/newapplication">
-          <ListItemIcon id="MobileIcons">
-            <PostAdd />
-          </ListItemIcon>
-          <ListItemText> New Application</ListItemText>
-        </ListItem>
-
         <ListItem button component="a" href="#/vehicles">
           <ListItemIcon id="MobileIcons">
             <DirectionsCar />
@@ -130,6 +124,12 @@ function MobileNavBar(props) {
             <Schedule />
           </ListItemIcon>
           <ListItemText> Appointments</ListItemText>
+        </ListItem>
+        <ListItem button component="a" href="#/maps">
+          <ListItemIcon id="MobileIcons">
+            <Room />
+          </ListItemIcon>
+          <ListItemText> Maps</ListItemText>
         </ListItem>
       </List>
       {/* <DarkThemeToggle /> */}
