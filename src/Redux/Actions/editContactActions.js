@@ -1,7 +1,6 @@
 import { dynGetCall, ajaxPatchCall } from '../../Utilities/dyanamicsAPI'
 import { DYN_BASE_URL } from '../../Constants/config'
-import { getByDisplayValue } from '@testing-library/react'
-import { EDIT_CONTACT_REQUEST_PENDING, EDIT_CONTACT_REQUEST_SUCCESS, EDIT_CONTACT_FORM_VIEW } from '../../Constants/actionTypes'
+import { EDIT_CONTACT_REQUEST_SUCCESS, EDIT_CONTACT_REQUEST_PENDING, EDIT_CONTACT_FORM_VIEW, FULLNAME_FIELD_CHANGE, EMAIL_FIELD_CHANGE, AGE_FIELD_CHANGE, CONTACT_NUMBER_FIELD_CHANGE, FIRST_NAME_FIELD_CHANGE, LAST_NAME_FIELD_CHANGE } from '../../Constants/actionTypes'
 
 export function openContactForm(contactId) {
     let contactData
@@ -75,42 +74,42 @@ export function lastnameFieldChange(value) {
 
 export function fullnameField(value) {
     return {
-        type: 'FULLNAME_FIELD_CHANGE',
+        type: FULLNAME_FIELD_CHANGE,
         fullname: value
     }
 }
 
 export function emailField(value) {
     return {
-        type: 'EMAIL_FIELD_CHANGE',
+        type: EMAIL_FIELD_CHANGE,
         email: value
     }
 }
 
 export function ageField(value) {
     return {
-        type: 'AGE_FIELD_CHANGE',
+        type: AGE_FIELD_CHANGE,
         age: value
     }
 }
 
 export function contactNumberField(value) {
     return {
-        type: 'CONTACT_NUMBER_FIELD_CHANGE',
+        type: CONTACT_NUMBER_FIELD_CHANGE,
         contactNumber: value
     }
 }
 
 export function firstnameField(value) {
     return {
-        type: 'FIRST_NAME_FIELD_CHANGE',
+        type: FIRST_NAME_FIELD_CHANGE,
         firstname: value
     }
 }
 
 export function lastnameField(value) {
     return {
-        type: 'LAST_NAME_FIELD_CHANGE',
+        type: LAST_NAME_FIELD_CHANGE,
         lastname: value
     }
 }

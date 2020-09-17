@@ -90,7 +90,8 @@ export default function VehicleTable(props) {
     return (
         <Container>
             <div style={{ paddingTop: '50px' }}>
-                <Fab style={{ margin: '10px' }} size='small' color="primary" aria-label="add">
+                <Fab style={{ margin: '10px' }} size='small' color="primary" aria-label="add"
+                    onClick={() => props.history.push("/vehicles/add")}>
                     <AddIcon />
                 </Fab>
 

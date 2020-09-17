@@ -1,6 +1,6 @@
-import { dynGetCall, ajaxPatchCall } from '../../Utilities/dyanamicsAPI'
+import { dynGetCall, dynPostCall, ajaxPatchCall } from '../../Utilities/dyanamicsAPI'
 import { DYN_BASE_URL } from '../../Constants/config'
-import { EDIT_VEHICLE_FORM_VIEW, EDIT_VEHICLE_REQUEST_PENDING, EDIT_VEHICLE_REQUEST_SUCCESS, CONTACT_FIELD_CHANGE, MAKE_FIELD_CHANGE, MODEL_FIELD_CHANGE, VIN_FIELD_CHANGE, YEAR_FIELD_CHANGE, VEHICLE_CONTACT_CHANGE } from '../../Constants/actionTypes'
+import { EDIT_VEHICLE_FORM_VIEW, EDIT_VEHICLE_REQUEST_PENDING, EDIT_VEHICLE_REQUEST_SUCCESS, CONTACT_FIELD_CHANGE, MAKE_FIELD_CHANGE, MODEL_FIELD_CHANGE, VIN_FIELD_CHANGE, YEAR_FIELD_CHANGE, VEHICLE_CONTACT_CHANGE, CREATE_VEHICLE_FORM_VIEW } from '../../Constants/actionTypes'
 
 export function openVehicleForm(vehicleId) {
     let vehicleData
@@ -48,6 +48,30 @@ export function editVehicleFormView(vehicleData, contactData, user) {
         contact: contactData,
         vehicleData: vehicleData,
         userData: user
+    }
+}
+
+//create vehicle functionality
+
+export function createVehicleSubmit(data) {
+    return (dispatch) => {
+        dispatch(editPending())
+        return dynPostCall("https://mdynamic0077.crm.dynamics.com/api/data/v9.1/teamtwo_vehicles", data)
+            .then((response) => {
+                dispatch(editSuccess(response.data))
+            })
+    }
+}
+
+export function openCreateVehicleForm() {
+    return dispatch => {
+        dispatch(createVehicleFormView())
+    }
+}
+
+export function createVehicleFormView() {
+    return {
+        type: CREATE_VEHICLE_FORM_VIEW
     }
 }
 

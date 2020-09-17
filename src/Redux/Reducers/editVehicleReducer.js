@@ -1,4 +1,4 @@
-import { EDIT_VEHICLE_FORM_VIEW, EDIT_VEHICLE_REQUEST_PENDING, EDIT_VEHICLE_REQUEST_SUCCESS, CONTACT_FIELD_CHANGE, MAKE_FIELD_CHANGE, MODEL_FIELD_CHANGE, VIN_FIELD_CHANGE, YEAR_FIELD_CHANGE, VEHICLE_CONTACT_CHANGE } from '../../Constants/actionTypes'
+import { EDIT_VEHICLE_FORM_VIEW, EDIT_VEHICLE_REQUEST_PENDING, EDIT_VEHICLE_REQUEST_SUCCESS, CONTACT_FIELD_CHANGE, MAKE_FIELD_CHANGE, MODEL_FIELD_CHANGE, VIN_FIELD_CHANGE, YEAR_FIELD_CHANGE, VEHICLE_CONTACT_CHANGE, CREATE_VEHICLE_FORM_VIEW } from '../../Constants/actionTypes'
 
 export default function editVehiclesReducer(state = {}, action) {
     switch (action.type) {
@@ -24,6 +24,18 @@ export default function editVehiclesReducer(state = {}, action) {
                     dynUser: action.userData,
                     contact: action.contact,
                     data: action.vehicleData,
+                    make: action.make,
+                    model: action.model,
+                    vin: action.vin,
+                    year: action.year
+                }
+            }
+        case CREATE_VEHICLE_FORM_VIEW:
+            return {
+                ...state,
+                vehicleData: {
+                    createVehicle: true,
+                    contact: action.contact,
                     make: action.make,
                     model: action.model,
                     vin: action.vin,
