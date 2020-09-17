@@ -302,7 +302,7 @@ export default class NavBar extends React.Component {
                   />
                   <Tab
                     id="Tab"
-                    value={7}
+                    value={8}
                     label={
                       <>
                         <Room fontSize="inherit" /> Maps

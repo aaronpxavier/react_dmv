@@ -19,10 +19,12 @@ import MenuItem from "@material-ui/core/MenuItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 
+//logs the user out
 function handleLogout() {
   logout();
 }
 
+//calls logout confirm
 function logoutThing() {
   confirmAlert({
     title: "Confirm Logout",
@@ -54,6 +56,7 @@ const StyledMenuItem = withStyles((theme) => ({
 }))(MenuItem);
 
 export default function ProfileIcon() {
+  //allows the file to see what the current dark theme state is
   const darkThemeEnabled = useSelector(
     (state) => state.themeReducer.darkThemeEnabled
   );
@@ -81,14 +84,17 @@ export default function ProfileIcon() {
   ));
   const [anchorEl, setAnchorEl] = React.useState(null);
 
+  //calls for the closing of the menu when an option is clicked
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
+  //closes the menu
   const handleClose = () => {
     setAnchorEl(null);
   };
 
+  //changes the address to maps
   const toMaps = () => {
     window.location.href = "#/maps";
   };
