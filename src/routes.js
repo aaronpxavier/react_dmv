@@ -15,6 +15,7 @@ import CreateAppointmentRender from "./Components/Appointments/CreateAppointment
 import EditVehicle from "./Components/EditVehicle/EditVehicleContainer";
 import EditContact from "./Components/EditContact/EditContactContainer";
 import EditHistory from "./Components/EditHistory/EditHistoryContainer";
+import CreateVehicle from "./Components/CreateVehicle/CreateVehicleContainer";
 
 export default (
   <Switch>
@@ -37,5 +38,6 @@ export default (
       path="/appointments/add"
       component={CreateAppointmentContainer}
     />
+    <Route exact path="/vehicles/add" component={CreateVehicle} />
   </Switch>
 );
