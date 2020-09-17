@@ -370,7 +370,7 @@ export default class NavBar extends React.Component {
                 </Typography>
                 <Divider />
                 <List>
-                  <ListItem button component="a" href="#/">
+                  <ListItem button component="a" href="#/dashboard">
                     <ListItemIcon
                       id="MobileIcons"
                       style={{
@@ -379,7 +379,7 @@ export default class NavBar extends React.Component {
                     >
                       <Home />
                     </ListItemIcon>
-                    <ListItemText> Activities</ListItemText>
+                    <ListItemText> Dashboard</ListItemText>
                   </ListItem>
 
                   <ListItem button component="a" href="#/applications">
@@ -417,18 +417,6 @@ export default class NavBar extends React.Component {
                     <ListItemText> History</ListItemText>
                   </ListItem>
 
-                  <ListItem button component="a" href="#/newapplication">
-                    <ListItemIcon
-                      id="MobileIcons"
-                      style={{
-                        color: this.state.NightTheme ? "#4447e4" : "",
-                      }}
-                    >
-                      <PostAdd />
-                    </ListItemIcon>
-                    <ListItemText> New Application</ListItemText>
-                  </ListItem>
-
                   <ListItem button component="a" href="#/vehicles">
                     <ListItemIcon
                       id="MobileIcons"
@@ -453,6 +441,17 @@ export default class NavBar extends React.Component {
                       <Schedule />
                     </ListItemIcon>
                     <ListItemText> Appointments</ListItemText>
+                  </ListItem>
+                  <ListItem button component="a" href="#/maps">
+                    <ListItemIcon
+                      id="MobileIcons"
+                      style={{
+                        color: this.state.NightTheme ? "#4447e4" : "",
+                      }}
+                    >
+                      <Room />
+                    </ListItemIcon>
+                    <ListItemText> Maps</ListItemText>
                   </ListItem>
                 </List>
               </div>
