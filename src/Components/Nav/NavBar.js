@@ -24,6 +24,7 @@ import {
   WbSunny,
   AccountCircle,
   ArrowBackIos,
+  Room,
 } from "@material-ui/icons";
 import MenuIcon from "@material-ui/icons/Menu";
 import {
@@ -299,6 +300,20 @@ export default class NavBar extends React.Component {
                       color: this.state.NightTheme ? "#4447e4" : "",
                     }}
                   />
+                  <Tab
+                    id="Tab"
+                    value={7}
+                    label={
+                      <>
+                        <Room fontSize="inherit" /> Maps
+                      </>
+                    }
+                    to="/maps"
+                    component={Link}
+                    style={{
+                      color: this.state.NightTheme ? "#4447e4" : "",
+                    }}
+                  />
                 </Tabs>
               </Hidden>
 
@@ -310,9 +325,9 @@ export default class NavBar extends React.Component {
             >
               <ArrowDropDownCircleOutlined />
             </IconButton> */}
-              <Hidden mdDown>
+              {/* <Hidden mdDown>
                 <div id="Spacer2" />
-              </Hidden>
+              </Hidden> */}
               <Hidden lgUp>
                 <div id="Spacer" />
               </Hidden>
