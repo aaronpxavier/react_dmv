@@ -14,6 +14,15 @@ function rePage() {
   }, 1);
 }
 
+function setSession(darkThemeEnabled) {
+  // if (isNaN(sessionStorage.getItem("darkTheme"))) {
+  //   sessionStorage.setItem("darkTheme", false);
+  // } else {
+  //   this.setState({ darktheme: !sessionStorage.getItem("darkTheme") });
+  // }
+  sessionStorage.setItem("darkTheme", darkThemeEnabled);
+}
+
 const DarkThemeToggle = ({}) => {
   //Get the darkThemeEnabled boolean from the store
   const darkThemeEnabled = useSelector(
@@ -28,6 +37,7 @@ const DarkThemeToggle = ({}) => {
         onClick={() => {
           dispatch({ type: TOGGLE_DARKTHEME });
           rePage();
+          setSession(darkThemeEnabled);
         }}
         //this lets the sun & moon to swap by giving the style sheet
         //the is 'darkThemeEnabled' boolean

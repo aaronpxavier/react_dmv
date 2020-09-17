@@ -109,19 +109,12 @@ body {
 }
 
 #AppBar {
-  /* overflow: hidden; */
-  /* background-color: #333; */
   background-color: #006570;
-  /* background-color: #4447e4; */
   list-style-type: none;
   position: fixed;
   top: 0;
   width: 100%;
   opacity: 100%;
-  /* border: 0; */
-  /* border-radius: 7px; */
-  /* margin-left: -8px; */
-  /* margin-top: -1px; */
 }
 
 /* #navLinks {
@@ -230,6 +223,29 @@ body {
   /* align-content: center; */
 }
 
+#ThemeContainer {
+  margin-left: 1rem;
+  height: 3rem;
+  border: 0;
+  /* margin-top: -2rem; */
+}
+
+#Profile {
+  margin-left: 2rem;
+  /* height: 3rem; */
+  border: 0;
+  /* size: 20px; */
+  width: 30px;
+  height: 30px;
+  /* right: 20rem; */
+  /* position: fixed; */
+}
+#Profile:hover {
+  color: #2df313;
+  opacity: 80%;
+}
+
+/* /////////// Mobile //////////// */
 #MobileMenu {
   background-color: #006570;
   color: white;
@@ -240,22 +256,70 @@ body {
   opacity: 90%;
 }
 
-#ThemeContainer {
-  margin-left: 1rem;
-  height: 3rem;
-  border: 0;
-  margin-top: -2rem;
+#Mroot {
+  display: "flex";
 }
 
-#Profile {
-  margin-left: 2rem;
-  /* height: 3rem; */
-  border: 0;
-  /* size: 20px; */
-  width: 30px;
-  height: 30px;
+/* ///// SideBar      ///////// */
+#SideMenu {
+  background-color: #266676;
+  color: white;
+  height: 100vh;
+  width: 30vw;
+  position: fixed;
+  top: 0;
 }
-#Profile:hover {
-  color: red;
-  opacity: 80%;
+#SideMenu:focus {
+  background-color: #13f3f3;
+}
+#backArrow {
+  right: 0;
+  margin-left: 170px;
+  margin-top: 20px;
+}
+#backArrow:hover {
+  color: #2df313;
+}
+
+#SideIcons {
+  color: #f2f2f2;
+  opacity: 90%;
+}
+#SideMenuButton {
+  margin-right: 2rem;
+}
+
+#Spacer {
+  /* color: pink;
+  background-color: yellow; */
+  width: 900px;
+}
+#Spacer2 {
+  /* color: pink;
+  background-color: yellow; */
+  /* width: 200px; */
+  margin-right: 12rem;
+}
+
+#rightSide {
+  /* margin-left: 1rem; */
+  /* height: 3rem;
+  border: 0; */
+  margin-top: -1rem;
+  /* margin-left: 13rem; */
+  /* margin-left: 10vw; */
+  /* margin-right: 100px; */
+}
+
+/* #Toolbar {
+  margin-right: 0;
+} */
+
+/* Tables */
+.MuiTableSortLabel-root.MuiTableSortLabel-active {
+  color: green;
+}
+
+.MuiTableSortLabel-root:hover {
+  color: green;
 }
