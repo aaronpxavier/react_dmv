@@ -7,7 +7,9 @@ import {
     CONTACT_CHANGE,
     APPROVED_STATUS_CHANGED,
     DESCRIPTION_FIELD_CHANGED,
-    DATE_FIELD_CHANGED } from "../../Constants/actionTypes"
+    DATE_FIELD_CHANGED,
+    CONTACT_ADDED,
+    EDIT_ADD_CONTACT_REQUEST_PENDING } from "../../Constants/actionTypes"
   
   export default function editApplicationReducer(state = {}, action) {
     switch (action.type) {
@@ -37,7 +39,8 @@ import {
             data: action.applicationData || undefined,
             dynUser: action.userData,
             ownerId: ownerId,
-            appType: appType || undefined
+            appType: appType || undefined,
+            date: Date.now()
           },
         }
       
@@ -90,6 +93,25 @@ import {
             ...state.applicationData,
             date: action.date
           }
+        }
+      case CONTACT_ADDED: 
+      return {
+          ...state, 
+          applicationData: {
+              ...state.applicationData,
+              contact: action.contact,
+              contacts: [],
+              requestSuccessful: true,
+              requestPending: false
+          }
+      }
+      case EDIT_ADD_CONTACT_REQUEST_PENDING:
+        return {
+          ...state,
+          applicationData: {
+            ...state.applicationData,
+            requestPending: true
+          },
         }
       default:
         return {

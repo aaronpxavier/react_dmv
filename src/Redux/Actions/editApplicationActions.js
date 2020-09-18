@@ -9,7 +9,9 @@ import {
     CONTACT_CHANGE, 
     TYPE_CHANGE, 
     EDIT_FORM_VIEW, 
-    OWNER_CHANGE
+    OWNER_CHANGE,
+    CONTACT_ADDED,
+    EDIT_ADD_CONTACT_REQUEST_PENDING
 } from "../../Constants/actionTypes";
 
 export function openEditForm(appId) {
@@ -49,8 +51,6 @@ export function openEditForm(appId) {
   }
 
   export function editApplicaitonSubmit(appid, obj) {
-    console.log(appid);
-    console.log(obj);
     return dispatch => {
       dispatch(_editPending())
       ajaxPatchCall(DYN_BASE_URL + `/api/data/v9.1/teamtwo_applications(${appid})`, obj)
@@ -70,7 +70,6 @@ export function openEditForm(appId) {
   }
   
   export function approvedStatusChanged(status) {
-    console.log(status);
     return dispatch => dispatch(_approvedStatus(status));
   }
   
@@ -83,9 +82,8 @@ export function openEditForm(appId) {
   }
 
   export function postApplication(entity) {
-    console.log(entity);
     return dispatch => {
-      dispatch(_editPending())
+      dispatch(_editPending());
       ajaxPostCall(DYN_BASE_URL + "/api/data/v9.0/teamtwo_applications", entity)
       .then(response => dispatch(_editSuccess()));
     }
@@ -99,11 +97,23 @@ export function openEditForm(appId) {
     let apiQueryString = '';
     apiQueryString = value ? `/api/data/v9.1/contacts?$select=fullname&$filter=contains(fullname, '${value}')` : '/api/data/v9.1/contacts?$select=fullname&$count=true'
     return dispatch => {
-      dispatch(_appContactChange([], value))
+      dispatch(_appContactChange([], value));
       dynGetCall(DYN_BASE_URL + apiQueryString, 25)
       .then(response => {
-        dispatch(_appContactChange(response.data.value))
+        dispatch(_appContactChange(response.data.value));
       })
+    }
+  }
+
+  export function addContact(contact) {
+    return dispatch => {
+      dispatch(_addContactPending());
+      ajaxPostCall(DYN_BASE_URL + "/api/data/v9.1/contacts", contact)
+      .then(response => dynGetCall(`${DYN_BASE_URL}/api/data/v9.1/contacts(${response})`))
+      .then(response => {
+        dispatch(_contactAdded(response))
+        
+      });
     }
   }
     //dispatchers
@@ -167,5 +177,18 @@ export function openEditForm(appId) {
   export function _editSuccess() {
     return {
         type: EDIT_APPLICATION_REQUEST_SUCCESS
+    };
+  }
+
+  export function _contactAdded({data}) {
+    return {
+      type: CONTACT_ADDED,
+      contact: { fullname: data.fullname, contactid: data.contactid}
+    };
+  }
+
+  export function _addContactPending() {
+    return {
+      type: EDIT_ADD_CONTACT_REQUEST_PENDING
     };
   }
