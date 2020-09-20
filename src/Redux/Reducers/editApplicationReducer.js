@@ -40,7 +40,7 @@ import {
             dynUser: action.userData,
             ownerId: ownerId,
             appType: appType || undefined,
-            date: Date.now()
+            date: new Date(Date.now())
           },
         }
       
@@ -101,7 +101,6 @@ import {
               ...state.applicationData,
               contact: action.contact,
               contacts: [],
-              requestSuccessful: true,
               requestPending: false
           }
       }

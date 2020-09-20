@@ -17,11 +17,6 @@ function createDynUserMenuItems(userArray) {
     });
     return users;
 }
-
-function convertUnixDateToObj (num) {
-    return new Date(num);
-}
-
 function submitUpdate(appId, ownerId, applicationType, contactId, description, status, submitDate, action) {
     let entity = {};
     entity["ownerid@odata.bind"] = `/systemusers(${ownerId})`;
@@ -35,6 +30,8 @@ function submitUpdate(appId, ownerId, applicationType, contactId, description, s
 
 function submitPost(ownerId, applicationType, contactId, description, status, submitDate, action) {
     let entity = {};
+    let date;
+    console.log(submitDate);
     entity["ownerid@odata.bind"] = `/systemusers(${ownerId})`;
     entity.teamtwo_applicationdescription = description;
     entity.teamtwo_approvedstatus = status;
@@ -46,6 +43,7 @@ function submitPost(ownerId, applicationType, contactId, description, status, su
 }
 
 export default function EditApplication(props) {
+    console.log(props);
     let { applicationData, actions } = props;
     let { data } = applicationData;
     let { contact } = applicationData;
@@ -65,6 +63,9 @@ export default function EditApplication(props) {
 
     if (applicationData.date) {
         date = data && new Date(data.teamtwo_submitdate);
+    } 
+    if(date === undefined && data === undefined) {
+        date = new Date(Date.now());
     }
     if(applicationData.approvedStatus === undefined) {
         approvedStatus = data && data.teamtwo_approvedstatus ? data.teamtwo_approvedstatus : false;
@@ -100,7 +101,7 @@ export default function EditApplication(props) {
                         <Select
                             labelId="applicationType"
                             id="applicaiton-select"
-                            value={applicationData.appType || (data && data.teamtwo_applicationname)}
+                            value={(applicationData.appType ? applicationData.appType : data && data.teamtwo_applicationname) || null}
                             onChange={e => actions.applicationTypeChange(e.target.value)}>
                             <MenuItem value={DRIVING_LICENSE}>Driver's License</MenuItem>
                             <MenuItem value={LEARNER_PERMIT}>Learner's Permit</MenuItem>
