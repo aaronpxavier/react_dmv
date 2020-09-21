@@ -23,6 +23,7 @@ import {
   LEARNER_PERMIT,
 } from "../../Constants/applicationTypes";
 import { useSelector, useDispatch } from "react-redux";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 // function isEnabled() {
 //   const darkThemeEnabled = useSelector(
@@ -37,6 +38,14 @@ const createTableColumns = () => {
     { title: "Application Type", field: "type" },
     { title: "Submit Date", field: "date", defaultSort: "desc", type: "date" },
     { title: "Application Approved Status", field: "status" },
+  ];
+};
+
+const createTableColumns2 = () => {
+  return [
+    { title: "App #", field: "num" },
+    { title: "AppType", field: "type" },
+    { title: "App Approved Status", field: "status" },
   ];
 };
 
@@ -68,6 +77,9 @@ export default function ApplicationTable(props) {
   const darkThemeEnabled = useSelector(
     (state) => state.themeReducer.darkThemeEnabled
   );
+  const matches = useMediaQuery("(min-width:650px)");
+  console.log("matches");
+  console.log(matches);
 
   const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -143,6 +155,7 @@ export default function ApplicationTable(props) {
 
   let { actions } = props;
   let columns = createTableColumns();
+  let columns2 = createTableColumns2();
   let data = createTableData(props.applicationData.appArray);
 
   let tableActions = [
@@ -162,97 +175,144 @@ export default function ApplicationTable(props) {
       },
     },
   ];
-  return (
-    <Container id="tContainer">
-      <div style={{ paddingTop: "50px" }}>
-        <Fab
-          onClick={() => props.history.push("/applications/edit/add")}
-          style={{ margin: "10px" }}
-          size="small"
-          color="primary"
-          aria-label="add"
-        >
-          <AddIcon />
-        </Fab>
-
-        <MaterialTable
-          title="Applications Table"
-          columns={columns}
-          data={data}
-          icons={tableIcons}
-          id="dTable"
-          style={{
-            // fontSize: 100,
-            textAlign: "center",
-            color: darkThemeEnabled ? "white" : "black",
-            backgroundColor: darkThemeEnabled ? "black" : "white",
-          }}
-          options={{
-            pageSize: 10,
-            pageSizeOptions: [10],
-            exportButton: true,
-            exportAllData: true,
-            sorting: true,
-            thirdSortClick: false,
-
-<<<<<<< HEAD
-    let tableActions=[
-        {
-            icon: () => <Delete color="secondary"></Delete>,
-            tooltip: 'Delete Application',
-            onClick:(event, rowData) => {
-                actions.openDeletePopup(rowData);
-            }
-        },
-        {
-            icon: () => <Edit color="primary"></Edit>,
-            tooltip: 'Edit Application',
-            onClick:(event, rowData) => {
-                props.history.push(`/applications/edit/${rowData.id}`)
-            }
-        }
-    ]
+  if (matches) {
     return (
-        <Container>
-            <div style={{paddingTop: '50px'}}>
-                <Fab onClick={()=>props.history.push('/applications/edit/add')} style={{margin: '10px'}}size='small' color="primary" aria-label="add">
-                    <AddIcon />
-                </Fab>
-=======
-            headerStyle: {
-              root: {
+      <Container id="tContainer">
+        <div style={{ paddingTop: "50px" }}>
+          <Fab
+            onClick={() => props.history.push("/applications/edit/add")}
+            style={{ margin: "10px" }}
+            size="small"
+            color="primary"
+            aria-label="add"
+          >
+            <AddIcon />
+          </Fab>
+
+          <MaterialTable
+            title="Applications Table"
+            columns={columns}
+            data={data}
+            icons={tableIcons}
+            id="dTable"
+            style={{
+              // fontSize: 100,
+              textAlign: "center",
+              color: darkThemeEnabled ? "white" : "black",
+              backgroundColor: darkThemeEnabled ? "black" : "white",
+            }}
+            options={{
+              pageSize: 10,
+              pageSizeOptions: [10],
+              exportButton: true,
+              exportAllData: true,
+              sorting: true,
+              thirdSortClick: false,
+
+              headerStyle: {
+                root: {
+                  "&:hover": {
+                    backgroundColor: darkThemeEnabled ? "white" : "black",
+                    color: darkThemeEnabled ? "white" : "black",
+                  },
+                },
+                color: darkThemeEnabled ? "white" : "black",
+                backgroundColor: darkThemeEnabled ? "black" : "white",
+              },
+
+              rowStyle: {
                 "&:hover": {
-                  backgroundColor: darkThemeEnabled ? "white" : "black",
+                  backgroundColor: darkThemeEnabled ? "#bbdefb" : "white",
                   color: darkThemeEnabled ? "white" : "black",
                 },
               },
-              color: darkThemeEnabled ? "white" : "black",
-              backgroundColor: darkThemeEnabled ? "black" : "white",
-            },
->>>>>>> master
-
-            rowStyle: {
-              "&:hover": {
-                backgroundColor: darkThemeEnabled ? "#bbdefb" : "white",
+              searchFieldStyle: {
                 color: darkThemeEnabled ? "white" : "black",
+                backgroundColor: darkThemeEnabled ? "black" : "white",
               },
-            },
-            searchFieldStyle: {
+              actionsCellStyle: {
+                color: darkThemeEnabled ? "white" : "black",
+                backgroundColor: darkThemeEnabled ? "black" : "white",
+              },
+            }}
+            actionsCellStyle={{
               color: darkThemeEnabled ? "white" : "black",
               backgroundColor: darkThemeEnabled ? "black" : "white",
-            },
-            actionsCellStyle: {
+            }}
+            actions={tableActions}
+          ></MaterialTable>
+        </div>
+      </Container>
+    );
+  } else {
+    return (
+      <Container id="tContainer">
+        <div style={{ paddingTop: "50px" }}>
+          <Fab
+            onClick={() => props.history.push("/applications/edit/add")}
+            style={{ margin: "10px" }}
+            size="small"
+            color="primary"
+            aria-label="add"
+          >
+            <AddIcon />
+          </Fab>
+
+          <MaterialTable
+            title="App Table"
+            columns={columns2}
+            data={data}
+            icons={tableIcons}
+            id="dTable"
+            style={{
+              // fontSize: 100,
+              textAlign: "center",
               color: darkThemeEnabled ? "white" : "black",
               backgroundColor: darkThemeEnabled ? "black" : "white",
-            },
-          }}
-          actionsCellStyle={{
-            color: darkThemeEnabled ? "white" : "black",
-            backgroundColor: darkThemeEnabled ? "black" : "white",
-          }}
-          actions={tableActions}
-        ></MaterialTable>
-      </div>
-    </Container>
-  );
+            }}
+            options={{
+              pageSize: 10,
+              pageSizeOptions: [10],
+              exportButton: true,
+              exportAllData: true,
+              sorting: true,
+              thirdSortClick: false,
+
+              headerStyle: {
+                root: {
+                  "&:hover": {
+                    backgroundColor: darkThemeEnabled ? "white" : "black",
+                    color: darkThemeEnabled ? "white" : "black",
+                  },
+                },
+                color: darkThemeEnabled ? "white" : "black",
+                backgroundColor: darkThemeEnabled ? "black" : "white",
+              },
+
+              rowStyle: {
+                "&:hover": {
+                  backgroundColor: darkThemeEnabled ? "#bbdefb" : "white",
+                  color: darkThemeEnabled ? "white" : "black",
+                },
+              },
+              searchFieldStyle: {
+                color: darkThemeEnabled ? "white" : "black",
+                backgroundColor: darkThemeEnabled ? "black" : "white",
+                width: "200px",
+              },
+              actionsCellStyle: {
+                color: darkThemeEnabled ? "white" : "black",
+                backgroundColor: darkThemeEnabled ? "black" : "white",
+              },
+            }}
+            actionsCellStyle={{
+              color: darkThemeEnabled ? "white" : "black",
+              backgroundColor: darkThemeEnabled ? "black" : "white",
+            }}
+            actions={tableActions}
+          ></MaterialTable>
+        </div>
+      </Container>
+    );
+  }
 }
