@@ -77,6 +77,13 @@ const MyMapComponent = compose(
         onClick={props.onMarkerClick}
       />
     )}
+    {props.isMarkerShown && (
+      <Marker
+        icon={"https://maps.gstatic.com/mapfiles/ms2/micons/man.png"}
+        position={props.userLocation}
+        onClick={props.onPersonClick}
+      />
+    )}
   </GoogleMap>
 ));
 
@@ -84,6 +91,8 @@ export default class Maps extends React.PureComponent {
   state = {
     isMarkerShown: false,
     darkTheme: !sessionStorage.getItem("darkTheme"),
+    userLocation: { lat: 32, lng: 32 },
+    loading: true,
   };
 
   componentDidMount() {
@@ -94,6 +103,19 @@ export default class Maps extends React.PureComponent {
     var dark = Boolean(sessionStorage.getItem("darkTheme") == "false");
     // console.log(!dark);
     this.setState({ darkTheme: dark });
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+
+        this.setState({
+          userLocation: { lat: latitude, lng: longitude },
+          loading: false,
+        });
+      },
+      () => {
+        this.setState({ loading: false });
+      }
+    );
   }
 
   delayedShowMarker = () => {
@@ -110,13 +132,18 @@ export default class Maps extends React.PureComponent {
 
     //sessionStorage.setItem("darkTheme", !sessionStorage.getItem("darkTheme"))
   };
+  handlePersonClick = () => {
+    alert("Dats you :)");
+  };
 
   render() {
     return (
       <MyMapComponent
         isMarkerShown={this.state.isMarkerShown}
         onMarkerClick={this.handleMarkerClick}
+        onPersonClick={this.handlePersonClick}
         darkThemeEnabled={this.state.darkTheme}
+        userLocation={this.state.userLocation}
       />
     );
   }
