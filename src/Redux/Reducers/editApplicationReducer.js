@@ -7,7 +7,9 @@ import {
     CONTACT_CHANGE,
     APPROVED_STATUS_CHANGED,
     DESCRIPTION_FIELD_CHANGED,
-    DATE_FIELD_CHANGED } from "../../Constants/actionTypes"
+    DATE_FIELD_CHANGED,
+    CONTACT_ADDED,
+    EDIT_ADD_CONTACT_REQUEST_PENDING } from "../../Constants/actionTypes"
   
   export default function editApplicationReducer(state = {}, action) {
     switch (action.type) {
@@ -26,16 +28,19 @@ import {
           },
         }
       case EDIT_FORM_VIEW:
+        let appType = action.applicationData && action.applicationData.teamtwo_applicationname ? action.applicationData.teamtwo_applicationname : undefined;
+        let ownerId = action.applicationData && action.applicationData._ownerid_value ? action.applicationData._ownerid_value : undefined;
         return {
           ...state,
           applicationData: {
             editApplication: true,
             isPost: action.isPost,
-            contact: action.contact,
-            data: action.applicationData,
+            contact: action.contact || undefined,
+            data: action.applicationData || undefined,
             dynUser: action.userData,
-            ownerId: action.applicationData && action.applicationData._ownerid_value,
-            appType: action.applicationData && action.applicationData.teamtwo_applicationname
+            ownerId: ownerId,
+            appType: appType || undefined,
+            date: new Date(Date.now())
           },
         }
       
@@ -88,6 +93,24 @@ import {
             ...state.applicationData,
             date: action.date
           }
+        }
+      case CONTACT_ADDED: 
+      return {
+          ...state, 
+          applicationData: {
+              ...state.applicationData,
+              contact: action.contact,
+              contacts: [],
+              requestPending: false
+          }
+      }
+      case EDIT_ADD_CONTACT_REQUEST_PENDING:
+        return {
+          ...state,
+          applicationData: {
+            ...state.applicationData,
+            requestPending: true
+          },
         }
       default:
         return {

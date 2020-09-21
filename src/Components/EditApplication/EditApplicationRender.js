@@ -6,10 +6,12 @@ export default function EditApplicationRender(props) {
     let { applicationData } = props;
     if(applicationData.requestPending) {
         return (<Spinner></Spinner>)
-    } else if (applicationData.editApplication) {
-        return (<EditApplication {...props} />)
-    } else if (applicationData.requestSuccessful) {
+    } 
+    else if(props.applicationData.requestSuccessful) {
         props.history.push('/applications');
+    }
+    else if (applicationData.editApplication) {
+        return (<EditApplication {...props} />)
     }
     return(<h1>Something Went Wrong :(</h1>)
 }

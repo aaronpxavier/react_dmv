@@ -1,20 +1,12 @@
 import React from 'react';
-import { Button, FormControl, Container, Box, makeStyles, InputLabel, MenuItem, FormGroup, Select, TextField } from '@material-ui/core';
-import { Autocomplete } from '@material-ui/lab'
+import { Button, FormControl, Container, Box, InputLabel, MenuItem, FormGroup, Select, TextField, Tooltip } from '@material-ui/core';
+import { Autocomplete } from '@material-ui/lab';
+import AddIcon from '@material-ui/icons/Add';
 import { DRIVING_LICENSE, LEARNER_PERMIT } from '../../Constants/applicationTypes';
-import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers'
+import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
-
-const useStyles = makeStyles((theme) => ({
-    formControl: {
-        paddingRight: '10px',
-        minWidth: 120,
-    },
-    selectEmpty: {
-        marginTop: theme.spacing(2),
-    },
-}));
-
+import Fab from '@material-ui/core/Fab';
+import EditApplicationAddContact from './EditApplicationAddContact.js';
 
 function createDynUserMenuItems(userArray) {
     let i = 0;
@@ -25,7 +17,6 @@ function createDynUserMenuItems(userArray) {
     });
     return users;
 }
-
 function submitUpdate(appId, ownerId, applicationType, contactId, description, status, submitDate, action) {
     let entity = {};
     entity["ownerid@odata.bind"] = `/systemusers(${ownerId})`;
@@ -38,7 +29,6 @@ function submitUpdate(appId, ownerId, applicationType, contactId, description, s
 }
 
 function submitPost(ownerId, applicationType, contactId, description, status, submitDate, action) {
-    console.log('is post')
     let entity = {};
     entity["ownerid@odata.bind"] = `/systemusers(${ownerId})`;
     entity.teamtwo_applicationdescription = description;
@@ -50,9 +40,6 @@ function submitPost(ownerId, applicationType, contactId, description, status, su
     action(entity);
 }
 
-function redirectToApplicationsView(history) {
-    history.push('/applications');
-}
 export default function EditApplication(props) {
     let { applicationData, actions } = props;
     let { data } = applicationData;
@@ -62,13 +49,27 @@ export default function EditApplication(props) {
     let appType = applicationData.appType;
     let dynUserArray = applicationData.dynUser.value;
     let ownerId = applicationData.ownerId;
-    let date = applicationData.date || data && new Date(data.teamtwo_submitdate);
+    let date;
     let description = applicationData.descChanged ? applicationData.description : data && data.teamtwo_applicationdescription;
-    let approvedStatus = applicationData.approvedStatus === undefined ? (data && data.teamtwo_approvedstatus) || false : applicationData.approvedStatus;
+    let approvedStatus;
     let contactOptions = {
         options: applicationData.contacts || [applicationData.contact],
-        getOptionLabel: (option) => (option && option.fullname) || ""
+        getOptionLabel: (option) => option && option.fullname ? option.fullname : ""
     }
+    const [openContactModal, setAddConModal] = React.useState(false);
+
+    if (applicationData.date) {
+        date = data && new Date(data.teamtwo_submitdate);
+    } 
+    if(date === undefined && data === undefined) {
+        date = new Date(Date.now());
+    }
+    if(applicationData.approvedStatus === undefined) {
+        approvedStatus = data && data.teamtwo_approvedstatus ? data.teamtwo_approvedstatus : false;
+    } else {
+        approvedStatus = applicationData.approvedStatus;
+    }
+
     for (let i = 0; i < dynUserArray.length; ++i) {
         if (dynUserArray[i].systemuserid === applicationData.ownerId) {
             currentDynUserIndex = i;
@@ -80,7 +81,7 @@ export default function EditApplication(props) {
         <Container>
             <Box>
                 <h1 style={{ paddingTop: '50px' }}>Edit Application <em>{(contact && contact.fullname) || ''}</em> ({(data && data.teamtwo_applicationid) || ''})</h1>
-
+                <EditApplicationAddContact {...props} openContactModal={openContactModal} setAddConModal={setAddConModal} currentContact={contact}/>
                 <FormGroup row style={{ marginTop: '50px' }}>
                     <FormControl style={{ paddingRight: '10px' }} >
                         <InputLabel id="dynUserSelectLabel">Owner</InputLabel>
@@ -97,7 +98,7 @@ export default function EditApplication(props) {
                         <Select
                             labelId="applicationType"
                             id="applicaiton-select"
-                            value={applicationData.appType || (data && data.teamtwo_applicationname)}
+                            value={(applicationData.appType ? applicationData.appType : data && data.teamtwo_applicationname) || null}
                             onChange={e => actions.applicationTypeChange(e.target.value)}>
                             <MenuItem value={DRIVING_LICENSE}>Driver's License</MenuItem>
                             <MenuItem value={LEARNER_PERMIT}>Learner's Permit</MenuItem>
@@ -113,6 +114,11 @@ export default function EditApplication(props) {
                         value={{ fullname: contact && contact.fullname }}
                         renderInput={(params) => <TextField onChange={e => actions.applicationContactFieldKeyup(e.target.value)} {...params} label="Driver Applicable TO" />}
                     />
+                    <Tooltip title="Add a new driver" aria-label="add">
+                        <Fab size="small" color="secondary" aria-label="add" onClick={()=> setAddConModal(true)}>
+                            <AddIcon />
+                        </Fab>
+                    </Tooltip>
                 </FormGroup>
                 <FormGroup row style={{ marginTop: '20px' }}>
                     <FormControl style={{ paddingRight: '10px' }}>
@@ -165,7 +171,7 @@ export default function EditApplication(props) {
                     >
                         Submit
                 </Button>
-                    <Button variant="contained" color="secondary" onClick={() => redirectToApplicationsView(props.history)}>Cancel</Button>
+                    <Button variant="contained" color="secondary" onClick={() => props.history.push('/applications')}>Cancel</Button>
                 </FormGroup>
 
             </Box>
