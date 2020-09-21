@@ -31,7 +31,7 @@ export const GlobalStyles = createGlobalStyle`
  }
  #tContainer{
  
-  ${"" /* background-color: ${({ theme }) => theme.body}; */}
+   ${"" /* background-color: ${({ theme }) => theme.body}; */}
 
  }
  #tContainer #dTable{
@@ -41,6 +41,9 @@ export const GlobalStyles = createGlobalStyle`
   color: ${({ theme }) => "blue"};
   background-color: ${({ theme }) => "red"};
   backgroundColor: ${({ theme }) => "red"};
+ columns:{
+  background-color: ${({ theme }) => "red"};
+ }
  }
 
   `;

@@ -1,4 +1,4 @@
-import { dynGetCall, dynDeleteCall } from '../../Utilities/dyanamicsAPI'
+import { dynGetCall, dynDeleteCall, dynPostCall } from '../../Utilities/dyanamicsAPI'
 import { GET_VEHICLES_SUCCESS, GET_VEHICLES_PENDING, VEHICLE_MODAL_CHANGE, DELETE_VEHICLE_POPUP_CHANGE } from '../../Constants/actionTypes'
 import { DYN_BASE_URL } from '../../Constants/config'
 

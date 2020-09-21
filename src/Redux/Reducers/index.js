@@ -11,6 +11,9 @@ import historyReducer from "./historyReducer";
 import dashboardContactReducer from "./dashboardContactReducer";
 import dashboardApplicationReducer from "./dashboardApplicationReducer";
 import appointmentReducer from "./appointmentReducer";
+import editContactReducer from './editContactReducer';
+import editHistoryReducer from './editHistoryReducer';
+import editVehiclesReducer from './editVehicleReducer'
 
 const allReducers = combineReducers({
   //reducers go here as key value pairs
@@ -24,6 +27,11 @@ const allReducers = combineReducers({
   historyReducer,
   dashboardApplicationReducer,
   dashboardContactReducer,
+  editContactReducer,
+  editHistoryReducer,
+  editVehiclesReducer,
+
+
 });
 
 export default allReducers;
