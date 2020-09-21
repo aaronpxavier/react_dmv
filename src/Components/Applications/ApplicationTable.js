@@ -92,7 +92,6 @@ export default function ApplicationTable(props) {
             icon: () => <Edit color="primary"></Edit>,
             tooltip: 'Edit Application',
             onClick:(event, rowData) => {
-                console.log('edit table click');
                 props.history.push(`/applications/edit/${rowData.id}`)
             }
         }

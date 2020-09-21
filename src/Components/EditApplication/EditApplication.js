@@ -30,8 +30,6 @@ function submitUpdate(appId, ownerId, applicationType, contactId, description, s
 
 function submitPost(ownerId, applicationType, contactId, description, status, submitDate, action) {
     let entity = {};
-    let date;
-    console.log(submitDate);
     entity["ownerid@odata.bind"] = `/systemusers(${ownerId})`;
     entity.teamtwo_applicationdescription = description;
     entity.teamtwo_approvedstatus = status;
@@ -43,7 +41,6 @@ function submitPost(ownerId, applicationType, contactId, description, status, su
 }
 
 export default function EditApplication(props) {
-    console.log(props);
     let { applicationData, actions } = props;
     let { data } = applicationData;
     let { contact } = applicationData;
