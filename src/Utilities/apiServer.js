@@ -12,7 +12,6 @@ function _tokenIsCurrent() {
 
 export function updateDYNToken() {
     return new Promise (res => {
-        console.log(_tokenIsCurrent());
         if(_tokenIsCurrent())
           res(sessionStorage.getItem(DYN_TOKEN_KEY));
         else {
